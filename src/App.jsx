@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
+import BodyAuthLayout from './compo/BodyAuthLayout'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-        <div>Bonjour Héritier</div>
+        <BodyAuthLayout />
     </>
   )
 }

@@ -1,8 +1,19 @@
-# React + Vite
+# Les informations nécessaire de l'application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+`Les coulers a utilisé :`
+{
+    gris : #f1f3f4
+    Bleu : #1c75bc
+    Bleu foncé : #2b3990
+    Rouge : #e93e3a
+    Jaune du Logo : #fff33b
 
-Currently, two official plugins are available:
+    Les équivalence pour l'aspect visibilité :
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+    Les polices :
+        1. Police du mot TOYHE :  `League Gothic Regular`
+       2. Pour l'application : Robote
+       3. Alternative 1 : Poppins
+       4. Alternative 2 : sana-serif
+
+}
