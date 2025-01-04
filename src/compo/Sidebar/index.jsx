@@ -34,10 +34,10 @@ const Sidebar = (props) => {
     }
 
     return (
-        <div className="sidebar flex flex-col justify-between">
+        <div className="flex flex-col justify-between sidebar">
             <ul>
                 <li>
-                    <Link to={'/user'}>
+                    <Link to={'/'}>
                     <Button
                         className={`w-full flex justify-between items-center ${activeTab === 0 ? 'active' : ''}`}
                         onClick={() => isOpenSubmenu(0)}
@@ -56,16 +56,17 @@ const Sidebar = (props) => {
                         className={`w-full flex justify-between items-center ${activeTab === 1 && isToggleSubmenu === true ? 'active' : ''}`}
                         onClick={() => isOpenSubmenu(1)}
                     >
-                        <span className='icon flex items-center'>
+                        <span className='flex items-center icon'>
                             <DashboardIcon />
                         </span>
                         Tableau de bord
-                        <span className='arrow ml-auto'>
+                        <span className='ml-auto arrow'>
                                <ChevronRightIcon/>
                           </span>
                        </Button>
                         <div className={`submenuWrapper ${activeTab === 1 && isToggleSubmenu === true ? 'colapse' : 'colapsed'}`}>
                             <ul className='submenu'>
+                                <li> <Link to={'#'}>Commandes</Link> </li>
                                 <li> <Link to={'#'}>Ventes</Link> </li>
                                 <li> <Link to={'#'}>Réservations</Link> </li>
                             </ul>
@@ -76,7 +77,7 @@ const Sidebar = (props) => {
                         className={`w-full flex justify-between items-center ${activeTab === 2 && isToggleSubmenu === true ? 'active' : ''}`}
                         onClick={() => isOpenSubmenu(2)}
                     >
-                        <span className='icon flex items-center'>
+                        <span className='flex items-center icon'>
                             <BusinessIcon />
                         </span>
                         Agences
@@ -94,7 +95,7 @@ const Sidebar = (props) => {
                 </li>
 
                 <li>
-                    <Link to={'/'}>
+                    <Link to={'/users'}>
                         <Button
                             className={`w-full flex justify-between items-center ${activeTab === 3 ? 'active' : ''}`}
                             onClick={() => isOpenSubmenu(3)}
@@ -108,7 +109,7 @@ const Sidebar = (props) => {
                 </li>
 
                 <li>
-                    <Link to={'/user'}>
+                    <Link to={'/'}>
                         <Button
                             className={`w-full flex justify-between items-center ${activeTab === 4 ? 'active' : ''}`}
                             onClick={() => isOpenSubmenu(4)}
@@ -168,7 +169,7 @@ const Sidebar = (props) => {
 
                 <ul>
                     <li>
-                        <Link to={'/user'}>
+                        <Link to={'/'}>
                             <Button
                             className={`w-full flex justify-between items-center ${activeTab === 20 ? 'active' : ''}`}
                             onClick={() => isOpenSubmenu(20)}
@@ -182,7 +183,7 @@ const Sidebar = (props) => {
                     </li>
 
                     <li>
-                        <Link to={'/user'}>
+                        <Link to={'/'}>
                             <Button
                                 className={`w-full flex justify-between items-center ${activeTab === 21 ? 'active' : ''}`}
                                 onClick={() => isOpenSubmenu(21)}
@@ -196,7 +197,7 @@ const Sidebar = (props) => {
                     </li>
 
                     <li>
-                        <Link to={'/user'}>
+                        <Link to={'/'}>
                             <Button
                                 className={`w-full flex justify-between items-center ${activeTab === 22 ? 'active' : ''}`}
                                 onClick={() => isOpenSubmenu(22)}

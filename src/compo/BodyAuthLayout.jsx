@@ -7,7 +7,7 @@ const BodyAuthLayout = (props) => {
   return (
     <div>
       <Header />
-      <main className="mainAuth flex">
+      <main className="flex mainAuth">
         <div className="sidebarWrapper">
             <Sidebar />
         </div>

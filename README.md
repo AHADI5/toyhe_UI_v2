@@ -2,7 +2,7 @@
 
 `Les coulers a utilisé :`
 {
-    gris : #f1f3f4
+    gris : #f5f5ff
     Bleu : #1c75bc
     Bleu foncé : #2b3990
     Rouge : #e93e3a

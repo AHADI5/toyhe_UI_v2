@@ -1,9 +1,12 @@
+import BoitesDesElements from "./BoitesDesElements";
+
 
 const Dashboard = (props) => {
 
   return (
     <>
-        Dashboard    </>
+        Dashboard
+    </>
   );
 };
 
