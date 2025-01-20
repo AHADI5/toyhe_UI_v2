@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import {
   TextField,
@@ -668,3 +669,18 @@ const SignUp = () => {
 };
 
 export default SignUp;
+=======
+import SignInForm from "./toyhe_app/auth/signinform";
+
+const App = () => { 
+ 
+return  (  
+  <>
+    <SignInForm />
+  </>
+)
+
+}
+
+export default App 
+>>>>>>> origin/project_structure
