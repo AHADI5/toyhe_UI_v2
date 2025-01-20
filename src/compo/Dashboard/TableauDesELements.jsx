@@ -12,6 +12,14 @@ import autoTable from "jspdf-autotable";
 import * as XLSX from "xlsx";
 
 import logoTOYHE from "../../assets/TOYHE_LOGO_250x250.png"
+import logoEtsSILIMU from "../../assets/Logi_Ets_SILIMU.jpg"
+import { Button } from "@mui/material";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import BoiteDeDialogue from "./BoiteDeDialogue";
+
+
 
 const columns = [
   { id: "numero", label: "N°", minWidth: 50 },
@@ -20,9 +28,55 @@ const columns = [
   { id: "email", label: "Email", minWidth: 200 },
   { id: "adresse", label: "Adresse", minWidth: 200 },
   { id: "role", label: "Rôle", minWidth: 150 },
+  { id: "action", label: "Action", minWidth: 50 },
 ];
 
 const rows = [
+  {noms: 'AMURI TCHALUMBA Héritier', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Kasika, C. Karisimbi', role: "Utilisateur"},
+  {noms: `KULE WA-KANGIT'SI Robert`, telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°020 Maboke, Q. Kyeshero, C. Goma', role: 'Agent'},
+  {noms: 'ALUHEBA ABECUMBE', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Kasika, C. Karisimbi', role: "Utilisateur"},
+  {noms: 'KIRANGA KANYANGE Prinece', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Himbi, C. Goma', role: 'Agent'},
+  {noms: 'AMURI TCHALUMBA Héritier', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Kasika, C. Karisimbi', role: "Utilisateur"},
+  {noms: 'KIRANGA KANYANGE Prinece', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Himbi, C. Goma', role: 'Agent'},
+  {noms: 'ALUHEBA ABECUMBE', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Kasika, C. Karisimbi', role: "Utilisateur"},
+  {noms: 'AMURI TCHALUMBA Héritier', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Kasika, C. Karisimbi', role: "Utilisateur"},
+  {noms: 'KIRANGA KANYANGE Prinece', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Himbi, C. Goma', role: 'Agent'},
+  {noms: 'ALUHEBA ABECUMBE', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Kasika, C. Karisimbi', role: "Utilisateur"},
+  {noms: 'AMURI TCHALUMBA Héritier', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Kasika, C. Karisimbi', role: "Utilisateur"},
+  {noms: 'KIRANGA KANYANGE Prinece', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Himbi, C. Goma', role: 'Agent'},
+  {noms: 'ALUHEBA ABECUMBE', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Kasika, C. Karisimbi', role: "Utilisateur"},
+  {noms: 'AMURI TCHALUMBA Héritier', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Kasika, C. Karisimbi', role: "Utilisateur"},
+  {noms: 'KIRANGA KANYANGE Prinece', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Himbi, C. Goma', role: 'Agent'},
+  {noms: 'ALUHEBA ABECUMBE', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Kasika, C. Karisimbi', role: "Utilisateur"},
+  {noms: 'AMURI TCHALUMBA Héritier', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Kasika, C. Karisimbi', role: "Utilisateur"},
+  {noms: 'KIRANGA KANYANGE Prinece', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Himbi, C. Goma', role: 'Agent'},
+  {noms: 'ALUHEBA ABECUMBE', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Kasika, C. Karisimbi', role: "Utilisateur"},
+  {noms: 'AMURI TCHALUMBA Héritier', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Kasika, C. Karisimbi', role: "Utilisateur"},
+  {noms: 'KIRANGA KANYANGE Prinece', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Himbi, C. Goma', role: 'Agent'},
+  {noms: 'ALUHEBA ABECUMBE', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Kasika, C. Karisimbi', role: "Utilisateur"},
+  {noms: 'AMURI TCHALUMBA Héritier', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Kasika, C. Karisimbi', role: "Utilisateur"},
+  {noms: 'KIRANGA KANYANGE Prinece', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Himbi, C. Goma', role: 'Agent'},
+  {noms: 'ALUHEBA ABECUMBE', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Kasika, C. Karisimbi', role: "Utilisateur"},
+  {noms: 'AMURI TCHALUMBA Héritier', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Kasika, C. Karisimbi', role: "Utilisateur"},
+  {noms: 'KIRANGA KANYANGE Prinece', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Himbi, C. Goma', role: 'Agent'},
+  {noms: 'ALUHEBA ABECUMBE', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Kasika, C. Karisimbi', role: "Utilisateur"},
+  {noms: 'AMURI TCHALUMBA Héritier', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Kasika, C. Karisimbi', role: "Utilisateur"},
+  {noms: 'KIRANGA KANYANGE Prinece', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Himbi, C. Goma', role: 'Agent'},
+  {noms: 'ALUHEBA ABECUMBE', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Kasika, C. Karisimbi', role: "Utilisateur"},
+  {noms: 'AMURI TCHALUMBA Héritier', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Kasika, C. Karisimbi', role: "Utilisateur"},
+  {noms: 'KIRANGA KANYANGE Prinece', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Himbi, C. Goma', role: 'Agent'},
+  {noms: 'ALUHEBA ABECUMBE', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Kasika, C. Karisimbi', role: "Utilisateur"},
+  {noms: 'AMURI TCHALUMBA Héritier', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Kasika, C. Karisimbi', role: "Utilisateur"},
+  {noms: 'KIRANGA KANYANGE Prinece', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Himbi, C. Goma', role: 'Agent'},
+  {noms: 'ALUHEBA ABECUMBE', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Kasika, C. Karisimbi', role: "Utilisateur"},
+  {noms: 'AMURI TCHALUMBA Héritier', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Kasika, C. Karisimbi', role: "Utilisateur"},
+  {noms: 'KIRANGA KANYANGE Prinece', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Himbi, C. Goma', role: 'Agent'},
+  {noms: 'ALUHEBA ABECUMBE', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Kasika, C. Karisimbi', role: "Utilisateur"},
+  {noms: 'AMURI TCHALUMBA Héritier', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Kasika, C. Karisimbi', role: "Utilisateur"},
+  {noms: 'KIRANGA KANYANGE Prinece', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Himbi, C. Goma', role: 'Agent'},
+  {noms: 'ALUHEBA ABECUMBE', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Kasika, C. Karisimbi', role: "Utilisateur"},
+  {noms: 'AMURI TCHALUMBA Héritier', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Kasika, C. Karisimbi', role: "Utilisateur"},
+  {noms: 'KIRANGA KANYANGE Prinece', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Himbi, C. Goma', role: 'Agent'},
   {noms: 'AMURI TCHALUMBA Héritier', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Kasika, C. Karisimbi', role: "Utilisateur"},
   {noms: `KULE WA-KANGIT'SI Robert`, telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°020 Maboke, Q. Kyeshero, C. Goma', role: 'Agent'},
   {noms: 'ALUHEBA ABECUMBE', telephone: '+243990691536', email: 'heritieramuritcha@gmail.com', adresse: 'N°049 Dikuta, Q. Kasika, C. Karisimbi', role: "Utilisateur"},
@@ -83,13 +137,36 @@ const TableauDesElements = () => {
     setPage(0);
   };
 
-
-
-
-
   const exportToPDF = () => {
     const doc = new jsPDF();
-    const tableColumnHeaders = columns.map((col) => col.label); // Récupérer les étiquettes des colonnes
+  
+    // Définir la fonction pour l'en-tête
+    const addHeader = (pageNumber) => {
+      // Ajouter l'image du logo
+      doc.addImage(logoEtsSILIMU, 'JPG', 10, 3, 15, 15);
+      // Ajouter les textes d'en-tête
+      doc.setFontSize(10);
+      doc.setTextColor(0, 0, 0);
+      doc.text("Garant du transport lacustre", 25, 12, { align: "left" });
+      doc.text("Mercredi le 29 / Avril / 2025", 190, 12, { align: "right" });
+      // Ajouter le rectangle et le titre
+      doc.setFillColor("#2b3990");
+      doc.rect(14, 19, 182, 8, "F");
+      doc.setFontSize(16);
+      doc.setTextColor(255, 255, 255);
+      doc.text("Liste des utilisateurs", 105, 25, { align: "center" });
+    };
+  
+    // Définir la fonction pour le pied de page
+    const addFooter = (pageNumber) => {
+      doc.addImage(logoTOYHE, 'PNG', 10, 280, 10, 10);
+      doc.setFontSize(10);
+      doc.setTextColor(0, 0, 0);
+      doc.text("Plateforme de gestion et réservation du transport lacustre", 23, 287);
+      doc.text(`Page ${pageNumber}`, 190, 287, { align: "right" });
+    };
+  
+    const tableColumnHeaders = columns.map((col) => col.label);
     const tableRows = rows.map((row, index) => [
       index + 1,
       row.noms,
@@ -99,19 +176,14 @@ const TableauDesElements = () => {
       row.role,
     ]);
   
-    // Ajouter un titre au document
-    doc.setFillColor("#2b3990");
-    doc.rect(10, 10, 190, 8, "F");
-    // Ajouter un titre centré en blanc
-    doc.setFontSize(16);
-    doc.setTextColor(255, 255, 255);
-    doc.text("Liste des utilisateurs", 105, 16, { align: "center" }); 
-  
-    // Générer le tableau
-    autoTable(doc, {
-      startY: 20,
+    let pageNumber = 1;
+    
+    // Ajouter l'en-tête et le tableau
+    doc.autoTable({
+      startY: 30,
       head: [tableColumnHeaders],
       body: tableRows,
+      margin: { top: 30 },  // Déplacer le tableau sous l'en-tête
       styles: {
         fontSize: 10,
       },
@@ -119,25 +191,17 @@ const TableauDesElements = () => {
         fillColor: [43, 57, 144],
         textColor: [255, 255, 255],
       },
+      didDrawPage: function (data) {
+        addHeader(pageNumber);
+        addFooter(pageNumber);
+        pageNumber++;
+      }
     });
-
-    
-    doc.addImage(logoTOYHE, 'PNG', 10, 280, 10, 10);
-    doc.setFontSize(10);
-    doc.setTextColor(0, 0, 0);
-    doc.text("Plateforme de gestion et réservation du transport lacustre", 23, 287);
   
     doc.save("Liste_Utilisateurs.pdf");
   };
-  
-  
-
-
-
 
   const exportToExcel = () => {
-
-
     const tableData = rows.map((row, index) => ({
       "N°": index + 1,
       "Noms": row.noms,
@@ -147,13 +211,36 @@ const TableauDesElements = () => {
       "Rôle": row.role,
     }));
 
-
-
     const worksheet = XLSX.utils.json_to_sheet(tableData);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Tableau");
     XLSX.writeFile(workbook, "tableau.xlsx");
   };
+
+ 
+
+
+  const [openBoiteDeDialogue, setOpenBoiteDeDialogue] = useState(false);
+  const [boiteDeDialogueMode, setBoiteDeDialogueMode] = useState('view');
+  const [selectedUser, setSelectedUser] = useState({
+    nom: 'AMURI',
+    postNom: 'TCHALUMBA',
+    prenom: 'Heritier',
+    role: 'Administrateur',
+  });
+
+  const handleOpenBoiteDeDialogue = (mode) => {
+    setBoiteDeDialogueMode(mode);
+    setOpenBoiteDeDialogue(true);
+  };
+
+  const handleCloseBoiteDeDialogue = () => {
+    setOpenBoiteDeDialogue(false);
+  };
+
+
+
+
 
   return (
     <Paper className="overflow-x-auto tableauDesElement" sx={{ width: "100%", overflow: "hidden" }}>
@@ -173,9 +260,7 @@ const TableauDesElements = () => {
             </TableRow>
           </TableHead>
 
-
-
-          <TableBody>
+          <TableBody className="bodyElementTableau">
             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => (
               <TableRow key={index}>
                 <TableCell>{page * rowsPerPage + index + 1}</TableCell>
@@ -184,13 +269,41 @@ const TableauDesElements = () => {
                 <TableCell>{row.email}</TableCell>
                 <TableCell>{row.adresse}</TableCell>
                 <TableCell>{row.role}</TableCell>
+                <TableCell>
+                  <div className="flex items-center buttonAction">
+                    <Button
+                      className="secondaryActionButton"
+                      color="secondary"
+                      onClick={() => handleOpenBoiteDeDialogue('view')}
+                    >
+                        <VisibilityIcon />
+                    </Button>
+
+                    <Button onClick={() => handleOpenBoiteDeDialogue('edit')} className="successActionButton" color="success"> <ModeEditIcon /> </Button>
+                    <Button onClick={() => handleOpenBoiteDeDialogue('delete')} className="errorActionButton" color="error"> <DeleteIcon /> </Button>
+
+                    <BoiteDeDialogue
+                      title={
+                        boiteDeDialogueMode === 'edit' ? 'Modifier les informations de l\'utilisateur' :
+                        boiteDeDialogueMode === 'delete' ? 'Confirmer la suppression de l\'utilisateur' :
+                        'Informations de l\'utilisateur'
+                      }
+                      description={
+                        boiteDeDialogueMode === 'edit' ? 'Vous pouvez modifier les informations ci-dessous.' :
+                        boiteDeDialogueMode === 'delete' ? 'Voulez-vous vraiment supprimer cet utilisateur ?' :
+                        'Voici les informations de l\'utilisateur.'
+                      }
+                      user={selectedUser}
+                      mode={boiteDeDialogueMode}
+                      open={openBoiteDeDialogue}
+                      onClose={handleCloseBoiteDeDialogue}
+                    />
+
+                  </div>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
-
-
-
-
 
         </Table>
       </TableContainer>

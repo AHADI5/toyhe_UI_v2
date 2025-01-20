@@ -22,15 +22,20 @@ import * as Yup from 'yup';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/material.css';
 import { countries } from 'countries-list';
+import backgroundImg from '../assets/ArrierePlan.jpg';
+import logoImg from '../assets/TOYHE_LOGO_250x250.png';
 
 // Image de fond
-const backgroundImage = '../assets/';
+const backgroundImage = `url(${backgroundImg})`;
 
 // Liste des pays en français
 const countryList = Object.values(countries).map(country => ({
   code: country.name,
   name: country.native
 })).sort((a, b) => a.name.localeCompare(b.name));
+
+// Couleur principale
+const mainColor = '#2b3990';
 
 const SignUp = () => {
   const [accountType, setAccountType] = useState('personal');
@@ -571,22 +576,41 @@ const SignUp = () => {
     <div className="flex flex-col min-h-screen bg-gray-100 md:flex-row">
       {/* Left side - Presentation */}
       <div 
-        className="relative flex items-center justify-center p-8 md:w-1/2"
+        className="relative flex items-center justify-center p-8 overflow-hidden md:w-1/2"
         style={{
-          backgroundImage: `url(${backgroundImage})`,
+          backgroundImage: backgroundImage,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          minHeight: '100vh'
         }}
       >
         <div className="absolute inset-0 bg-blue-600 opacity-10" />
-        <div className="relative z-10 max-w-lg text-white">
-          <Typography variant="h3" className="mb-6">
-            Transport Lacustre Goma
-          </Typography>
-          <Typography variant="h5" className="mb-4">
+        <div className="relative z-10 max-w-lg p-8 text-white bg-black rounded-lg bg-opacity-30">
+          <div className="flex items-center mb-6">
+            <img 
+              src={logoImg} 
+              alt="TOYHE Logo" 
+              className="w-24 h-24 mr-4"
+            />
+            <Typography 
+              variant="h3" 
+              style={{ color: mainColor }}
+            >
+              Transport Lacustre Goma
+            </Typography>
+          </div>
+          <Typography 
+            variant="h5" 
+            className="mb-4"
+            style={{ color: mainColor }}
+          >
             Bienvenue sur notre plateforme
           </Typography>
-          <Typography variant="body1">
+          <Typography 
+            variant="body1"
+            style={{ color: mainColor }}
+          >
             Notre plateforme de réservation et de gestion du transport lacustre 
             vous permet de facilement planifier vos voyages sur le lac Kivu. 
             Créez votre compte dès maintenant pour profiter de nos services.

@@ -21,12 +21,15 @@ import Divider from '@mui/material/Divider';
 
 
 
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { MyContext } from '../../App';
 
 const Sidebar = (props) => {
 
     const [activeTab, setActiveTab] = useState(0);
     const [isToggleSubmenu, setIsToggleSubmenu] = useState(false);
+
+    const context = useContext(MyContext)
 
     const isOpenSubmenu = (index) => {
         setActiveTab(index);
@@ -169,7 +172,7 @@ const Sidebar = (props) => {
 
                 <ul>
                     <li>
-                        <Link to={'/'}>
+                        <Link to={'/settings'}>
                             <Button
                             className={`w-full flex justify-between items-center ${activeTab === 20 ? 'active' : ''}`}
                             onClick={() => isOpenSubmenu(20)}
@@ -183,7 +186,7 @@ const Sidebar = (props) => {
                     </li>
 
                     <li>
-                        <Link to={'/'}>
+                        <Link to={'/supports'}>
                             <Button
                                 className={`w-full flex justify-between items-center ${activeTab === 21 ? 'active' : ''}`}
                                 onClick={() => isOpenSubmenu(21)}
@@ -197,7 +200,7 @@ const Sidebar = (props) => {
                     </li>
 
                     <li>
-                        <Link to={'/'}>
+                        <Link to={'/signout'}>
                             <Button
                                 className={`w-full flex justify-between items-center ${activeTab === 22 ? 'active' : ''}`}
                                 onClick={() => isOpenSubmenu(22)}
