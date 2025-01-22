@@ -22,7 +22,7 @@ import * as Yup from 'yup';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/material.css';
 import { countries } from 'countries-list';
-import backgroundImg from '../assets/ArrierePlan.jpg';
+import backgroundImg from '../assets/ArrierePlanConte.jpg';
 import logoImg from '../assets/TOYHE_LOGO_250x250.png';
 
 // Image de fond
@@ -586,7 +586,7 @@ const SignUp = () => {
         }}
       >
         <div className="absolute inset-0 bg-blue-600 opacity-10" />
-        <div className="relative z-10 max-w-lg p-8 text-white bg-black rounded-lg bg-opacity-30">
+        <div className="relative z-10 max-w-lg p-8 text-white bg-white rounded-lg bg-opacity-50">
           <div className="flex items-center mb-6">
             <img 
               src={logoImg} 
@@ -595,9 +595,11 @@ const SignUp = () => {
             />
             <Typography 
               variant="h3" 
-              style={{ color: mainColor }}
+              style={{ color: mainColor,
+                fontSize: '35px'
+               }}
             >
-              Transport Lacustre Goma
+              Plateforme de Transport Lacustre
             </Typography>
           </div>
           <Typography 

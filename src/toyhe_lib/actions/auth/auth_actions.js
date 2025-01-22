@@ -1,6 +1,5 @@
-import instance from "../../utils/axios";
+import instance from "../../utils/axios.js";
 import { jwtDecode } from 'jwt-decode';
-
 
 
 export const getToken = () => sessionStorage.getItem('token');
