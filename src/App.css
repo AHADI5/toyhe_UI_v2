@@ -1,4 +1,3 @@
-
 * {
   margin: 0px;
   padding: 0px;
@@ -44,7 +43,7 @@ body {
   margin: 0px !important;
 }
 
-/* Pour le Co,posqnt LOGO de la plateforme */
+/* Pour le Co-posqnt LOGO de la plateforme */
 .headerAuth .logo {
   text-decoration: none;
 }
@@ -443,7 +442,7 @@ header .logo img {
 
 .boxElements {
   position: relative;
-  width: 20%;
+  width: 400px;
   height: 150px;
   background: #fff;
   border: 1px solid #e0e0e0;
@@ -529,7 +528,7 @@ header .logo img {
   flex-wrap: nowrap;
   background: white !important;
   padding: 5px;
-  gap: 70px;
+  gap: 65px;
   border-radius: 10px;
   box-shadow: 0px 4px 6px 2px rgba(0, 0, 0, 0.1);
   border: 1px solid #e0e0e0;
@@ -632,9 +631,52 @@ header .logo img {
   height: auto;
   margin: auto;
 }
+
+/* Styles responsifs pour la page de connexion */
+@media screen and (max-width: 480px) {
+  .loginSectionPage .loginBox {
+    width: 100%;
+    max-width: 360px;
+  }
+  
+  .loginSectionPage {
+    padding: 20px 15px;
+  }
+}
+
+@media screen and (min-width: 481px) {
+  .loginSectionPage .loginBox {
+    width: 420px;
+  }
+  
+  .loginSectionPage .loginBox .logo img {
+    width: 100px !important;
+  }
+  
+  .loginSectionPage .loginBox h5 {
+    font-size: 1.5rem !important;
+    margin-top: 1rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .loginSectionPage .loginBox {
+    width: 480px;
+  }
+  
+  .loginSectionPage .loginBox .logo img {
+    width: 120px !important;
+  }
+  
+  .loginSectionPage .loginBox .wrapper {
+    padding: 40px;
+  }
+}
+
 .loginSectionPage .loginBox .wrapper {
   width: 100%;
-  height: 300px;
+  height: auto;
+  min-height: 300px;
   background: #fff;
   position: relative;
   z-index: 100;
@@ -679,4 +721,279 @@ header .logo img {
   position: relative;
   z-index: 100;
   padding: 35px;
+}
+
+/* Styles spécifiques pour la page mot de passe oublié */
+.loginSectionPage .forgotPasswordSectionPage .wrapper {
+  min-height: 220px;
+}
+
+@media screen and (max-width: 480px) {
+  .loginSectionPage .forgotPasswordSectionPage .wrapper {
+    min-height: 200px;
+    padding: 25px;
+  }
+}
+
+@media screen and (min-width: 481px) {
+  .loginSectionPage .forgotPasswordSectionPage .wrapper {
+    min-height: 220px;
+    padding: 30px;
+  }
+}
+
+/* Styles pour le composant SignUp */
+@media screen and (max-width: 768px) {
+  .phone-input {
+    width: 100% !important;
+  }
+  
+  .phone-input input {
+    width: 100% !important;
+    padding-left: 50px !important;
+  }
+
+  .MuiPaper-root {
+    padding: 16px !important;
+  }
+
+  .MuiStepper-root {
+    padding: 16px 0 !important;
+  }
+
+  .MuiStepLabel-label {
+    font-size: 12px !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .MuiStepper-root {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+  }
+
+  .MuiStep-root {
+    width: 100% !important;
+    margin-bottom: 8px !important;
+  }
+
+  .MuiStepConnector-root {
+    display: none !important;
+  }
+}
+
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f3f4f6;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.signup-presentation {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  width: 100%;
+  min-height: 250px;
+}
+
+.signup-form-container {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.signup-form-paper {
+  width: 100%;
+  max-width: 600px;
+  padding: 1.5rem;
+  margin: 1.5rem auto;
+}
+
+.signup-form-content {
+  width: 100%;
+}
+
+.signup-stepper {
+  margin: 1.5rem 0;
+}
+
+.signup-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  gap: 1rem;
+}
+
+.signup-welcome-box {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  max-width: 500px;
+  margin: 1rem;
+}
+
+/* Responsive styles */
+@media screen and (min-width: 768px) {
+  .signup-container {
+    flex-direction: row;
+  }
+
+  .signup-presentation {
+    position: fixed;
+    width: 50%;
+    height: 100vh;
+    padding: 2rem;
+  }
+
+  .signup-form-container {
+    width: 50%;
+    margin-left: 50%;
+    padding: 2rem;
+    min-height: 100vh;
+  }
+
+  .signup-form-paper {
+    padding: 2rem;
+  }
+
+  .signup-welcome-box {
+    padding: 2rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .signup-stepper .MuiStepLabel-label {
+    font-size: 12px;
+  }
+
+  .signup-form-paper {
+    margin: 0.5rem;
+    padding: 1rem;
+  }
+
+  .phone-input {
+    width: 100% !important;
+  }
+
+  .phone-input input {
+    width: 100% !important;
+    padding-left: 50px !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .signup-stepper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .signup-stepper .MuiStep-root {
+    width: 100% !important;
+    margin-bottom: 0.5rem;
+  }
+
+  .signup-stepper .MuiStepConnector-root {
+    display: none;
+  }
+
+  .signup-buttons {
+    flex-direction: column;
+  }
+
+  .signup-buttons button {
+    width: 100%;
+  }
+}
+
+/* Ajustements pour les champs de formulaire */
+.form-field {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.form-field input,
+.form-field select {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+}
+
+/* Animation de transition */
+.signup-container > * {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Styles pour PhoneInput */
+.react-tel-input .form-control {
+  width: 100% !important;
+  height: 56px !important;
+  border-radius: 4px !important;
+  border: 1px solid rgba(0, 0, 0, 0.23) !important;
+  font-size: 1rem !important;
+  font-family: inherit !important;
+}
+
+.react-tel-input .form-control:focus {
+  border-color: #1c75bc !important;
+  border-width: 2px !important;
+  box-shadow: none !important;
+}
+
+.react-tel-input .flag-dropdown {
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 4px 0 0 4px !important;
+}
+
+.react-tel-input .selected-flag {
+  background-color: transparent !important;
+  border-radius: 4px 0 0 4px !important;
+}
+
+.react-tel-input .country-list {
+  margin: 4px 0 !important;
+  border-radius: 4px !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
+  max-height: 300px !important;
+}
+
+.react-tel-input .country-list .search {
+  padding: 8px !important;
+  margin: 0 !important;
+}
+
+.react-tel-input .country-list .search-box {
+  width: 100% !important;
+  padding: 8px !important;
+  border: 1px solid rgba(0, 0, 0, 0.23) !important;
+  border-radius: 4px !important;
+}
+
+.react-tel-input .country-list .country {
+  padding: 8px !important;
+}
+
+.react-tel-input .country-list .country:hover {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
+
+.react-tel-input .country-list .country.highlight {
+  background-color: rgba(28, 117, 188, 0.08) !important;
+}
+
+@media screen and (max-width: 480px) {
+  .react-tel-input .form-control {
+    height: 48px !important;
+    font-size: 0.875rem !important;
+  }
 }

@@ -5,7 +5,6 @@ import Button from '@mui/material/Button';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchBox from "./SearchBox";
-import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import MessagesIconHeader from "./MessagesIconHeader";
 import Commandes from "./Commandes";
 import NotificationsIconHeader from "./NotificationsIconHeader";
@@ -19,14 +18,18 @@ const Header = (props) => {
 
     return (
       <header className="flex items-center w-full headerAuth">
-        <div className="flex items-center w-full">
+        <div className="flex items-center w-full flex-row">
           {/* LOGO de la plateforme TOYHE */}
-          <div className="flex items-center">
+          <div className="flex items-center part1">
             <LogoToyhe />
           </div>
-  
-          {/**Le menu et bouton de recherche*/}
-          <div className="flex items-center pl-4 ml-10 space-x-4">
+
+
+          {
+            context.windowWidth > 850 &&
+
+             /**Le menu et bouton de recherche*/
+            <div className="flex items-center pl-4 ml-10 space-x-4 res-hide part2">
             <Button
               onClick={ () => context.setIsToggleSidebar(!context.isToggleSidebar)} className="rounded-full"
             >
@@ -36,15 +39,20 @@ const Header = (props) => {
             </Button>
             <SearchBox />
           </div>
+          }
           
           {/*La partie droite et ses boutons */}
-          <div className="flex items-center ml-auto mr-4 space-x-2">
-            {/* Ajouter ici vos icônes de navigation */}
-            <Button className="rounded-full"> <LightModeOutlinedIcon /> </Button>
+          <div className="flex items-center ml-auto mr-4 space-x-2 part3">
             <MessagesIconHeader />
             <Commandes />
             <NotificationsIconHeader />
             <ProfilUserButton />
+            <Button className='rounded-full'
+              onClick={ () => context.openNav()}
+            >
+              <MenuIcon />
+            </Button>
+            
           </div>
         </div>
       </header>

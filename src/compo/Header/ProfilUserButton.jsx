@@ -6,7 +6,8 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import PersonIcon from '@mui/icons-material/Person';
 import LogoutIcon from '@mui/icons-material/Logout';
 import GppMaybeOutlinedIcon from '@mui/icons-material/GppMaybeOutlined';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { MyContext } from '../../App';
 
 const ProfilUserButton = (props) => {
   const [anchorElMyAccDrop, setAnchorElMyAccDrop] = useState(null);
@@ -17,6 +18,8 @@ const ProfilUserButton = (props) => {
   const handleCloseMyAccDrop = () => {
     setAnchorElMyAccDrop(null);
   };
+
+  const context = useContext(MyContext);
 
   return (
     <>
@@ -35,10 +38,14 @@ const ProfilUserButton = (props) => {
             </span>
           </div>
 
-          <div className='userInfo'>
-            <h4 className="text-lg font-semibold">Héritier AMURI</h4>
-            <p className="text-sm text-gray-500 truncate">heritieramuritcha...</p>
-          </div>
+          {
+            context.windowWidth > 589 &&
+
+            <div className='userInfo'>
+              <h4 className="text-lg font-semibold">Héritier AMURI</h4>
+              <p className="text-sm text-gray-500 truncate">heritieramuritcha...</p>
+            </div>
+          }
         </Button>
 
         <Menu

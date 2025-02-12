@@ -12,6 +12,10 @@ import { registerLocale } from 'react-datepicker';
 import fr from 'date-fns/locale/fr';
 import { getWeek } from 'date-fns';
 import SearchBox from '../Header/SearchBox';
+import { Button } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import AddUserDialog from '../AddUserDialog';
+
 
 registerLocale('fr', fr);
 
@@ -57,6 +61,19 @@ const FiltresDeResultats = () => {
    const handleChangeOrdreDeFiltrage = (event) => {
        setOrdreDeFiltrage(event.target.value);
    }
+
+   const [openDialogAddUser, setOpenDialogAddUser] = useState(false);
+   
+     const handleOpenDialogAddUser = () => {
+       setOpenDialogAddUser(true);
+     };
+   
+     const handleCloseDialogAddUser = () => {
+       setOpenDialogAddUser(false);
+     };
+
+
+
 
 
   return (
@@ -144,8 +161,26 @@ const FiltresDeResultats = () => {
         </FormControl>
 
         <div className='flex items-center'>
-          <SearchBox />
+          <Button
+              variant="contained"
+              startIcon={<AddIcon />}
+              onClick={handleOpenDialogAddUser}
+              sx={{
+                bgcolor: '#1c75bc',
+                '&:hover': {
+                  bgcolor: '#1c75bc',
+                  opacity: 0.9
+                }
+              }}
+            >
+              Ajouter un utilisateur
+            </Button>
         </div>
+
+        <AddUserDialog 
+          open={openDialogAddUser} 
+          onClose={handleCloseDialogAddUser}
+        />
 
 
     </div>

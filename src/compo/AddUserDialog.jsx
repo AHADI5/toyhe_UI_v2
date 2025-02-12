@@ -35,7 +35,7 @@ const countryList = Object.values(countries).map(country => ({
 })).sort((a, b) => a.name.localeCompare(b.name));
 
 // Couleur principale
-const mainColor = '#2b3990';
+const mainColor = '#1c75bc';
 
 // Liste des postes disponibles
 const postes = [

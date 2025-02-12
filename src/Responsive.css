@@ -1,0 +1,78 @@
+@media only screen and (min-width:250px) and (max-width:550px) {
+
+
+
+    .headerAuth .part1, .headerAuth .part3 {
+        padding: 0px !important;
+    }
+
+    .headerAuth .logo img {
+        width: 35px !important;
+    }
+    .headerAuth .logo span {
+        font-size: 30px;
+    }
+
+
+    .mainAuth .sidebarWrapper {
+        width: 80% !important;
+        height: 100vh !important;
+        position: fixed;
+        top: 0px;
+        left: -100%;
+        z-index: 1000;
+        opacity: 0;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .mainAuth .contentDroite {
+        left: 0%;
+        width: 100%;
+        border-top-left-radius: 0px;
+    }
+
+    .mainAuth .sidebarWrapper .sidebar {
+        width: 100% !important;
+        position: relative !important;
+        top:  0px !important;
+        max-height: inherit !important;
+    }
+
+    .usersBoxWrapper {
+        white-space: nowrap !important;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        display: block !important;
+    }
+    .usersBoxWrapper::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    .usersBoxWrapper .boxElements {
+        display: inline-block !important;
+        margin-right: 10px !important;   
+    }
+    
+    .sidebarWrapper.open {
+        left: 0px !important;
+        opacity: 1 !important;
+    }
+
+    .sidebarOverlay {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        background: rgba(0, 0, 0, 0.7);
+        width: 100%;
+        height: 100% !important;
+        z-index: 1000;
+    }
+
+    .sidebarOverlay.show {
+        display: block !important;
+    }
+    
+
+
+
+}

@@ -11,9 +11,12 @@ const BodyAuthLayout = (props) => {
     <div>
       <Header />
       <main className="flex mainAuth">
-        <div className={`sidebarWrapper ${context.isToggleSidebar === true ? 'toggle' : ''}` }>
+
+          <div className= {`flex-none ${context.isOpenNav === true && 'show sidebarOverlay'} `} onClick={ () => context.setIsOpenNav(false) }> </div>
+
+          <div className={`sidebarWrapper ${context.isToggleSidebar === true ? 'toggle' : '' } ${context.isOpenNav == true ? 'open' : ''} ` }>
             <Sidebar />
-        </div>
+          </div>
         
         <div className={`contentDroite ${context.isToggleSidebar === true ? 'toggle' : ''} `}>
             <Outlet />

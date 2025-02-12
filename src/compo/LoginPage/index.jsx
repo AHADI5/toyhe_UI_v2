@@ -1,4 +1,3 @@
-
 import LogoToyhe from '../../assets/TOYHE_LOGO_250x250.png';
 import patern from '../../assets/ArrierePlan.jpg';
 import MailIcon from '@mui/icons-material/Mail';
@@ -24,61 +23,65 @@ export default function LoginPage() {
       <section className="loginSectionPage">
         <div className="loginBox forgetPassword">
             <div className="logo text-center flex flex-col items-center">
-              <img src={LogoToyhe} width="60px" alt="Logo de la plateforme TOYHE" />
-              <h5 className='font-bold'>Connexion à la plateforme TOYHE </h5>
+              <img src={LogoToyhe} width="65px" alt="Logo de la plateforme TOYHE" />
+              <h5 className='font-bold text-lg'>Connexion à la plateforme TOYHE </h5>
             </div>
 
             <div className='wrapper mt-3 card border border-gray-300 rounded-xl'>
               <form action="">
 
                 <div className={`form-group mb-3 relative ${inputIndex === 0 && 'focus'}`}>
-                  <span className="icon absolute inset-y-0 left-3 flex items-center">
+                  <span className="icon absolute inset-y-0 left-3 flex items-center pointer-events-none">
                     <MailIcon className="text-gray-500" />
                   </span>
                   <input 
                     type="text" 
                     placeholder="Entrez votre adresse mail" 
-                    className="form-control appearance-none border rounded w-full py-2 pl-10 pr-3 text-gray-950 leading-tight focus:outline-none focus:shadow-outline"
+                    className="form-control w-full"
                     onFocus={() => focusInput(0)}
                     onBlur={ () => setInputIndex(null)}
                   />
                 </div>
 
                 <div className={`form-group mb-3 relative ${inputIndex === 1 && 'focus'}`}>
-                  <span className="icon absolute inset-y-0 left-3 flex items-center">
+                  <span className="icon absolute inset-y-0 left-3 flex items-center pointer-events-none">
                     <LockIcon className="text-gray-500" />
                   </span>
                   <input 
                     type={`${isShowPassword === true ? 'text' : 'password'}`}
                     placeholder="Entrez votre mot de passe" 
-                    className="form-control appearance-none border rounded w-full py-2 pl-10 pr-10 text-gray-950 leading-tight focus:outline-none focus:shadow-outline"
+                    className="form-control w-full pr-10"
                     onFocus={() => focusInput(1)}
                     onBlur={() => setInputIndex(null)}
                   />
-                  <span className="toggleShowPassword absolute inset-y-0 right-3 flex items-center"
-                    onClick={ () => setIsShowPassword(!isShowPassword)}
+                  <button 
+                    type="button"
+                    className="absolute inset-y-0 right-0 flex items-center px-3 bg-transparent border-0 cursor-pointer"
+                    onClick={() => setIsShowPassword(!isShowPassword)}
                   >
-                    {
-                      isShowPassword === true ? <VisibilityIcon className="text-gray-500" /> : <VisibilityOffIcon className="text-gray-500" />
+                    {isShowPassword ? 
+                      <VisibilityIcon className="text-gray-500" /> : 
+                      <VisibilityOffIcon className="text-gray-500" />
                     }
-                  </span>
+                  </button>
                 </div>   
 
-                <div className='form-group'>
-                  <Button class="boutonSeConnecter bg-[#1c75bc] text-white py-2 px-4 rounded-lg text-lg w-full">
+                <div className='form-group mt-4'>
+                  <Button 
+                    style={{ backgroundColor: '#1c75bc', color: 'white' }}
+                    className="boutonSeConnecter w-full"
+                  >
                     Se connecter
                   </Button>
                 </div>        
               </form>
 
-
               <div className="mt-4 text-center">
-                <Link to={'/forgot-password'} className="lienFormulaire text-sm">Mot de passe oublié ?</Link>
+                <Link to={'/forgot-password'} className="lienFormulaire">Mot de passe oublié ?</Link>
               </div>
               <div className="mt-2 text-center">
-                <p className="text-sm text-gray-900">Vous n'avez pas de compte ? <Link to={'/signup'} className="text-blue-500">Créer un compte</Link></p>
+                <p className="text-sm text-gray-900">Vous n'avez pas de compte ? <Link to={'/signup'} className="text-[#1c75bc]">Créer un compte</Link></p>
               </div>
-
 
             </div>
         </div>
