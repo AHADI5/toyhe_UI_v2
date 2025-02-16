@@ -10,6 +10,8 @@ import Utilisateur from './compo/Utilisateurs'
 import { createContext, useEffect, useState } from 'react'
 
 import UserManagement from './compo/UserManagement';
+import Messages from './compo/Messages';
+
 
 
 
@@ -65,6 +67,7 @@ export default function App() {
             <Route index element={<Dashboard />} />
             <Route path="users" element={<UserManagement />} />
             <Route path="utilisateurs" element={<Utilisateur />} />
+            <Route path="messages" element={<Messages />} />
         </Route>
 
         {/* Redirection par défaut */}

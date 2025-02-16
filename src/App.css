@@ -238,6 +238,7 @@ header .logo img {
 .mainAuth .sidebarWrapper {
   width: 16%;
   flex: 0 0 16%;
+  min-width: 250px;
   transition: all 0.3s;
 }
 
@@ -442,7 +443,7 @@ header .logo img {
 
 .boxElements {
   position: relative;
-  width: 400px;
+  min-width: 250px;
   height: 150px;
   background: #fff;
   border: 1px solid #e0e0e0;
@@ -515,9 +516,14 @@ header .logo img {
 
 .usersBoxWrapper {
   display: flex;
-  width: 100%;
-  gap: 15px;
-  flex-wrap: nowrap;
+  width: 100%; /* Gardez la largeur à 100% pour le conteneur */
+  overflow-x: auto; /* Permet le défilement horizontal */
+  scrollbar-width: none; /* Pour Firefox */
+  gap: 15px; /* Espace entre les éléments */
+}
+
+.usersBoxWrapper::-webkit-scrollbar {
+  display: none; /* Masquer la barre de défilement pour Chrome, Safari et Edge */
 }
 
 
@@ -532,7 +538,74 @@ header .logo img {
   border-radius: 10px;
   box-shadow: 0px 4px 6px 2px rgba(0, 0, 0, 0.1);
   border: 1px solid #e0e0e0;
+  overflow-x: auto; /* Permet le défilement horizontal */
+  scrollbar-width: none; /* Pour Firefox */
 }
+
+.rowfiltresDeResultat::-webkit-scrollbar {
+  display: none; /* Masquer la barre de défilement pour Chrome, Safari et Edge */
+}
+
+
+
+
+
+.rowfiltresDeResultat .MuiTablePagination-root {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  flex-wrap: wrap; /* Permet au contenu de s'ajuster sur plusieurs lignes si nécessaire */
+}
+
+.rowfiltresDeResultat .MuiTablePagination-selectLabel {
+  margin-right: 10px; /* Espace entre le label et le select */
+}
+
+.rowfiltresDeResultat .MuiTablePagination-input {
+  margin-right: 10px; /* Espace entre le select et le nombre de lignes affichées */
+}
+
+.rowfiltresDeResultat .MuiTablePagination-displayedRows {
+  margin-right: 10px; /* Espace entre le nombre de lignes affichées et les boutons */
+}
+
+.rowfiltresDeResultat .MuiTablePagination-actions {
+  display: flex;
+  align-items: center;
+}
+
+.rowfiltresDeResultat button {
+  color: #fff;
+  background: #1c75bc;
+  border: none;
+  cursor: pointer;
+  margin-left: 16px; /* Espace entre les boutons */
+}
+
+/* Styles pour les petits écrans */
+@media (max-width: 600px) {
+  .rowfiltresDeResultat .MuiTablePagination-root {
+      flex-direction: column; /* Empile les éléments sur les petits écrans */
+      align-items: flex-start; /* Aligne à gauche */
+
+      margin-left: 0; /* Supprime l'espace à gauche sur les petits écrans */
+      margin-top: 8px; /* Ajoute un espace en haut entre les boutons */
+  }   
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -996,4 +1069,55 @@ header .logo img {
     height: 48px !important;
     font-size: 0.875rem !important;
   }
+}
+
+.messages-container {
+    display: flex;
+    height: calc(100vh - 70px);
+}
+
+.friends-list {
+    width: 15%;
+    border-right: 1px solid #ccc;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.friend-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.friend-item:hover {
+    background-color: #f0f0f0;
+}
+
+.message-view {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.message-display {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.message-input {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+
+.message-input input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.message-input button {
+    margin-left: 10px;
 }

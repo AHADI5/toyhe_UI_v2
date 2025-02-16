@@ -18,7 +18,7 @@ const Header = (props) => {
 
     return (
       <header className="flex items-center w-full headerAuth">
-        <div className="flex items-center w-full flex-row">
+        <div className="flex flex-row items-center w-full">
           {/* LOGO de la plateforme TOYHE */}
           <div className="flex items-center part1">
             <LogoToyhe />
@@ -42,17 +42,21 @@ const Header = (props) => {
           }
           
           {/*La partie droite et ses boutons */}
-          <div className="flex items-center ml-auto mr-4 space-x-2 part3">
+          <div className="flex items-center mr-4 ml-auto space-x-2 part3">
             <MessagesIconHeader />
             <Commandes />
             <NotificationsIconHeader />
             <ProfilUserButton />
-            <Button className='rounded-full'
-              onClick={ () => context.openNav()}
-            >
-              <MenuIcon />
-            </Button>
-            
+
+
+            {
+            context.windowWidth <= 1000 &&
+              <Button className='rounded-full'
+                onClick={ () => context.openNav()}
+              >
+                <MenuIcon />
+              </Button>
+            }     
           </div>
         </div>
       </header>
