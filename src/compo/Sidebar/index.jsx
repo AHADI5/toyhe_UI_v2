@@ -40,7 +40,7 @@ const Sidebar = (props) => {
         <div className="flex flex-col justify-between sidebar">
             <ul>
                 <li>
-                    <Link to={'/'}>
+                    <Link to={'/user/accueil'}>
                     <Button
                         className={`w-full flex justify-between items-center ${activeTab === 0 ? 'active' : ''}`}
                         onClick={() => isOpenSubmenu(0)}
@@ -98,7 +98,7 @@ const Sidebar = (props) => {
                 </li>
 
                 <li>
-                    <Link to={'/users'}>
+                    <Link to={'/user/utilisateurs'}>
                         <Button
                             className={`w-full flex justify-between items-center ${activeTab === 3 ? 'active' : ''}`}
                             onClick={() => isOpenSubmenu(3)}
@@ -112,7 +112,7 @@ const Sidebar = (props) => {
                 </li>
 
                 <li>
-                    <Link to={'/'}>
+                    <Link to={'/user/reservation'}>
                         <Button
                             className={`w-full flex justify-between items-center ${activeTab === 4 ? 'active' : ''}`}
                             onClick={() => isOpenSubmenu(4)}
@@ -126,7 +126,7 @@ const Sidebar = (props) => {
                 </li>
 
                 <li>
-                    <Link to={'/'}>
+                    <Link to={'/user/performances'}>
                         <Button
                             className={`w-full flex justify-between items-center ${activeTab === 5 ? 'active' : ''}`}
                             onClick={() => isOpenSubmenu(5)}
@@ -140,7 +140,7 @@ const Sidebar = (props) => {
                 </li>                
 
                 <li>
-                    <Link to={'/'}>
+                    <Link to={'/user/messages'}>
                         <Button
                             className={`w-full flex justify-between items-center ${activeTab === 6 ? 'active' : ''}`}
                             onClick={() => isOpenSubmenu(6)}

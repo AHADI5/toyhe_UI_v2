@@ -9,8 +9,9 @@ import Dashboard from './compo/Dashboard'
 import Utilisateur from './compo/Utilisateurs'
 import { createContext, useEffect, useState } from 'react'
 
-import UserManagement from './compo/UserManagement';
+
 import Messages from './compo/Messages';
+import Reservation from './compo/Reservation';
 
 
 
@@ -65,9 +66,9 @@ export default function App() {
         {/* Route parent pour un utilisateur authantifié */}
         <Route path="/user" element={<BodyAuthLayout />}>
             <Route index element={<Dashboard />} />
-            <Route path="users" element={<UserManagement />} />
             <Route path="utilisateurs" element={<Utilisateur />} />
             <Route path="messages" element={<Messages />} />
+            <Route path="reservation" element={<Reservation />} />
         </Route>
 
         {/* Redirection par défaut */}
