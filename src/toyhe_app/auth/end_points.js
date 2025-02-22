@@ -1,5 +1,5 @@
 const apiEndPoints = { 
-    LOGIN  : "/api/v1/auth/"
+    LOGIN  : "/auth/"
 
 }
 
