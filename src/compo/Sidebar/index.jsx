@@ -18,6 +18,9 @@ import HelpIcon from '@mui/icons-material/Help';
 import { Link } from 'react-router-dom';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import Divider from '@mui/material/Divider';
+import ReportProblemIcon from '@mui/icons-material/ReportProblem';
+import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
+import SummarizeIcon from '@mui/icons-material/Summarize';
 
 
 
@@ -69,9 +72,9 @@ const Sidebar = (props) => {
                        </Button>
                         <div className={`submenuWrapper ${activeTab === 1 && isToggleSubmenu === true ? 'colapse' : 'colapsed'}`}>
                             <ul className='submenu'>
-                                <li> <Link to={'#'}>Commandes</Link> </li>
-                                <li> <Link to={'#'}>Ventes</Link> </li>
-                                <li> <Link to={'#'}>Réservations</Link> </li>
+                                <li> <Link to={'/user/commandes'}>Commandes</Link> </li>
+                                <li> <Link to={'/user/commandes-en-ligne'}>Ventes</Link> </li>
+                                <li> <Link to={'/user/commandes-par-ventes'}>Réservations</Link> </li>
                             </ul>
                         </div>
                 </li>
@@ -90,9 +93,9 @@ const Sidebar = (props) => {
                     </Button>
                     <div className={`submenuWrapper ${activeTab === 2 && isToggleSubmenu === true ? 'colapse' : 'colapsed'}`}>
                         <ul className='submenu'>
-                            <li> <Link to={'#'}>Bateau</Link> </li>
-                            <li> <Link to={'#'}>Prix</Link> </li>
-                            <li> <Link to={'#'}>Horaire</Link> </li>
+                            <li> <Link to={'/user/bateaux'}>Bateau</Link> </li>
+                            <li> <Link to={'/user/prix'}>Prix</Link> </li>
+                            <li> <Link to={'/user/horaire'}>Horaire</Link> </li>
                         </ul>
                     </div>
                 </li>
@@ -154,12 +157,34 @@ const Sidebar = (props) => {
                 </li>
 
                 {/* <li>
-                    <Link to={'/'}>
+                    <Link to={'/user/fonds'}>
                         <Button className='w-100'>
                             <span className='icon'>
-                                <CalendarMonthIcon />
+                                <RequestQuoteIcon />
                             </span>
-                            Horaire de voyage
+                            Fonds
+                        </Button>
+                    </Link>
+                </li> */}
+
+                <li>
+                    <Link to={'/user/rapports'}>
+                        <Button className='w-100'>
+                            <span className='icon'>
+                                <SummarizeIcon />
+                            </span>
+                            Rapports
+                        </Button>
+                    </Link>
+                </li>
+
+                {/* <li>
+                    <Link to={'/user/reclamation'}>
+                        <Button className='w-100'>
+                            <span className='icon'>
+                                <ReportProblemIcon />
+                            </span>
+                            Réclamation
                         </Button>
                     </Link>
                 </li> */}

@@ -12,7 +12,14 @@ import { createContext, useEffect, useState } from 'react'
 
 import Messages from './compo/Messages';
 import Reservation from './compo/Reservation';
-
+import PerformanceDashboard from './compo/Performances/PerformanceDashboard';
+import Schedule from './compo/Schedule';
+import Boats from './compo/Boats';
+import Pricing from './compo/Pricing';
+import Commandes from './compo/Commandes/Commandes';
+import ComplaintForm from './compo/ComplaintForm'
+import Fonds from './compo/Fonds/Fonds'
+import Rapport from './compo/Rapport/Rapport'
 
 
 
@@ -25,7 +32,7 @@ export default function App() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isOpenNav, setIsOpenNav] = useState(false);
   const [isHideSidebarAndHeader, setIsHideSidebarAndHeader] = useState(false);
-  
+   
   useEffect( () => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -69,6 +76,15 @@ export default function App() {
             <Route path="utilisateurs" element={<Utilisateur />} />
             <Route path="messages" element={<Messages />} />
             <Route path="reservation" element={<Reservation />} />
+            <Route path="performances" element={<PerformanceDashboard />} />
+            <Route path="bateaux" element={<Boats />} />
+            <Route path="prix" element={<Pricing />} />
+            <Route path="horaire" element={<Schedule />} />
+            <Route path="commandes" element={<Commandes />} />
+            <Route path="reclamation" element={<ComplaintForm />} />
+            <Route path="fonds" element={<Fonds />} />
+            <Route path="rapports" element={<Rapport />} />
+
         </Route>
 
         {/* Redirection par défaut */}
