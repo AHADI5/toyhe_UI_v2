@@ -192,13 +192,14 @@ const RapportList = ({ rapports, onViewRapport, isAdmin }) => {
       
       <TableContainer component={Paper} sx={{ mt: 2, borderRadius: 2 }}>
         <Table>
-          <TableHead>
-            <TableRow sx={{ backgroundColor: colors.background }}>
+          <TableHead sx={{ backgroundColor: '#1c75bc' }}>
+            <TableRow>
               <TableCell>
                 <TableSortLabel
                   active={orderBy === 'titre'}
                   direction={orderBy === 'titre' ? order : 'asc'}
                   onClick={() => handleRequestSort('titre')}
+                  sx={{  color: '#fff' }}
                 >
                   Titre
                 </TableSortLabel>
@@ -209,6 +210,7 @@ const RapportList = ({ rapports, onViewRapport, isAdmin }) => {
                     active={orderBy === 'agent'}
                     direction={orderBy === 'agent' ? order : 'asc'}
                     onClick={() => handleRequestSort('agent')}
+                    sx={{  color: '#fff' }}
                   >
                     Agent
                   </TableSortLabel>
@@ -219,12 +221,13 @@ const RapportList = ({ rapports, onViewRapport, isAdmin }) => {
                   active={orderBy === 'date'}
                   direction={orderBy === 'date' ? order : 'asc'}
                   onClick={() => handleRequestSort('date')}
+                  sx={{  color: '#fff !important' }}
                 >
                   Date
                 </TableSortLabel>
               </TableCell>
-              <TableCell>Statut</TableCell>
-              <TableCell align="right">Actions</TableCell>
+              <TableCell sx={{  color: '#fff' }} >Statut</TableCell>
+              <TableCell align="right" sx={{  color: '#fff' }}>Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

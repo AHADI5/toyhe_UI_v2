@@ -7,6 +7,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import LogoutIcon from '@mui/icons-material/Logout';
 import GppMaybeOutlinedIcon from '@mui/icons-material/GppMaybeOutlined';
 import { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { MyContext } from '../../App';
 
 const ProfilUserButton = (props) => {
@@ -79,24 +80,32 @@ const ProfilUserButton = (props) => {
           transformOrigin={{ horizontal: 'right', vertical: 'top' }}
           anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         >
-          <MenuItem onClick={handleCloseMyAccDrop} className="flex items-center space-x-3">
-            <ListItemIcon>
-              <PersonIcon className="text-gray-500" />
-            </ListItemIcon>
-            <span>Mon compte</span>
-          </MenuItem>
-          <MenuItem onClick={handleCloseMyAccDrop} className="flex items-center space-x-3">
-            <ListItemIcon>
-              <GppMaybeOutlinedIcon className="text-gray-500" />
-            </ListItemIcon>
-            <span>Modifier mot de passe</span>
-          </MenuItem>
-          <MenuItem onClick={handleCloseMyAccDrop} className="flex items-center space-x-3">
-            <ListItemIcon>
-              <LogoutIcon className="text-gray-500" />
-            </ListItemIcon>
-            <span>Se déconnecter</span>
-          </MenuItem>
+          <Link to="/user/compte" className="no-underline">
+            <MenuItem onClick={handleCloseMyAccDrop} className="flex items-center space-x-3">
+              <ListItemIcon>
+                <PersonIcon className="text-gray-500" />
+              </ListItemIcon>
+              <span>Mon compte</span>
+            </MenuItem>
+          </Link>
+
+          <Link to="/user/parametres" className="no-underline">
+            <MenuItem onClick={handleCloseMyAccDrop} className="flex items-center space-x-3">
+              <ListItemIcon>
+                <GppMaybeOutlinedIcon className="text-gray-500" />
+              </ListItemIcon>
+              <span>Modifier mot de passe</span>
+            </MenuItem>
+          </Link>
+
+          <Link to="/" className="no-underline">
+            <MenuItem onClick={handleCloseMyAccDrop} className="flex items-center space-x-3">
+              <ListItemIcon>
+                <LogoutIcon className="text-gray-500" />
+              </ListItemIcon>
+              <span>Se déconnecter</span>
+            </MenuItem>
+          </Link>
         </Menu>
       </div>
     </>

@@ -23,31 +23,31 @@ import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 const initialSchedule = {
-  monday: { 
+  lundi: { 
     morning: ['Emmanuel 1', 'MV/IKO 1'], 
     evening: ['Emmanuel 2', 'MV/IKO 2'] 
   },
-  tuesday: { 
+  mardi: { 
     morning: ['Emmanuel 3'], 
     evening: ['MV/IKO 1', 'Emmanuel 1'] 
   },
-  wednesday: { 
+  mercredi: { 
     morning: ['Emmanuel 4', 'MV/IKO 2'], 
     evening: ['MV/IKO 2'] 
   },
-  thursday: { 
+  jeudi: { 
     morning: ['Emmanuel 1'], 
     evening: ['MV/IKO 3', 'Emmanuel 2'] 
   },
-  friday: { 
+  vendredi: { 
     morning: ['Emmanuel 2', 'MV/IKO 1'], 
     evening: ['Emmanuel 3'] 
   },
-  saturday: { 
+  samedi: { 
     morning: ['Emmanuel 4'], 
     evening: ['MV/IKO 1', 'Emmanuel 1'] 
   },
-  sunday: { 
+  dimanche: { 
     morning: ['MV/IKO 2'], 
     evening: ['MV/IKO 3'] 
   },
@@ -106,13 +106,13 @@ function Schedule() {
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-lg">
-      <h2 className="text-2xl font-bold text-primary mb-6">Horaire des Voyages</h2>
+    <div className="p-6 bg-white rounded-lg shadow-lg">
+      <h2 className="mb-6 text-2xl font-bold text-primary">Horaire des Voyages</h2>
       
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
-            <TableRow sx={{ backgroundColor: 'black' }}>
+            <TableRow sx={{ backgroundColor: '#1c75bc' }}>
               <TableCell sx={{ color: 'white' }}>Jour</TableCell>
               <TableCell sx={{ color: 'white' }}>Matin</TableCell>
               <TableCell sx={{ color: 'white' }}>Soir</TableCell>
@@ -123,7 +123,7 @@ function Schedule() {
               <TableRow key={day}>
                 <TableCell className="capitalize">{day}</TableCell>
                 <TableCell>
-                  <div className="flex flex-wrap gap-2 items-center">
+                  <div className="flex flex-wrap items-center gap-2">
                     {times.morning.map((vessel, index) => (
                       <Chip 
                         key={`${vessel}-${index}`}
@@ -144,7 +144,7 @@ function Schedule() {
                   </div>
                 </TableCell>
                 <TableCell>
-                  <div className="flex flex-wrap gap-2 items-center">
+                  <div className="flex flex-wrap items-center gap-2">
                     {times.evening.map((vessel, index) => (
                       <Chip 
                         key={`${vessel}-${index}`}
@@ -173,9 +173,9 @@ function Schedule() {
       <Dialog open={open} onClose={() => setOpen(false)} maxWidth="md" fullWidth>
         <DialogTitle>Modifier l'horaire</DialogTitle>
         <DialogContent>
-          <div className="space-y-4 pt-4">
+          <div className="pt-4 space-y-4">
             {editData.vessels.map((vessel, index) => (
-              <div key={index} className="flex gap-2 items-center">
+              <div key={index} className="flex items-center gap-2">
                 <FormControl fullWidth>
                   <InputLabel>Bateau</InputLabel>
                   <Select

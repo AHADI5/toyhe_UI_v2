@@ -20,7 +20,10 @@ import Commandes from './compo/Commandes/Commandes';
 import ComplaintForm from './compo/ComplaintForm'
 import Fonds from './compo/Fonds/Fonds'
 import Rapport from './compo/Rapport/Rapport'
-
+import CommandesEnLigne from './compo/Commandes/CommandesEnLigne';
+import Account from './compo/communs/Account';
+import Help from './compo/communs/Help';
+import Settings from './compo/communs/Settings';
 
 
 
@@ -81,9 +84,14 @@ export default function App() {
             <Route path="prix" element={<Pricing />} />
             <Route path="horaire" element={<Schedule />} />
             <Route path="commandes" element={<Commandes />} />
+            <Route path="commandes-en-ligne" element={<CommandesEnLigne />} />
             <Route path="reclamation" element={<ComplaintForm />} />
             <Route path="fonds" element={<Fonds />} />
             <Route path="rapports" element={<Rapport />} />
+
+            <Route path="compte" element={<Account />} />
+            <Route path="parametres" element={<Settings />} />
+            <Route path="aide-et-supports" element={<Help />} />
 
         </Route>
 

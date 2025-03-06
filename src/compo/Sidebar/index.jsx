@@ -73,8 +73,8 @@ const Sidebar = (props) => {
                         <div className={`submenuWrapper ${activeTab === 1 && isToggleSubmenu === true ? 'colapse' : 'colapsed'}`}>
                             <ul className='submenu'>
                                 <li> <Link to={'/user/commandes'}>Commandes</Link> </li>
-                                <li> <Link to={'/user/commandes-en-ligne'}>Ventes</Link> </li>
-                                <li> <Link to={'/user/commandes-par-ventes'}>Réservations</Link> </li>
+                                <li> <Link to={'/user/commandes-par-ventes'}>Ventes</Link> </li>
+                                <li> <Link to={'/user/commandes-en-ligne'}>Réservations</Link> </li>
                             </ul>
                         </div>
                 </li>
@@ -156,38 +156,47 @@ const Sidebar = (props) => {
                     </Link>
                 </li>
 
-                {/* <li>
+                <li>
                     <Link to={'/user/fonds'}>
-                        <Button className='w-100'>
+                        <Button
+                            className={`w-full flex justify-between items-center ${activeTab === 7 ? 'active' : ''}`}
+                            onClick={() => isOpenSubmenu(7)}
+                        >
                             <span className='icon'>
                                 <RequestQuoteIcon />
                             </span>
                             Fonds
                         </Button>
                     </Link>
-                </li> */}
+                </li>
 
-                <li>
+                {/* <li>
                     <Link to={'/user/rapports'}>
-                        <Button className='w-100'>
+                        <Button
+                            className={`w-full flex justify-between items-center ${activeTab === 8 ? 'active' : ''}`}
+                            onClick={() => isOpenSubmenu(8)}
+                        >
                             <span className='icon'>
                                 <SummarizeIcon />
                             </span>
                             Rapports
                         </Button>
                     </Link>
-                </li>
+                </li> */}
 
-                {/* <li>
+                <li>
                     <Link to={'/user/reclamation'}>
-                        <Button className='w-100'>
+                        <Button
+                            className={`w-full flex justify-between items-center ${activeTab === 9 ? 'active' : ''}`}
+                            onClick={() => isOpenSubmenu(9)}
+                        >
                             <span className='icon'>
                                 <ReportProblemIcon />
                             </span>
                             Réclamation
                         </Button>
                     </Link>
-                </li> */}
+                </li>
 
             </ul>
 
@@ -197,7 +206,7 @@ const Sidebar = (props) => {
 
                 <ul>
                     <li>
-                        <Link to={'/settings'}>
+                        <Link to={'/user/parametres'}>
                             <Button
                             className={`w-full flex justify-between items-center ${activeTab === 20 ? 'active' : ''}`}
                             onClick={() => isOpenSubmenu(20)}
@@ -211,7 +220,7 @@ const Sidebar = (props) => {
                     </li>
 
                     <li>
-                        <Link to={'/supports'}>
+                        <Link to={'/user/aide-et-supports'}>
                             <Button
                                 className={`w-full flex justify-between items-center ${activeTab === 21 ? 'active' : ''}`}
                                 onClick={() => isOpenSubmenu(21)}

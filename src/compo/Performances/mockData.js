@@ -2,10 +2,11 @@ import { faker } from '@faker-js/faker';
 
 // Données des bateaux
 export const boats = [
-  { id: 1, name: 'Emmanuel 1', image: 'https://images.unsplash.com/photo-1520716448897-f1cc6b0241ce?auto=format&fit=crop&w=300&q=80' },
-  { id: 2, name: 'Emmanuel 2', image: 'https://images.unsplash.com/photo-1520715217163-9eae52d64aa4?auto=format&fit=crop&w=300&q=80' },
-  { id: 3, name: 'Emmanuel 3', image: 'https://images.unsplash.com/photo-1520715217194-cc0d98b7a7b1?auto=format&fit=crop&w=300&q=80' },
-  { id: 4, name: 'Emmanuel 4', image: 'https://images.unsplash.com/photo-1520715217195-c8e6daa05c4e?auto=format&fit=crop&w=300&q=80' },
+  { id: 1, name: 'Tous les bateaux', image: '/assets/bateaux/Tous_les_bateaux.jpg' },
+  { id: 2, name: 'Emmanuel 1', image: '/assets/bateaux/Emmanuel_1.jpg' },
+  { id: 3, name: 'Emmanuel 2', image: '/assets/bateaux/Emmanuel_2.jpg' },
+  { id: 4, name: 'Emmanuel 3', image: '/assets/bateaux/Emmanuel_3.jpg' },
+  { id: 5, name: 'Emmanuel 4', image: '/assets/bateaux/Emmanuel_4.jpg' },
 ];
 
 // Classes de bateaux

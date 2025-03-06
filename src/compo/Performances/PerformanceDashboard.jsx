@@ -46,7 +46,7 @@ const PerformanceDashboard = () => {
   return (
     <Container maxWidth="xl" className="py-4">
       <Box className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold text-[#2b3990]">
+        <h1 className="text-2xl font-bold text-primary">
           Perfomances de l'agence
         </h1>
         <ExportButton data={exportData} />
@@ -85,7 +85,7 @@ const PerformanceDashboard = () => {
         <Grid item xs={12} md={3}>
           <StatCard
             title="Recettes par type"
-            value={`${(ordersData.revenue.online + ordersData.revenue.direct).toLocaleString()}€`}
+            value={`${(ordersData.revenue.online + ordersData.revenue.direct).toLocaleString()} $`}
             data={[
               ['Source', 'Montant'],
               ['En ligne', ordersData.revenue.online],
@@ -96,7 +96,7 @@ const PerformanceDashboard = () => {
         <Grid item xs={12} md={3}>
           <StatCard
             title="Dépenses commandes"
-            value={`${(ordersData.expenses.partner + ordersData.expenses.agent).toLocaleString()}€`}
+            value={`${(ordersData.expenses.partner + ordersData.expenses.agent).toLocaleString()} $`}
             data={[
               ['Type', 'Montant'],
               ['Partenaires', ordersData.expenses.partner],
@@ -107,7 +107,7 @@ const PerformanceDashboard = () => {
         <Grid item xs={12} md={3}>
           <StatCard
             title="Dépenses totales"
-            value={`${Object.values(ordersData.expenses).reduce((a, b) => a + b, 0).toLocaleString()}€`}
+            value={`${Object.values(ordersData.expenses).reduce((a, b) => a + b, 0).toLocaleString()} $`}
             data={[
               ['Type', 'Montant'],
               ['Commandes', ordersData.expenses.partner + ordersData.expenses.agent],
@@ -122,7 +122,7 @@ const PerformanceDashboard = () => {
         <Grid item xs={12} md={3}>
           <StatCard
             title="Poids cargaison"
-            value={`${cargoData.totalWeight.toLocaleString()}kg`}
+            value={`${cargoData.totalWeight.toLocaleString()} kg`}
             data={[
               ['Type', 'Poids'],
               ['Standard', cargoData.distribution.regular],
@@ -133,7 +133,7 @@ const PerformanceDashboard = () => {
         <Grid item xs={12} md={3}>
           <StatCard
             title="Recettes cargaison"
-            value={`${cargoData.revenue.toLocaleString()}€`}
+            value={`${cargoData.revenue.toLocaleString()} $`}
             data={[
               ['Type', 'Montant'],
               ['Standard', cargoData.distribution.regular * 2],
@@ -144,7 +144,7 @@ const PerformanceDashboard = () => {
         <Grid item xs={12} md={3}>
           <StatCard
             title="Recettes globales"
-            value={`${(cargoData.revenue + ordersData.revenue.online + ordersData.revenue.direct).toLocaleString()}€`}
+            value={`${(cargoData.revenue + ordersData.revenue.online + ordersData.revenue.direct).toLocaleString()} $`}
             data={[
               ['Source', 'Montant'],
               ['Billetterie', ordersData.revenue.online + ordersData.revenue.direct],
@@ -155,7 +155,7 @@ const PerformanceDashboard = () => {
         <Grid item xs={12} md={3}>
           <StatCard
             title="Dépenses globales"
-            value={`${Object.values(ordersData.expenses).reduce((a, b) => a + b, 0).toLocaleString()}€`}
+            value={`${Object.values(ordersData.expenses).reduce((a, b) => a + b, 0).toLocaleString()} $`}
             chartType="ColumnChart"
             data={[
               ['Type', 'Montant', { role: 'style' }],

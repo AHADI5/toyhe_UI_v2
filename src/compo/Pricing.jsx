@@ -119,7 +119,7 @@ function Pricing() {
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
-            <TableRow sx={{ backgroundColor: 'black' }}>
+            <TableRow sx={{ backgroundColor: '#1c75bc' }}>
               <TableCell sx={{ color: 'white' }}>Type</TableCell>
               <TableCell sx={{ color: 'white' }}>Prix</TableCell>
               <TableCell sx={{ color: 'white' }}>Devise</TableCell>

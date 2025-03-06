@@ -139,7 +139,7 @@ const Rapport = ({ isAdmin = false}) => { // Changé à true pour montrer l'inte
           </Box>
         )}
 
-        <Box sx={{ flex: 1, overflow: 'auto' }}>
+        <Box sx={{ flex: 1, overflow: 'auto', backgroundColor: '#fff' }}>
           <RapportList
             rapports={rapports}
             onViewRapport={handleViewRapport}
@@ -155,6 +155,7 @@ const Rapport = ({ isAdmin = false}) => { // Changé à true pour montrer l'inte
         onValidate={handleValidateRapport}
         onReject={handleRejectRapport}
         isAdmin={isAdmin}
+        sx={{ backgroundColor: '#fff' }}
       />
     </Container>
   );
