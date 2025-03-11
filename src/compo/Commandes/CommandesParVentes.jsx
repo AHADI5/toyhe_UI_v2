@@ -357,13 +357,13 @@ const months = [
 
 const MOCK_DATA = {
   sales: [
-    ['Heure', 'Réservations'],
-    ['18H', 20],
-    ['21H', 80],
-    ['23H', 100],
-    ['02H', 110],
-    ['05H', 150],
-    ['08H', 250],
+    ["heure", "réservation"],
+    ["08H", 25],
+    ["10H", 35],
+    ["12H", 65],
+    ["14H", 79],
+    ["16H", 85],
+    ["18H", 150],
   ],
   totalOrders: 150,
   totalRevenue: 45000,
@@ -384,7 +384,7 @@ const MOCK_DATA = {
   };
 
 
-const CommandesEnLigne = () => {
+const CommandesParVentes = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const [filterCriteria, setFilterCriteria] = useState('day');
@@ -493,10 +493,10 @@ const CommandesEnLigne = () => {
   const exportToExcel = () => {
     const ws = XLSX.utils.json_to_sheet(mockData.orders);
     const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "Reservations");
+    XLSX.utils.book_append_sheet(wb, ws, "Ventes");
     const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
     const data = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-    FileSaver.saveAs(data, 'Reservations.xlsx');
+    FileSaver.saveAs(data, 'ventes.xlsx');
   };
 
   const exportToPDF = () => {
@@ -513,7 +513,7 @@ const CommandesEnLigne = () => {
       doc.rect(0, 15, 210, 10, 'F');
       doc.setTextColor(255, 255, 255);
       doc.setFontSize(16);
-      doc.text("LISTE DE PASSAGER PAR RESERVATION DU BATEAU EMMANUEL 1", 105, 22, { align: 'center' });
+      doc.text("LISTE DE PASSAGER PAR VENTE DU BATEAU EMMANUEL 1", 105, 22, { align: 'center' });
     };
   
     // Définir la fonction pour le pied de page
@@ -558,9 +558,8 @@ const CommandesEnLigne = () => {
       }
     });
   
-    doc.save("Reservations.pdf");
+    doc.save("Ventes.pdf");
   };
-  
 
   const renderDialog = () => {
     if (!selectedOrder) return null;
@@ -788,6 +787,12 @@ const CommandesEnLigne = () => {
         </div>
 
 
+
+
+
+
+        
+
         {/* Tableau */}
         <Paper className="p-4 mt-5">
           <div className="flex items-center justify-between mb-4">
@@ -886,10 +891,14 @@ const CommandesEnLigne = () => {
         </Paper>
 
 
+
+
+        
+
         {renderDialog()}
       </div>
     </LocalizationProvider>
   );
 };
 
-export default CommandesEnLigne;
+export default CommandesParVentes;

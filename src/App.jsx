@@ -21,6 +21,7 @@ import ComplaintForm from './compo/ComplaintForm'
 import Fonds from './compo/Fonds/Fonds'
 import Rapport from './compo/Rapport/Rapport'
 import CommandesEnLigne from './compo/Commandes/CommandesEnLigne';
+import CommandesParVentes from './compo/Commandes/CommandesParVentes';
 import Account from './compo/communs/Account';
 import Help from './compo/communs/Help';
 import Settings from './compo/communs/Settings';
@@ -35,6 +36,7 @@ export default function App() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isOpenNav, setIsOpenNav] = useState(false);
   const [isHideSidebarAndHeader, setIsHideSidebarAndHeader] = useState(false);
+  const [activeTab, setActiveTab] = useState(0);
    
   useEffect( () => {
     const handleResize = () => {
@@ -62,7 +64,9 @@ export default function App() {
     isOpenNav,
     setIsOpenNav,
     isHideSidebarAndHeader,
-    setIsHideSidebarAndHeader
+    setIsHideSidebarAndHeader,
+    activeTab,
+    setActiveTab
   }
 
   return (
@@ -83,8 +87,11 @@ export default function App() {
             <Route path="bateaux" element={<Boats />} />
             <Route path="prix" element={<Pricing />} />
             <Route path="horaire" element={<Schedule />} />
+
             <Route path="commandes" element={<Commandes />} />
             <Route path="commandes-en-ligne" element={<CommandesEnLigne />} />
+            <Route path="commandes-par-vente" element={<CommandesParVentes />} />
+
             <Route path="reclamation" element={<ComplaintForm />} />
             <Route path="fonds" element={<Fonds />} />
             <Route path="rapports" element={<Rapport />} />

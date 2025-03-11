@@ -12,7 +12,7 @@ import autoTable from "jspdf-autotable";
 import * as XLSX from "xlsx";
 
 import logoTOYHE from "../../assets/TOYHE_LOGO_250x250.png"
-import logoEtsSILIMU from "../../assets/Logi_Ets_SILIMU.jpg"
+import logoEtsSILIMU from "../../assets/Logo_Ets_SILIMU.jpg"
 import { Button } from "@mui/material";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
@@ -150,7 +150,7 @@ const TableauDesElements = () => {
       doc.text("Garant du transport lacustre", 25, 12, { align: "left" });
       doc.text("Mercredi le 29 / Avril / 2025", 190, 12, { align: "right" });
       // Ajouter le rectangle et le titre
-      doc.setFillColor("#2b3990");
+      doc.setFillColor("#1c75bc");
       doc.rect(14, 19, 182, 8, "F");
       doc.setFontSize(16);
       doc.setTextColor(255, 255, 255);
@@ -188,7 +188,7 @@ const TableauDesElements = () => {
         fontSize: 10,
       },
       headStyles: {
-        fillColor: [43, 57, 144],
+        fillColor: [28, 117, 188],
         textColor: [255, 255, 255],
       },
       didDrawPage: function (data) {

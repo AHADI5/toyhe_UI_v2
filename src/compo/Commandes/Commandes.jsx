@@ -47,6 +47,9 @@ import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
+import LogoEtsSILIMU from '../../assets/Logo_Ets_SILIMU.jpg'
+import LogoTOYHE from '../../assets/TOYHE_LOGO_250x250.png'
+
 
 const mockData = {
   orders: [
@@ -63,6 +66,534 @@ const mockData = {
     },
     { 
       id: 2, 
+      name: "Jane Smith", 
+      class: "Première", 
+      vocation: "Affaires", 
+      trajet: "Londres-Paris", 
+      bateau: "Emmanuel 1", 
+      clientType: "Vente", 
+      ticketType: "Aller-retour",
+      siege: "B15"
+    },
+    { 
+      id: 3, 
+      name: "John Doe", 
+      class: "Économique", 
+      vocation: "Touriste", 
+      trajet: "Paris-Londres", 
+      bateau: "Emmanuel 1", 
+      clientType: "En ligne", 
+      ticketType: "Aller simple",
+      siege: "A12"
+    },
+    { 
+      id: 4, 
+      name: "Jane Smith", 
+      class: "Première", 
+      vocation: "Affaires", 
+      trajet: "Londres-Paris", 
+      bateau: "Emmanuel 1", 
+      clientType: "Vente", 
+      ticketType: "Aller-retour",
+      siege: "B15"
+    },
+    { 
+      id: 5, 
+      name: "John Doe", 
+      class: "Économique", 
+      vocation: "Touriste", 
+      trajet: "Paris-Londres", 
+      bateau: "Emmanuel 1", 
+      clientType: "En ligne", 
+      ticketType: "Aller simple",
+      siege: "A12"
+    },
+    { 
+      id: 6, 
+      name: "Jane Smith", 
+      class: "Première", 
+      vocation: "Affaires", 
+      trajet: "Londres-Paris", 
+      bateau: "Emmanuel 1", 
+      clientType: "Vente", 
+      ticketType: "Aller-retour",
+      siege: "B15"
+    },
+    { 
+      id: 7, 
+      name: "John Doe", 
+      class: "Économique", 
+      vocation: "Touriste", 
+      trajet: "Paris-Londres", 
+      bateau: "Emmanuel 1", 
+      clientType: "En ligne", 
+      ticketType: "Aller simple",
+      siege: "A12"
+    },
+    { 
+      id: 8, 
+      name: "Jane Smith", 
+      class: "Première", 
+      vocation: "Affaires", 
+      trajet: "Londres-Paris", 
+      bateau: "Emmanuel 1", 
+      clientType: "Vente", 
+      ticketType: "Aller-retour",
+      siege: "B15"
+    },
+    { 
+      id: 9, 
+      name: "John Doe", 
+      class: "Économique", 
+      vocation: "Touriste", 
+      trajet: "Paris-Londres", 
+      bateau: "Emmanuel 1", 
+      clientType: "En ligne", 
+      ticketType: "Aller simple",
+      siege: "A12"
+    },
+    { 
+      id: 10, 
+      name: "Jane Smith", 
+      class: "Première", 
+      vocation: "Affaires", 
+      trajet: "Londres-Paris", 
+      bateau: "Emmanuel 1", 
+      clientType: "Vente", 
+      ticketType: "Aller-retour",
+      siege: "B15"
+    },
+    { 
+      id: 11, 
+      name: "John Doe", 
+      class: "Économique", 
+      vocation: "Touriste", 
+      trajet: "Paris-Londres", 
+      bateau: "Emmanuel 1", 
+      clientType: "En ligne", 
+      ticketType: "Aller simple",
+      siege: "A12"
+    },
+    { 
+      id: 12, 
+      name: "Jane Smith", 
+      class: "Première", 
+      vocation: "Affaires", 
+      trajet: "Londres-Paris", 
+      bateau: "Emmanuel 1", 
+      clientType: "Vente", 
+      ticketType: "Aller-retour",
+      siege: "B15"
+    },
+    { 
+      id: 13, 
+      name: "John Doe", 
+      class: "Économique", 
+      vocation: "Touriste", 
+      trajet: "Paris-Londres", 
+      bateau: "Emmanuel 1", 
+      clientType: "En ligne", 
+      ticketType: "Aller simple",
+      siege: "A12"
+    },
+    { 
+      id: 14, 
+      name: "Jane Smith", 
+      class: "Première", 
+      vocation: "Affaires", 
+      trajet: "Londres-Paris", 
+      bateau: "Emmanuel 1", 
+      clientType: "Vente", 
+      ticketType: "Aller-retour",
+      siege: "B15"
+    },
+    { 
+      id: 15, 
+      name: "John Doe", 
+      class: "Économique", 
+      vocation: "Touriste", 
+      trajet: "Paris-Londres", 
+      bateau: "Emmanuel 1", 
+      clientType: "En ligne", 
+      ticketType: "Aller simple",
+      siege: "A12"
+    },
+    { 
+      id: 16, 
+      name: "Jane Smith", 
+      class: "Première", 
+      vocation: "Affaires", 
+      trajet: "Londres-Paris", 
+      bateau: "Emmanuel 1", 
+      clientType: "Vente", 
+      ticketType: "Aller-retour",
+      siege: "B15"
+    },
+    { 
+      id: 17, 
+      name: "John Doe", 
+      class: "Économique", 
+      vocation: "Touriste", 
+      trajet: "Paris-Londres", 
+      bateau: "Emmanuel 1", 
+      clientType: "En ligne", 
+      ticketType: "Aller simple",
+      siege: "A12"
+    },
+    { 
+      id: 18, 
+      name: "Jane Smith", 
+      class: "Première", 
+      vocation: "Affaires", 
+      trajet: "Londres-Paris", 
+      bateau: "Emmanuel 1", 
+      clientType: "Vente", 
+      ticketType: "Aller-retour",
+      siege: "B15"
+    },
+    { 
+      id: 19, 
+      name: "John Doe", 
+      class: "Économique", 
+      vocation: "Touriste", 
+      trajet: "Paris-Londres", 
+      bateau: "Emmanuel 1", 
+      clientType: "En ligne", 
+      ticketType: "Aller simple",
+      siege: "A12"
+    },
+    { 
+      id: 20, 
+      name: "Jane Smith", 
+      class: "Première", 
+      vocation: "Affaires", 
+      trajet: "Londres-Paris", 
+      bateau: "Emmanuel 1", 
+      clientType: "Vente", 
+      ticketType: "Aller-retour",
+      siege: "B15"
+    },
+    { 
+      id: 21, 
+      name: "John Doe", 
+      class: "Économique", 
+      vocation: "Touriste", 
+      trajet: "Paris-Londres", 
+      bateau: "Emmanuel 1", 
+      clientType: "En ligne", 
+      ticketType: "Aller simple",
+      siege: "A12"
+    },
+    { 
+      id: 22, 
+      name: "Jane Smith", 
+      class: "Première", 
+      vocation: "Affaires", 
+      trajet: "Londres-Paris", 
+      bateau: "Emmanuel 1", 
+      clientType: "Vente", 
+      ticketType: "Aller-retour",
+      siege: "B15"
+    },
+    { 
+      id: 23, 
+      name: "John Doe", 
+      class: "Économique", 
+      vocation: "Touriste", 
+      trajet: "Paris-Londres", 
+      bateau: "Emmanuel 1", 
+      clientType: "En ligne", 
+      ticketType: "Aller simple",
+      siege: "A12"
+    },
+    { 
+      id: 24, 
+      name: "Jane Smith", 
+      class: "Première", 
+      vocation: "Affaires", 
+      trajet: "Londres-Paris", 
+      bateau: "Emmanuel 1", 
+      clientType: "Vente", 
+      ticketType: "Aller-retour",
+      siege: "B15"
+    },
+    { 
+      id: 25, 
+      name: "John Doe", 
+      class: "Économique", 
+      vocation: "Touriste", 
+      trajet: "Paris-Londres", 
+      bateau: "Emmanuel 1", 
+      clientType: "En ligne", 
+      ticketType: "Aller simple",
+      siege: "A12"
+    },
+    { 
+      id: 26, 
+      name: "Jane Smith", 
+      class: "Première", 
+      vocation: "Affaires", 
+      trajet: "Londres-Paris", 
+      bateau: "Emmanuel 1", 
+      clientType: "Vente", 
+      ticketType: "Aller-retour",
+      siege: "B15"
+    },
+    { 
+      id: 27, 
+      name: "John Doe", 
+      class: "Économique", 
+      vocation: "Touriste", 
+      trajet: "Paris-Londres", 
+      bateau: "Emmanuel 1", 
+      clientType: "En ligne", 
+      ticketType: "Aller simple",
+      siege: "A12"
+    },
+    { 
+      id: 28, 
+      name: "Jane Smith", 
+      class: "Première", 
+      vocation: "Affaires", 
+      trajet: "Londres-Paris", 
+      bateau: "Emmanuel 1", 
+      clientType: "Vente", 
+      ticketType: "Aller-retour",
+      siege: "B15"
+    },
+    { 
+      id: 29, 
+      name: "John Doe", 
+      class: "Économique", 
+      vocation: "Touriste", 
+      trajet: "Paris-Londres", 
+      bateau: "Emmanuel 1", 
+      clientType: "En ligne", 
+      ticketType: "Aller simple",
+      siege: "A12"
+    },
+    { 
+      id: 30, 
+      name: "Jane Smith", 
+      class: "Première", 
+      vocation: "Affaires", 
+      trajet: "Londres-Paris", 
+      bateau: "Emmanuel 1", 
+      clientType: "Vente", 
+      ticketType: "Aller-retour",
+      siege: "B15"
+    },
+    { 
+      id: 31, 
+      name: "John Doe", 
+      class: "Économique", 
+      vocation: "Touriste", 
+      trajet: "Paris-Londres", 
+      bateau: "Emmanuel 1", 
+      clientType: "En ligne", 
+      ticketType: "Aller simple",
+      siege: "A12"
+    },
+    { 
+      id: 32, 
+      name: "Jane Smith", 
+      class: "Première", 
+      vocation: "Affaires", 
+      trajet: "Londres-Paris", 
+      bateau: "Emmanuel 1", 
+      clientType: "Vente", 
+      ticketType: "Aller-retour",
+      siege: "B15"
+    },
+    { 
+      id: 33, 
+      name: "John Doe", 
+      class: "Économique", 
+      vocation: "Touriste", 
+      trajet: "Paris-Londres", 
+      bateau: "Emmanuel 1", 
+      clientType: "En ligne", 
+      ticketType: "Aller simple",
+      siege: "A12"
+    },
+    { 
+      id: 34, 
+      name: "Jane Smith", 
+      class: "Première", 
+      vocation: "Affaires", 
+      trajet: "Londres-Paris", 
+      bateau: "Emmanuel 1", 
+      clientType: "Vente", 
+      ticketType: "Aller-retour",
+      siege: "B15"
+    },
+    { 
+      id: 35, 
+      name: "John Doe", 
+      class: "Économique", 
+      vocation: "Touriste", 
+      trajet: "Paris-Londres", 
+      bateau: "Emmanuel 1", 
+      clientType: "En ligne", 
+      ticketType: "Aller simple",
+      siege: "A12"
+    },
+    { 
+      id: 36, 
+      name: "Jane Smith", 
+      class: "Première", 
+      vocation: "Affaires", 
+      trajet: "Londres-Paris", 
+      bateau: "Emmanuel 1", 
+      clientType: "Vente", 
+      ticketType: "Aller-retour",
+      siege: "B15"
+    },
+    { 
+      id: 37, 
+      name: "John Doe", 
+      class: "Économique", 
+      vocation: "Touriste", 
+      trajet: "Paris-Londres", 
+      bateau: "Emmanuel 1", 
+      clientType: "En ligne", 
+      ticketType: "Aller simple",
+      siege: "A12"
+    },
+    { 
+      id: 38, 
+      name: "Jane Smith", 
+      class: "Première", 
+      vocation: "Affaires", 
+      trajet: "Londres-Paris", 
+      bateau: "Emmanuel 1", 
+      clientType: "Vente", 
+      ticketType: "Aller-retour",
+      siege: "B15"
+    },
+    { 
+      id: 39, 
+      name: "John Doe", 
+      class: "Économique", 
+      vocation: "Touriste", 
+      trajet: "Paris-Londres", 
+      bateau: "Emmanuel 1", 
+      clientType: "En ligne", 
+      ticketType: "Aller simple",
+      siege: "A12"
+    },
+    { 
+      id: 40, 
+      name: "Jane Smith", 
+      class: "Première", 
+      vocation: "Affaires", 
+      trajet: "Londres-Paris", 
+      bateau: "Emmanuel 1", 
+      clientType: "Vente", 
+      ticketType: "Aller-retour",
+      siege: "B15"
+    },
+    { 
+      id: 41, 
+      name: "John Doe", 
+      class: "Économique", 
+      vocation: "Touriste", 
+      trajet: "Paris-Londres", 
+      bateau: "Emmanuel 1", 
+      clientType: "En ligne", 
+      ticketType: "Aller simple",
+      siege: "A12"
+    },
+    { 
+      id: 42, 
+      name: "Jane Smith", 
+      class: "Première", 
+      vocation: "Affaires", 
+      trajet: "Londres-Paris", 
+      bateau: "Emmanuel 1", 
+      clientType: "Vente", 
+      ticketType: "Aller-retour",
+      siege: "B15"
+    },
+    { 
+      id: 43, 
+      name: "John Doe", 
+      class: "Économique", 
+      vocation: "Touriste", 
+      trajet: "Paris-Londres", 
+      bateau: "Emmanuel 1", 
+      clientType: "En ligne", 
+      ticketType: "Aller simple",
+      siege: "A12"
+    },
+    { 
+      id: 44, 
+      name: "Jane Smith", 
+      class: "Première", 
+      vocation: "Affaires", 
+      trajet: "Londres-Paris", 
+      bateau: "Emmanuel 1", 
+      clientType: "Vente", 
+      ticketType: "Aller-retour",
+      siege: "B15"
+    },
+    { 
+      id: 45, 
+      name: "John Doe", 
+      class: "Économique", 
+      vocation: "Touriste", 
+      trajet: "Paris-Londres", 
+      bateau: "Emmanuel 1", 
+      clientType: "En ligne", 
+      ticketType: "Aller simple",
+      siege: "A12"
+    },
+    { 
+      id: 46, 
+      name: "Jane Smith", 
+      class: "Première", 
+      vocation: "Affaires", 
+      trajet: "Londres-Paris", 
+      bateau: "Emmanuel 1", 
+      clientType: "Vente", 
+      ticketType: "Aller-retour",
+      siege: "B15"
+    },
+    { 
+      id: 47, 
+      name: "John Doe", 
+      class: "Économique", 
+      vocation: "Touriste", 
+      trajet: "Paris-Londres", 
+      bateau: "Emmanuel 1", 
+      clientType: "En ligne", 
+      ticketType: "Aller simple",
+      siege: "A12"
+    },
+    { 
+      id: 48, 
+      name: "Jane Smith", 
+      class: "Première", 
+      vocation: "Affaires", 
+      trajet: "Londres-Paris", 
+      bateau: "Emmanuel 1", 
+      clientType: "Vente", 
+      ticketType: "Aller-retour",
+      siege: "B15"
+    },
+    { 
+      id: 49, 
+      name: "John Doe", 
+      class: "Économique", 
+      vocation: "Touriste", 
+      trajet: "Paris-Londres", 
+      bateau: "Emmanuel 1", 
+      clientType: "En ligne", 
+      ticketType: "Aller simple",
+      siege: "A12"
+    },
+    { 
+      id: 50, 
       name: "Jane Smith", 
       class: "Première", 
       vocation: "Affaires", 
@@ -161,30 +692,40 @@ const Commandes = () => {
     XLSX.utils.book_append_sheet(wb, ws, "Commandes");
     const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
     const data = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-    FileSaver.saveAs(data, 'commandes.xlsx');
+    FileSaver.saveAs(data, 'Passagers.xlsx');
   };
 
   const exportToPDF = () => {
     const doc = new jsPDF();
-    
-    // Logo et en-tête
-    const logoUrl = "https://example.com/logo.png"; // Remplacer par l'URL réelle du logo
-    doc.addImage(logoUrl, 'PNG', 10, 10, 40, 20);
-    doc.setFontSize(12);
-    doc.text("Le garant du transport lacustre", 60, 20);
-    doc.text(new Date().toLocaleDateString(), 150, 20);
-
-    // Titre
-    doc.setFillColor(28, 117, 188);
-    doc.rect(0, 40, 210, 20, 'F');
-    doc.setTextColor(255, 255, 255);
-    doc.setFontSize(16);
-    doc.text("LISTE DE PASSAGE DU BATEAU EMMANUEL 1", 105, 53, { align: 'center' });
-
-    // Contenu
-    doc.setTextColor(0, 0, 0);
+  
+    // Définir la fonction pour l'en-tête
+    const addHeader = (pageNumber) => {
+      doc.addImage(LogoEtsSILIMU, 'JPG', 5, 0, 20, 15);
+      doc.setFontSize(12);
+      doc.setTextColor(0, 0, 0);
+      doc.text("Le garant du transport lacustre", 25, 8, { align: "left" });
+      doc.text(new Date().toLocaleDateString(), 180, 8, { align: "right" });
+      doc.setFillColor(28, 117, 188);
+      doc.rect(0, 15, 210, 10, 'F');
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(16);
+      doc.text("LISTE DE PASSAGE DU BATEAU EMMANUEL 1", 105, 22, { align: 'center' });
+    };
+  
+    // Définir la fonction pour le pied de page
+    const addFooter = (pageNumber, totalPages) => {
+      doc.addImage(LogoTOYHE, 'PNG', 10, doc.internal.pageSize.height - 12, 15, 10);
+      doc.setFontSize(10);
+      doc.setTextColor(0, 0, 0);
+      doc.text("Plateforme de gestion et réservation du transport lacustre", 28, doc.internal.pageSize.height - 5);
+      doc.text(`Page ${pageNumber}/${totalPages}`, 180, doc.internal.pageSize.height - 5, { align: "right" });
+    };
+  
+    let pageNumber = 1;
+  
+    // Ajouter l'en-tête et le tableau
     doc.autoTable({
-      startY: 70,
+      startY: 30,
       head: [['N°', 'Nom', 'Classe', 'Vocation', 'Trajet', 'Bateau', 'Type de client', 'Type de billet', 'Siège']],
       body: mockData.orders.map(order => [
         order.id,
@@ -197,19 +738,25 @@ const Commandes = () => {
         order.ticketType,
         order.siege
       ]),
+      margin: { top: 30 },  // Déplacer le tableau sous l'en-tête
+      styles: {
+        fontSize: 10,
+      },
+      headStyles: {
+        fillColor: [28, 117, 188],
+        textColor: [255, 255, 255],
+      },
+      didDrawPage: function (data) {
+        const totalPages = doc.internal.getNumberOfPages();
+        addHeader(pageNumber);
+        addFooter(pageNumber, totalPages);
+        pageNumber++;
+      }
     });
-
-    // Pied de page
-    const pageCount = doc.internal.getNumberOfPages();
-    for (let i = 1; i <= pageCount; i++) {
-      doc.setPage(i);
-      doc.setFontSize(10);
-      doc.text("Plateforme de gestion et réservation du transport lacustre", 10, doc.internal.pageSize.height - 10);
-      doc.text(`Page ${i}/${pageCount}`, 180, doc.internal.pageSize.height - 10);
-    }
-
-    doc.save('commandes.pdf');
+  
+    doc.save("Passagers.pdf");
   };
+  
 
   const renderDialog = () => {
     if (!selectedOrder) return null;
@@ -416,10 +963,10 @@ const Commandes = () => {
         </Grid>
 
         {/* Tableau */}
-        <Paper className="p-4">
-          <div className="flex justify-between items-center mb-4">
+        <Paper className="p-4 mt-5">
+          <div className="flex items-center justify-between mb-4">
             <Typography variant="h6">Liste des commandes</Typography>
-            <div className="space-x-2 flex items-center">
+            <div className="flex items-center space-x-2">
               <ToggleButtonGroup
                 value={tableDisplay}
                 exclusive
@@ -430,24 +977,15 @@ const Commandes = () => {
                 <ToggleButton value="medium">Moyen</ToggleButton>
                 <ToggleButton value="spacious">Espacé</ToggleButton>
               </ToggleButtonGroup>
-              <Button
-                variant="outlined"
-                startIcon={<FileDown />}
-                onClick={exportToExcel}
-              >
+              <Button variant="outlined" startIcon={<FileDown />} onClick={exportToExcel}>
                 Excel
               </Button>
-              <Button
-                variant="outlined"
-                startIcon={<FileDown />}
-                onClick={exportToPDF}
-              >
+              <Button variant="outlined" startIcon={<FileDown />} onClick={exportToPDF}>
                 PDF
               </Button>
             </div>
           </div>
           {isMobile ? (
-            // Vue mobile en mode carte
             <div className="space-y-4">
               {mockData.orders.map((order) => (
                 <Paper key={order.id} elevation={2} className="p-4">
@@ -455,7 +993,7 @@ const Commandes = () => {
                   <Typography>Siège: {order.siege}</Typography>
                   <Typography>Classe: {order.class}</Typography>
                   <Typography>Trajet: {order.trajet}</Typography>
-                  <div className="mt-2 flex justify-end space-x-2">
+                  <div className="flex justify-end mt-2 space-x-2">
                     <IconButton size="small" color="primary" onClick={() => handleOpenDialog(order, 'view')}>
                       <Eye size={20} />
                     </IconButton>
@@ -470,25 +1008,19 @@ const Commandes = () => {
               ))}
             </div>
           ) : (
-            // Vue desktop en tableau
-            <TableContainer>
-              <Table size={tableDisplay === 'compact' ? 'small' : tableDisplay === 'spacious' ? 'medium' : 'medium'}>
+            <TableContainer style={{ maxHeight: '400px', overflowY: 'auto' }}>
+              <Table stickyHeader size={tableDisplay === 'compact' ? 'small' : tableDisplay === 'spacious' ? 'medium' : 'medium'}>
                 <TableHead>
                   <TableRow sx={{ backgroundColor: '#1c75bc' }}>
-                    <TableCell sx={{ color: 'white' }}>N°</TableCell>
-                    <TableCell sx={{ color: 'white' }}>Nom</TableCell>
-                    <TableCell sx={{ color: 'white' }}>Classe</TableCell>
-                    <TableCell sx={{ color: 'white' }}>Vocation</TableCell>
-                    <TableCell sx={{ color: 'white' }}>Trajet</TableCell>
-                    <TableCell sx={{ color: 'white' }}>Bateau</TableCell>
-                    <TableCell sx={{ color: 'white' }}>Type de client</TableCell>
-                    <TableCell sx={{ color: 'white' }}>Type de billet</TableCell>
-                    <TableCell sx={{ color: 'white' }}>Siège</TableCell>
-                    <TableCell sx={{ color: 'white' }}>Actions</TableCell>
+                    {['N°', 'Nom', 'Classe', 'Vocation', 'Trajet', 'Bateau', 'Type de client', 'Type de billet', 'Siège', 'Actions'].map((header) => (
+                      <TableCell key={header} sx={{ color: 'white', backgroundColor: '#1c75bc', position: 'sticky', top: 0, zIndex: 2 }}>
+                        {header}
+                      </TableCell>
+                    ))}
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {mockData.orders.map((order) => (
+                  {mockData.orders.slice(0, rowsPerPage).map((order) => (
                     <TableRow key={order.id}>
                       <TableCell>{order.id}</TableCell>
                       <TableCell>{order.name}</TableCell>
@@ -518,10 +1050,7 @@ const Commandes = () => {
           )}
           <div className="mt-4">
             <FormControl variant="outlined" size="small">
-              <Select
-                value={rowsPerPage}
-                onChange={(e) => setRowsPerPage(e.target.value)}
-              >
+              <Select value={rowsPerPage} onChange={(e) => setRowsPerPage(e.target.value)}>
                 <MenuItem value={10}>10 lignes</MenuItem>
                 <MenuItem value={25}>25 lignes</MenuItem>
                 <MenuItem value={50}>50 lignes</MenuItem>

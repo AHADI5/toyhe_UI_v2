@@ -23,54 +23,54 @@ const CLASSES = [
 
 const PAYMENT_METHODS = [
   { 
-    id: 'maxicash', 
-    name: 'MaxiCash', 
-    logo: 'https://images.unsplash.com/photo-1580048915913-4f8f5cb481c4?w=50&h=50&fit=crop',
-    icon: <Phone className="w-4 h-4" />,
-    fields: ['phone', 'pin']
-  },
-  { 
-    id: 'paypal', 
-    name: 'PayPal', 
-    logo: 'https://images.unsplash.com/photo-1580048915913-4f8f5cb481c4?w=50&h=50&fit=crop',
-    icon: <Mail className="w-4 h-4" />,
-    fields: ['email']
-  },
-  { 
     id: 'airtel', 
     name: 'Airtel Money', 
-    logo: 'https://images.unsplash.com/photo-1580048915913-4f8f5cb481c4?w=50&h=50&fit=crop',
-    icon: <Phone className="w-4 h-4" />,
-    fields: ['phone']
-  },
-  { 
-    id: 'mpesa', 
-    name: 'M-Pesa', 
-    logo: 'https://images.unsplash.com/photo-1580048915913-4f8f5cb481c4?w=50&h=50&fit=crop',
+    logo: '/assets/cannaux.de.paiement/Airtel_Money.png',
     icon: <Phone className="w-4 h-4" />,
     fields: ['phone']
   },
   { 
     id: 'orange', 
     name: 'Orange Money', 
-    logo: 'https://images.unsplash.com/photo-1580048915913-4f8f5cb481c4?w=50&h=50&fit=crop',
+    logo: '/assets/cannaux.de.paiement/Orange_Money.jpg',
+    icon: <Phone className="w-4 h-4" />,
+    fields: ['phone']
+  },
+  { 
+    id: 'mpesa', 
+    name: 'M-Pesa', 
+    logo: '/assets/cannaux.de.paiement/M_Pesa.png',
     icon: <Phone className="w-4 h-4" />,
     fields: ['phone']
   },
   { 
     id: 'pple', 
     name: 'PPLE Mobile', 
-    logo: 'https://images.unsplash.com/photo-1580048915913-4f8f5cb481c4?w=50&h=50&fit=crop',
+    logo: '/assets/cannaux.de.paiement/PPLE_Mobile.png',
     icon: <Phone className="w-4 h-4" />,
     fields: ['phone']
   },
   { 
+    id: 'paypal', 
+    name: 'PayPal', 
+    logo: '/assets/cannaux.de.paiement/PayPal.png',
+    icon: <Mail className="w-4 h-4" />,
+    fields: ['email']
+  },
+  { 
     id: 'card', 
     name: 'Visa/Mastercard', 
-    logo: 'https://images.unsplash.com/photo-1580048915913-4f8f5cb481c4?w=50&h=50&fit=crop',
+    logo: '/assets/cannaux.de.paiement/VISA_MasterCard.jpg',
     icon: <CreditCard className="w-4 h-4" />,
     fields: ['cardNumber', 'expiry', 'cvv', 'name']
-  }
+  },
+  { 
+    id: 'maxicash', 
+    name: 'MaxiCash',
+    logo: '/assets/cannaux.de.paiement/MaxiCash.jpg',
+    icon: <Phone className="w-4 h-4" />,
+    fields: ['phone', 'pin']
+  } 
 ];
 
 const COUNTRIES = [
