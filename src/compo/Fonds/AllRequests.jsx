@@ -87,7 +87,7 @@ const AllRequests = ({ userRole, onSelectRequest }) => {
             <Typography><strong>Demandeur:</strong> {request.requester}</Typography>
             <Typography><strong>Catégorie:</strong> {request.category}</Typography>
             <Typography><strong>Montant:</strong> {request.amount}</Typography>
-            <Typography><strong>Date:</strong> {format(request.date, 'dd/MM/yyyy', { locale: fr })}</Typography>
+            <Typography><strong>Date:</strong> {format(new Date(request.date), 'dd/MM/yyyy', { locale: fr })}</Typography>
             <Box sx={{ mt: 1, display: 'flex', justifyContent: 'flex-end' }}>
               <IconButton
                 size="small"
@@ -125,7 +125,7 @@ const AllRequests = ({ userRole, onSelectRequest }) => {
               <TableCell>{request.category}</TableCell>
               <TableCell>{request.amount}</TableCell>
               <TableCell>
-                {format(request.date, 'dd MMMM yyyy', { locale: fr })}
+              {format(new Date(request.date), 'dd MMMM yyyy', { locale: fr })}
               </TableCell>
               <TableCell>{getStatusChip(request.status)}</TableCell>
               <TableCell>

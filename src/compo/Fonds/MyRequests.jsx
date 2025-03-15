@@ -79,7 +79,7 @@ const MyRequests = ({ onSelectRequest }) => {
                 <TableCell>{request.category}</TableCell>
                 <TableCell>{request.amount}</TableCell>
                 <TableCell>
-                  {format(request.date, 'dd MMMM yyyy', { locale: fr })}
+                {format(new Date(request.date), 'dd MMMM yyyy', { locale: fr })}
                 </TableCell>
                 <TableCell>{getStatusChip(request.status)}</TableCell>
                 <TableCell>

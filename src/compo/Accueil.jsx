@@ -3,10 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { Document, Page } from 'react-pdf';
-import { PhotoProvider, PhotoView } from 'react-photo-view';
-import 'react-photo-view/dist/react-photo-view.css';
-import JSZip from 'jszip';
-import { saveAs } from 'file-saver';
 import { 
   Image, 
   FileText, 
@@ -30,29 +26,14 @@ import {
   Edit,
   ArrowLeft
 } from 'lucide-react';
+import { GlobalWorkerOptions } from 'pdfjs-dist';
+import { pdfjs } from 'react-pdf';
 
-// Définition des rôles en dur
-const USER_ROLES = {
-  ADMIN: 'admin',
-  MARKETING: 'marketing',
-  USER: 'user'
-};
+pdfjs.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
 
-// Utilisateur actuel (simulé - à remplacer par votre système d'authentification)
-const currentUser = {
-  id: '1',
-  name: 'John Doe',
-  avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop',
-  role: USER_ROLES.USER // Changer ici pour tester différents rôles
-};
 
-// Vérification des permissions
-const canManageContent = (userRole) => {
-  return userRole === USER_ROLES.ADMIN || userRole === USER_ROLES.MARKETING;
-};
-
-// Composant pour un commentaire unique
-const Comment = ({ comment, onLike, onReply, isReply = false }) => {
+// Composant pour un commentaire unique avec hiérarchie illimitée
+const Comment = ({ comment, onLike, onReply }) => {
   const [showReplyInput, setShowReplyInput] = useState(false);
   const [replyText, setReplyText] = useState('');
 
@@ -65,7 +46,7 @@ const Comment = ({ comment, onLike, onReply, isReply = false }) => {
   };
 
   return (
-    <div className={`${!isReply ? 'pl-4 border-l-2 border-gray-100' : ''} mt-3`}>
+    <div className="pl-4 border-l-2 border-gray-100 mt-3">
       <div className="flex space-x-3">
         <img
           src={comment.user.avatar}
@@ -85,20 +66,18 @@ const Comment = ({ comment, onLike, onReply, isReply = false }) => {
               <Heart className="w-4 h-4" />
               <span>{comment.likes} J'aime</span>
             </button>
-            {!isReply && (
-              <button 
-                onClick={() => setShowReplyInput(!showReplyInput)}
-                className="text-gray-500 hover:text-gray-700"
-              >
-                Répondre
-              </button>
-            )}
+            <button 
+              onClick={() => setShowReplyInput(!showReplyInput)}
+              className="text-gray-500 hover:text-gray-700"
+            >
+              Répondre
+            </button>
             <span className="text-gray-500">
               {format(new Date(comment.timestamp), "d MMMM 'à' HH:mm", { locale: fr })}
             </span>
           </div>
 
-          {showReplyInput && !isReply && (
+          {showReplyInput && (
             <div className="mt-2 flex space-x-2">
               <input
                 type="text"
@@ -116,15 +95,15 @@ const Comment = ({ comment, onLike, onReply, isReply = false }) => {
             </div>
           )}
 
+          {/* Affichage récursif des réponses (hiérarchie illimitée) */}
           {comment.replies && comment.replies.length > 0 && (
-            <div className="mt-2 space-y-2 pl-4">
+            <div className="mt-2 space-y-2">
               {comment.replies.map((reply) => (
                 <Comment
                   key={reply.id}
                   comment={reply}
                   onLike={onLike}
                   onReply={onReply}
-                  isReply={true}
                 />
               ))}
             </div>
@@ -136,14 +115,16 @@ const Comment = ({ comment, onLike, onReply, isReply = false }) => {
 };
 
 // Composant pour créer de nouvelles publications
-const PostComposer = ({ onPost }) => {
+const PostComposer = ({ onPost, userRole }) => {
   const [text, setText] = useState('');
   const [files, setFiles] = useState([]);
   const [audience, setAudience] = useState('clients');
 
   // Vérifier si l'utilisateur a le droit de publier
-  if (!canManageContent(currentUser.role)) {
-    return null;
+  const canPost = userRole === 'admin' || userRole === 'marketing';
+
+  if (!canPost) {
+    return null; // Ne pas afficher le composant si l'utilisateur n'a pas les droits
   }
 
   const handleFileChange = (e) => {
@@ -163,9 +144,9 @@ const PostComposer = ({ onPost }) => {
       files,
       timestamp: new Date(),
       user: {
-        id: currentUser.id,
-        name: currentUser.name,
-        avatar: currentUser.avatar
+        id: '1',
+        name: 'John Doe',
+        avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop'
       },
       audience,
       comments: []
@@ -178,8 +159,8 @@ const PostComposer = ({ onPost }) => {
     <div className="bg-white rounded-lg shadow p-4 mb-4">
       <div className="flex items-start space-x-3">
         <img
-          src={currentUser.avatar}
-          alt={currentUser.name}
+          src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop"
+          alt="User"
           className="w-10 h-10 rounded-full"
         />
         <div className="flex-1">
@@ -276,7 +257,7 @@ const PostComposer = ({ onPost }) => {
   );
 };
 
-// Composant pour afficher une publication en détail
+// Composant pour afficher une publication en détail (page complète)
 const PostDetailPage = ({ post, onClose, onLike, onShare, onComment, onDownload }) => {
   const [newComment, setNewComment] = useState('');
   const [comments, setComments] = useState(post.comments || []);
@@ -289,8 +270,8 @@ const PostDetailPage = ({ post, onClose, onLike, onShare, onComment, onDownload 
         id: Date.now(),
         text: newComment,
         user: {
-          name: currentUser.name,
-          avatar: currentUser.avatar
+          name: 'John Doe',
+          avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop'
         },
         timestamp: new Date(),
         likes: 0,
@@ -303,81 +284,55 @@ const PostDetailPage = ({ post, onClose, onLike, onShare, onComment, onDownload 
     }
   };
 
-  const handleLikeComment = (commentId) => {
-    const updatedComments = comments.map(comment => {
-      if (comment.id === commentId) {
+  // Fonction récursive pour trouver et mettre à jour un commentaire ou une réponse
+  const findAndUpdateComment = (commentsList, targetId, updateFn) => {
+    return commentsList.map(comment => {
+      // Si c'est le commentaire cible, appliquer la fonction de mise à jour
+      if (comment.id === targetId) {
+        return updateFn(comment);
+      }
+      
+      // Si ce commentaire a des réponses, chercher récursivement dans les réponses
+      if (comment.replies && comment.replies.length > 0) {
         return {
           ...comment,
-          liked: !comment.liked,
-          likes: comment.liked ? comment.likes - 1 : comment.likes + 1
+          replies: findAndUpdateComment(comment.replies, targetId, updateFn)
         };
       }
-      if (comment.replies) {
-        return {
-          ...comment,
-          replies: comment.replies.map(reply => {
-            if (reply.id === commentId) {
-              return {
-                ...reply,
-                liked: !reply.liked,
-                likes: reply.liked ? reply.likes - 1 : reply.likes + 1
-              };
-            }
-            return reply;
-          })
-        };
-      }
+      
+      // Sinon, retourner le commentaire inchangé
       return comment;
     });
+  };
+
+  const handleLikeComment = (commentId) => {
+    const updatedComments = findAndUpdateComment(comments, commentId, comment => ({
+      ...comment,
+      liked: !comment.liked,
+      likes: comment.liked ? comment.likes - 1 : comment.likes + 1
+    }));
+    
     setComments(updatedComments);
   };
 
   const handleReplyToComment = (commentId, replyText) => {
-    const updatedComments = comments.map(comment => {
-      if (comment.id === commentId) {
-        return {
-          ...comment,
-          replies: [...(comment.replies || []), {
-            id: Date.now(),
-            text: replyText,
-            user: {
-              name: currentUser.name,
-              avatar: currentUser.avatar
-            },
-            timestamp: new Date(),
-            likes: 0,
-            liked: false
-          }]
-        };
-      }
-      return comment;
-    });
-    setComments(updatedComments);
-  };
-
-  const handleDownloadAll = async () => {
-    if (!post.files || post.files.length === 0) return;
-
-    const zip = new JSZip();
+    const updatedComments = findAndUpdateComment(comments, commentId, comment => ({
+      ...comment,
+      replies: [...(comment.replies || []), {
+        id: Date.now(),
+        text: replyText,
+        user: {
+          name: 'John Doe',
+          avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop'
+        },
+        timestamp: new Date(),
+        likes: 0,
+        liked: false,
+        replies: []
+      }]
+    }));
     
-    // Ajouter chaque fichier au zip
-    post.files.forEach((file, index) => {
-      // Utiliser fetch pour obtenir le contenu du fichier
-      fetch(file.preview)
-        .then(response => response.blob())
-        .then(blob => {
-          // Ajouter le fichier au zip avec son nom original
-          zip.file(file.file.name, blob);
-          
-          // Si c'est le dernier fichier, générer et télécharger le zip
-          if (index === post.files.length - 1) {
-            zip.generateAsync({ type: "blob" })
-              .then(content => {
-                saveAs(content, "files.zip");
-              });
-          }
-        });
-    });
+    setComments(updatedComments);
   };
 
   const onDocumentLoadSuccess = ({ numPages }) => {
@@ -385,8 +340,8 @@ const PostDetailPage = ({ post, onClose, onLike, onShare, onComment, onDownload 
   };
 
   return (
-    <div className="fixed inset-0 bg-white z-50 overflow-y-auto">
-      <div className="max-w-4xl mx-auto p-4">
+    <div className="fixed inset-0 bg-[#f5f5ff] z-50 overflow-y-auto pt-[70px] ml-[16%] w-[84%]">
+      <div className="max-w-4xl mx-auto mt-5 mb-5 p-4 bg-white shadow-md rounded-lg">
         <div className="sticky top-0 bg-white py-2 border-b flex justify-between items-center z-10">
           <button 
             onClick={onClose}
@@ -396,7 +351,7 @@ const PostDetailPage = ({ post, onClose, onLike, onShare, onComment, onDownload 
             <span>Retour</span>
           </button>
           <h2 className="text-xl font-semibold">Publication</h2>
-          <div className="w-10"></div>
+          <div className="w-10"></div> {/* Spacer pour centrer le titre */}
         </div>
         
         <div className="py-4">
@@ -427,94 +382,77 @@ const PostDetailPage = ({ post, onClose, onLike, onShare, onComment, onDownload 
 
           <p className="mb-6">{post.text}</p>
 
+          {/* Files section */}
           {post.files && post.files.length > 0 && (
             <div className="mb-6">
-              <div className="flex justify-between items-center mb-3">
-                <h3 className="font-semibold">Fichiers</h3>
-                {post.files.length > 1 && (
-                  <button
-                    onClick={handleDownloadAll}
-                    className="flex items-center space-x-2 text-blue-500 hover:text-blue-600"
-                  >
-                    <Download className="w-4 h-4" />
-                    <span>Télécharger tout</span>
-                  </button>
-                )}
-              </div>
-              <PhotoProvider>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {post.files.map((file, index) => (
-                    <div key={index} className="relative group">
-                      {file.type === 'image' && (
-                        <PhotoView src={file.preview}>
-                          <div className="relative cursor-pointer">
-                            <img 
-                              src={file.preview} 
-                              alt="" 
-                              className="rounded-lg w-full object-cover"
-                            />
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                onDownload(file);
-                              }}
-                              className="absolute bottom-2 right-2 p-2 bg-black bg-opacity-50 rounded-full text-white opacity-0 group-hover:opacity-100 transition-opacity"
-                            >
-                              <Download className="w-5 h-5" />
-                            </button>
+              <h3 className="font-semibold mb-3">Fichiers</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {post.files.map((file, index) => (
+                  <div key={index} className="relative group">
+                    {file.type === 'image' && (
+                      <div className="relative">
+                        <img 
+                          src={file.preview} 
+                          alt="" 
+                          className="rounded-lg w-full object-cover"
+                        />
+                        <button
+                          onClick={() => onDownload(file)}
+                          className="absolute bottom-2 right-2 p-2 bg-black bg-opacity-50 rounded-full text-white opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          <Download className="w-5 h-5" />
+                        </button>
+                      </div>
+                    )}
+                    {file.type === 'video' && (
+                      <div className="relative">
+                        <video 
+                          src={file.preview} 
+                          className="rounded-lg w-full" 
+                          controls
+                        />
+                        <button
+                          onClick={() => onDownload(file)}
+                          className="absolute bottom-2 right-2 p-2 bg-black bg-opacity-50 rounded-full text-white opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          <Download className="w-5 h-5" />
+                        </button>
+                      </div>
+                    )}
+                    {file.type === 'application' && (
+                      <div className="bg-gray-100 rounded-lg p-4">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center flex-1">
+                            <FileText className="w-6 h-6 mr-2 text-red-500 flex-shrink-0" />
+                            <span className="text-sm truncate">{file.file.name}</span>
                           </div>
-                        </PhotoView>
-                      )}
-                      {file.type === 'video' && (
-                        <div className="relative">
-                          <video 
-                            src={file.preview} 
-                            className="rounded-lg w-full" 
-                            controls
-                          />
                           <button
                             onClick={() => onDownload(file)}
-                            className="absolute bottom-2 right-2 p-2 bg-black bg-opacity-50 rounded-full text-white opacity-0 group-hover:opacity-100 transition-opacity"
+                            className="p-2 hover:bg-gray-200 rounded-full"
                           >
-                            <Download className="w-5 h-5" />
+                            <Download className="w-5 h-5 text-gray-600" />
                           </button>
                         </div>
-                      )}
-                      {file.type === 'application' && (
-                        <div className="bg-gray-100 rounded-lg p-4">
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center flex-1">
-                              <FileText className="w-6 h-6 mr-2 text-red-500 flex-shrink-0" />
-                              <span className="text-sm truncate">{file.file.name}</span>
-                            </div>
-                            <button
-                              onClick={() => onDownload(file)}
-                              className="p-2 hover:bg-gray-200 rounded-full"
+                        {file.preview && (
+                          <div className="mt-2">
+                            <Document
+                              file={file.preview}
+                              onLoadSuccess={onDocumentLoadSuccess}
                             >
-                              <Download className="w-5 h-5 text-gray-600" />
-                            </button>
+                              <Page pageNumber={1} width={300} />
+                            </Document>
+                            {numPdfPages && (
+                              <p className="text-sm text-gray-500 mt-1">
+                                Page 1 sur {numPdfPages}
+                              </p>
+                            )}
                           </div>
-                          {file.preview && (
-                            <div className="mt-2">
-                              <Document
-                                file={file.preview}
-                                onLoadSuccess={onDocumentLoadSuccess}
-                              >
-                                <Page pageNumber={1} width={300} />
-                              </Document>
-                              {numPdfPages && (
-                                <p className="text-sm text-gray-500 mt-1">
-                                  Page 1 sur {numPdfPages}
-                                </p>
-                              )}
-                            </div>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </PhotoProvider>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           )}
 
@@ -543,15 +481,18 @@ const PostDetailPage = ({ post, onClose, onLike, onShare, onComment, onDownload 
               <span>Partager</span>
             </button>
 
-            {post.files && post.files.length > 0 && (
-              <button
-                onClick={handleDownloadAll}
-                className="flex items-center space-x-2 text-gray-500 hover:text-gray-600"
-              >
-                <Download className="w-5 h-5" />
-                <span>Télécharger</span>
-              </button>
-            )}
+            <button
+              onClick={() => {
+                if (post.files && post.files.length > 0) {
+                  onDownload(post.files[0]);
+                }
+              }}
+              className="flex items-center space-x-2 text-gray-500 hover:text-gray-600"
+              disabled={!post.files || post.files.length === 0}
+            >
+              <Download className="w-5 h-5" />
+              <span>Télécharger</span>
+            </button>
           </div>
 
           {/* Comments section */}
@@ -560,7 +501,7 @@ const PostDetailPage = ({ post, onClose, onLike, onShare, onComment, onDownload 
             
             <div className="flex space-x-2">
               <img
-                src={currentUser.avatar}
+                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop"
                 alt="Current user"
                 className="w-8 h-8 rounded-full"
               />
@@ -593,6 +534,14 @@ const PostDetailPage = ({ post, onClose, onLike, onShare, onComment, onDownload 
               {comments.length === 0 && (
                 <p className="text-gray-500 text-center py-4">Aucun commentaire pour le moment</p>
               )}
+              {comments.length > 5 && !showAllComments && (
+                <button
+                  onClick={() => setShowAllComments(true)}
+                  className="w-full py-2 bg-gray-100 text-blue-500 rounded-lg hover:bg-gray-200"
+                >
+                  Voir plus de commentaires
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -602,7 +551,7 @@ const PostDetailPage = ({ post, onClose, onLike, onShare, onComment, onDownload 
 };
 
 // Composant pour une publication unique
-const Post = ({ post, onDelete, onLike, onShare, onViewPost, onAddComment }) => {
+const Post = ({ post, onDelete, onLike, onShare, onViewPost, onAddComment, userRole }) => {
   const [showComments, setShowComments] = useState(false);
   const [showShareMenu, setShowShareMenu] = useState(false);
   const [showOptionsMenu, setShowOptionsMenu] = useState(false);
@@ -611,6 +560,10 @@ const Post = ({ post, onDelete, onLike, onShare, onViewPost, onAddComment }) => 
   const [newComment, setNewComment] = useState('');
   const [showAllComments, setShowAllComments] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  // Vérifier les permissions basées sur le rôle
+  const canDelete = userRole === 'admin' || userRole === 'marketing';
+  const canEdit = userRole === 'admin' || userRole === 'marketing';
 
   useEffect(() => {
     const handleResize = () => {
@@ -623,14 +576,35 @@ const Post = ({ post, onDelete, onLike, onShare, onViewPost, onAddComment }) => 
     };
   }, []);
 
+  // Fonction récursive pour trouver et mettre à jour un commentaire ou une réponse
+  const findAndUpdateComment = (commentsList, targetId, updateFn) => {
+    return commentsList.map(comment => {
+      // Si c'est le commentaire cible, appliquer la fonction de mise à jour
+      if (comment.id === targetId) {
+        return updateFn(comment);
+      }
+      
+      // Si ce commentaire a des réponses, chercher récursivement dans les réponses
+      if (comment.replies && comment.replies.length > 0) {
+        return {
+          ...comment,
+          replies: findAndUpdateComment(comment.replies, targetId, updateFn)
+        };
+      }
+      
+      // Sinon, retourner le commentaire inchangé
+      return comment;
+    });
+  };
+
   const handleComment = () => {
     if (newComment.trim()) {
       const newCommentObj = {
         id: Date.now(),
         text: newComment,
         user: {
-          name: currentUser.name,
-          avatar: currentUser.avatar
+          name: 'John Doe',
+          avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop'
         },
         timestamp: new Date(),
         likes: 0,
@@ -644,53 +618,33 @@ const Post = ({ post, onDelete, onLike, onShare, onViewPost, onAddComment }) => 
   };
 
   const handleLikeComment = (commentId) => {
-    setComments(comments.map(comment => {
-      if (comment.id === commentId) {
-        return {
-          ...comment,
-          liked: !comment.liked,
-          likes: comment.liked ? comment.likes - 1 : comment.likes + 1
-        };
-      }
-      if (comment.replies) {
-        return {
-          ...comment,
-          replies: comment.replies.map(reply => {
-            if (reply.id === commentId) {
-              return {
-                ...reply,
-                liked: !reply.liked,
-                likes: reply.liked ? reply.likes - 1 : reply.likes + 1
-              };
-            }
-            return reply;
-          })
-        };
-      }
-      return comment;
+    const updatedComments = findAndUpdateComment(comments, commentId, comment => ({
+      ...comment,
+      liked: !comment.liked,
+      likes: comment.liked ? comment.likes - 1 : comment.likes + 1
     }));
+    
+    setComments(updatedComments);
   };
 
   const handleReplyToComment = (commentId, replyText) => {
-    setComments(comments.map(comment => {
-      if (comment.id === commentId) {
-        return {
-          ...comment,
-          replies: [...(comment.replies || []), {
-            id: Date.now(),
-            text: replyText,
-            user: {
-              name: currentUser.name,
-              avatar: currentUser.avatar
-            },
-            timestamp: new Date(),
-            likes: 0,
-            liked: false
-          }]
-        };
-      }
-      return comment;
+    const updatedComments = findAndUpdateComment(comments, commentId, comment => ({
+      ...comment,
+      replies: [...(comment.replies || []), {
+        id: Date.now(),
+        text: replyText,
+        user: {
+          name: 'John Doe',
+          avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop'
+        },
+        timestamp: new Date(),
+        likes: 0,
+        liked: false,
+        replies: []
+      }]
     }));
+    
+    setComments(updatedComments);
   };
 
   const shareOptions = [
@@ -709,42 +663,17 @@ const Post = ({ post, onDelete, onLike, onShare, onViewPost, onAddComment }) => 
     document.body.removeChild(a);
   };
 
-  const handleDownloadAll = async () => {
-    if (!post.files || post.files.length === 0) return;
-
-    const zip = new JSZip();
-    
-    // Ajouter chaque fichier au zip
-    post.files.forEach((file, index) => {
-      // Utiliser fetch pour obtenir le contenu du fichier
-      fetch(file.preview)
-        .then(response => response.blob())
-        .then(blob => {
-          // Ajouter le fichier au zip avec son nom original
-          zip.file(file.file.name, blob);
-          
-          // Si c'est le dernier fichier, générer et télécharger le zip
-          if (index === post.files.length - 1) {
-            zip.generateAsync({ type: "blob" })
-              .then(content => {
-                saveAs(content, "files.zip");
-              });
-          }
-        });
-    });
-  };
-
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPdfPages(numPages);
   };
 
-  // Determine max visible images based on screen size
+  // Déterminer le nombre maximum d'images visibles en fonction de la taille de l'écran
   const maxVisibleImages = windowWidth >= 768 ? 4 : 3;
 
   const getImageGridClass = (filesCount) => {
     if (filesCount === 1) return 'grid-cols-1';
     if (filesCount === 2) return 'grid-cols-2';
-    if (filesCount === 3) return 'grid-cols-2';
+    if (filesCount === 3) return 'grid-cols-3';
     return 'grid-cols-2';
   };
 
@@ -755,43 +684,38 @@ const Post = ({ post, onDelete, onLike, onShare, onViewPost, onAddComment }) => 
     return (
       <div className="mb-4">
         {imageFiles.length > 0 && (
-          <PhotoProvider>
-            <div className={`grid ${getImageGridClass(imageFiles.length)} gap-2 mb-2`}>
-              {imageFiles.slice(0, maxVisibleImages).map((file, index) => (
-                <PhotoView key={index} src={file.preview}>
-                  <div 
-                    className={`relative group cursor-pointer ${
-                      imageFiles.length === 3 && index === 2 ? 'col-span-2' : ''
-                    }`}
-                  >
-                    <div className="relative">
-                      <img 
-                        src={file.preview} 
-                        alt="" 
-                        className="rounded-lg w-full h-48 object-cover"
-                      />
-                      {index === maxVisibleImages - 1 && imageFiles.length > maxVisibleImages && (
-                        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center rounded-lg">
-                          <span className="text-white text-2xl font-bold">
-                            +{imageFiles.length - maxVisibleImages}
-                          </span>
-                        </div>
-                      )}
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleDownload(file);
-                        }}
-                        className="absolute bottom-2 right-2 p-2 bg-black bg-opacity-50 rounded-full text-white opacity-0 group-hover:opacity-100 transition-opacity"
-                      >
-                        <Download className="w-5 h-5" />
-                      </button>
+          <div className={`grid ${getImageGridClass(imageFiles.length)} gap-2 mb-2`}>
+            {imageFiles.slice(0, maxVisibleImages).map((file, index) => (
+              <div 
+                key={index} 
+                className="relative group"
+              >
+                <div className="relative">
+                  <img 
+                    src={file.preview} 
+                    alt="" 
+                    className="rounded-lg w-full h-48 object-cover"
+                  />
+                  {index === maxVisibleImages - 1 && imageFiles.length > maxVisibleImages && (
+                    <div 
+                      className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center rounded-lg cursor-pointer"
+                      onClick={() => onViewPost(post)}
+                    >
+                      <span className="text-white text-2xl font-bold">
+                        +{imageFiles.length - maxVisibleImages}
+                      </span>
                     </div>
-                  </div>
-                </PhotoView>
-              ))}
-            </div>
-          </PhotoProvider>
+                  )}
+                  <button
+                    onClick={() => handleDownload(file)}
+                    className="absolute bottom-2 right-2 p-2 bg-black bg-opacity-50 rounded-full text-white opacity-0 group-hover:opacity-100 transition-opacity"
+                  >
+                    <Download className="w-5 h-5" />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
         )}
         
         {otherFiles.map((file, index) => (
@@ -819,7 +743,7 @@ const Post = ({ post, onDelete, onLike, onShare, onViewPost, onAddComment }) => 
                     <span className="text-sm truncate">{file.file.name}</span>
                   </div>
                   <button
-                    onClick={() => handleDownload(file)} ```jsx
+                    onClick={() => handleDownload(file)}
                     className="p-2 hover:bg-gray-200 rounded-full"
                   >
                     <Download className="w-5 h-5 text-gray-600" />
@@ -848,9 +772,22 @@ const Post = ({ post, onDelete, onLike, onShare, onViewPost, onAddComment }) => 
     );
   };
 
-  const totalComments = comments.reduce((total, comment) => {
-    return total + 1 + (comment.replies?.length || 0);
-  }, 0);
+  // Calculer le nombre total de commentaires, y compris les réponses
+  const countTotalComments = (commentsList) => {
+    return commentsList.reduce((total, comment) => {
+      // Compter ce commentaire
+      let count = 1;
+      
+      // Ajouter récursivement le nombre de réponses
+      if (comment.replies && comment.replies.length > 0) {
+        count += countTotalComments(comment.replies);
+      }
+      
+      return total + count;
+    }, 0);
+  };
+
+  const totalComments = countTotalComments(comments);
 
   return (
     <div className="bg-white rounded-lg shadow mb-4">
@@ -880,7 +817,7 @@ const Post = ({ post, onDelete, onLike, onShare, onViewPost, onAddComment }) => 
               </div>
             </div>
           </div>
-          {canManageContent(currentUser.role) && (
+          {(canDelete || canEdit) && (
             <div className="relative">
               <button
                 onClick={() => setShowOptionsMenu(!showOptionsMenu)}
@@ -900,16 +837,30 @@ const Post = ({ post, onDelete, onLike, onShare, onViewPost, onAddComment }) => 
                     <Eye className="w-4 h-4" />
                     <span>Voir la publication</span>
                   </button>
-                  <button
-                    onClick={() => {
-                      onDelete(post.id);
-                      setShowOptionsMenu(false);
-                    }}
-                    className="w-full px-4 py-2 text-left flex items-center space-x-2 hover:bg-gray-100 text-red-500"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                    <span>Supprimer</span>
-                  </button>
+                  {canEdit && (
+                    <button
+                      onClick={() => {
+                        // Logique d'édition ici
+                        setShowOptionsMenu(false);
+                      }}
+                      className="w-full px-4 py-2 text-left flex items-center space-x-2 hover:bg-gray-100"
+                    >
+                      <Edit className="w-4 h-4" />
+                      <span>Modifier</span>
+                    </button>
+                  )}
+                  {canDelete && (
+                    <button
+                      onClick={() => {
+                        onDelete(post.id);
+                        setShowOptionsMenu(false);
+                      }}
+                      className="w-full px-4 py-2 text-left flex items-center space-x-2 hover:bg-gray-100 text-red-500"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                      <span>Supprimer</span>
+                    </button>
+                  )}
                 </div>
               )}
             </div>
@@ -978,7 +929,7 @@ const Post = ({ post, onDelete, onLike, onShare, onViewPost, onAddComment }) => 
           <div className="mt-4 space-y-4">
             <div className="flex space-x-2">
               <img
-                src={currentUser.avatar}
+                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop"
                 alt="Current user"
                 className="w-8 h-8 rounded-full"
               />
@@ -1025,7 +976,7 @@ const Post = ({ post, onDelete, onLike, onShare, onViewPost, onAddComment }) => 
 };
 
 // Composant pour les publicités sponsorisées
-const SponsoredAds = () => {
+const SponsoredAds = ({ userRole }) => {
   const [ads, setAds] = useState([
     {
       id: 1,
@@ -1050,11 +1001,14 @@ const SponsoredAds = () => {
     }
   ]);
 
+  // Vérifier si l'utilisateur peut modifier les publicités
+  const canEditAds = userRole === 'admin' || userRole === 'marketing';
+
   return (
     <div className="bg-white rounded-lg shadow p-4">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-semibold">Sponsorisé</h2>
-        {canManageContent(currentUser.role) && (
+        {canEditAds && (
           <button className="text-blue-500 hover:text-blue-600 text-sm font-medium">
             Gérer les publicités
           </button>
@@ -1170,6 +1124,21 @@ const Accueil = () => {
           type: 'image',
           preview: 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&h=600&fit=crop',
           file: { name: 'event_photo_4.jpg' }
+        },
+        {
+          type: 'image',
+          preview: 'https://images.unsplash.com/photo-1531058020387-3be344556be6?w=800&h=600&fit=crop',
+          file: { name: 'event_photo_5.jpg' }
+        },
+        {
+          type: 'image',
+          preview: 'https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=800&h=600&fit=crop',
+          file: { name: 'event_photo_6.jpg' }
+        },
+        {
+          type: 'image',
+          preview: 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&h=600&fit=crop',
+          file: { name: 'event_photo_7.jpg' }
         }
       ],
       timestamp: new Date(2024, 2, 14, 16, 45),
@@ -1211,6 +1180,14 @@ const Accueil = () => {
     }
   ]);
   const [selectedPost, setSelectedPost] = useState(null);
+  
+  // Simuler un rôle utilisateur (dans une application réelle, cela viendrait d'un système d'authentification)
+  const [userRole, setUserRole] = useState('admin'); // 'user', 'admin', 'marketing'
+
+  // Fonction pour changer le rôle (pour démonstration)
+  const changeRole = (role) => {
+    setUserRole(role);
+  };
 
   const handleNewPost = (post) => {
     setPosts([{ 
@@ -1277,11 +1254,36 @@ const Accueil = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 py-8">
+    <div className="min-h-screen bg-[#f5f5ff] py-8">
       <div className="container mx-auto px-4">
+        {/* Sélecteur de rôle (pour démonstration uniquement) */}
+        {/* <div className="bg-white rounded-lg shadow p-4 mb-4">
+          <h2 className="text-lg font-semibold mb-2">Changer de rôle (démo)</h2>
+          <div className="flex space-x-2">
+            <button 
+              onClick={() => changeRole('user')}
+              className={`px-4 py-2 rounded-lg ${userRole === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+            >
+              Utilisateur
+            </button>
+            <button 
+              onClick={() => changeRole('marketing')}
+              className={`px-4 py-2 rounded-lg ${userRole === 'marketing' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+            >
+              Marketing
+            </button>
+            <button 
+              onClick={() => changeRole('admin')}
+              className={`px-4 py-2 rounded-lg ${userRole === 'admin' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+            >
+              Admin
+            </button>
+          </div>
+        </div> */}
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2">
-            <PostComposer onPost={handleNewPost} />
+            <PostComposer onPost={handleNewPost} userRole={userRole} />
             {posts.map((post) => (
               <Post 
                 key={post.id} 
@@ -1291,12 +1293,13 @@ const Accueil = () => {
                 onShare={handleSharePost}
                 onViewPost={handleViewPost}
                 onAddComment={handleAddComment}
+                userRole={userRole}
               />
             ))}
           </div>
           <div className="hidden lg:block">
             <div className="sticky top-4">
-              <SponsoredAds />
+              <SponsoredAds userRole={userRole} />
             </div>
           </div>
         </div>
@@ -1317,6 +1320,3 @@ const Accueil = () => {
 };
 
 export default Accueil;
-```
-
-export default Accueil

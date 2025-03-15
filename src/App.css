@@ -50,14 +50,15 @@ body {
 header .logo img {
   width: 50px;
 }
-.headerAuth .logo span {
+/* .headerAuth .logo span {
   color: #2b3990;
   font-weight: bold;
   font-size: 48px;
   margin-top: 12px;
   font-family: "League Gothic", "Roboto", "Poppins", sans-serif;
   letter-spacing: 0.05em;
-}
+} */
+
 /* Pour les bouttons du menu qui s'ouvre quand on clique sur l'un des icônes de l'entête, donc le HEADER */
 .headerAuth button.rounded-full {
   min-width: 40px !important;
@@ -257,6 +258,7 @@ header .logo img {
   background: #ffffff;
   overflow-x: hidden;
   transition: all 0.3s;
+  z-index: 60;
 }
 
 .mainAuth .sidebarWrapper.toggle .sidebar {

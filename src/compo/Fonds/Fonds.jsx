@@ -18,7 +18,7 @@ import MyRequests from './MyRequests';
 import AllRequests from './AllRequests';
 import RequestDetails from './RequestDetails';
 
-const Fonds = ({ userRole = 'AGENT' }) => {
+const Fonds = ({ userRole = 'DAF' }) => {
   const [currentTab, setCurrentTab] = useState(0);
   const [selectedRequest, setSelectedRequest] = useState(null);
   const theme = useTheme();
@@ -92,7 +92,7 @@ const Fonds = ({ userRole = 'AGENT' }) => {
     <Box sx={{ 
       width: '100%',
       minHeight: '100vh',
-      bgcolor: 'background.default',
+      bgcolor: '#f5f5ff',
       p: { xs: 1, sm: 2, md: 3 },
       boxSizing: 'border-box'
     }}>

@@ -50,7 +50,7 @@ const Sidebar = (props) => {
         <div className="flex flex-col justify-between sidebar">
             <ul>
                 <li>
-                    <Link to={'/user/accueil'}>
+                    <Link to={'/user'}>
                     <Button
                         className={`w-full flex justify-between items-center ${activeTab === 0 ? 'active' : ''}`}
                         onClick={() => isOpenSubmenu(0)}

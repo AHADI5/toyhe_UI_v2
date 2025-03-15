@@ -1,14 +1,22 @@
-import './App.css'
-import './Responsive.css'
+
 import { Route , Routes } from "react-router-dom"
 import SignUp from './compo/SignUp'
 import SignIn from './compo/LoginPage'
 import ForgotPasswordPage from './compo/ForgotPasswordPage'
 import BodyAuthLayout from './compo/BodyAuthLayout'
-import Dashboard from './compo/Dashboard'
 import Utilisateur from './compo/Utilisateurs'
 import { createContext, useEffect, useState } from 'react'
 
+import SiteLayout from './compo/site.presentation.toyhe/SiteLayout';
+import Home from './compo/site.presentation.toyhe/pages/Home';
+import Services from './compo/site.presentation.toyhe/pages/Services';
+import Payment from './compo/site.presentation.toyhe/pages/Payment';
+import Partners from './compo/site.presentation.toyhe/pages/Partners';
+import PricingTOYHE from './compo/site.presentation.toyhe/pages/Pricing';
+import AppDownload from './compo/site.presentation.toyhe/pages/AppDownload';
+import FAQ from './compo/site.presentation.toyhe/pages/FAQ';
+import Terms from './compo/site.presentation.toyhe/pages/Terms';
+import Privacy from './compo/site.presentation.toyhe/pages/Privacy';
 
 import Messages from './compo/Messages';
 import Reservation from './compo/Reservation';
@@ -25,7 +33,10 @@ import CommandesParVentes from './compo/Commandes/CommandesParVentes';
 import Account from './compo/communs/Account';
 import Help from './compo/communs/Help';
 import Settings from './compo/communs/Settings';
+import Accueil from './compo/Accueil'
 
+import './App.css'
+import './Responsive.css'
 
 
 const MyContext = createContext();
@@ -73,13 +84,26 @@ export default function App() {
     <MyContext.Provider value={values}>
 
       <Routes>
+        
+        <Route path="/" element={<SiteLayout />}>
+          <Route index element={<Home />} />
+          <Route path="services" element={<Services />} />
+          <Route path="payment" element={<Payment />} />
+          <Route path="partners" element={<Partners />} />
+          <Route path="pricing" element={<PricingTOYHE />} />
+          <Route path="app" element={<AppDownload />} />
+          <Route path="faq" element={<FAQ />} />
+          <Route path="terms" element={<Terms />} />
+          <Route path="privacy" element={<Privacy />} />
+        </Route>
+
         <Route path="/signup"  element = {<SignUp/>} />
         <Route path="/signin"  element = {<SignIn/>} />
         <Route path="/forgot-password"  element = {<ForgotPasswordPage/>} />
 
         {/* Route parent pour un utilisateur authantifié */}
         <Route path="/user" element={<BodyAuthLayout />}>
-            <Route index element={<Dashboard />} />
+            <Route index element={<Accueil />} />
             <Route path="utilisateurs" element={<Utilisateur />} />
             <Route path="messages" element={<Messages />} />
             <Route path="reservation" element={<Reservation />} />
