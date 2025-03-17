@@ -928,7 +928,7 @@ const Commandes = () => {
             <StatCard title="Commandes partenaire" value={mockData.stats.partner} icon={Handshake} />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <StatCard title="Commandes agent" value={mockData.stats.agent} icon={Ticket} />
+            <StatCard title="Commandes des agent" value={mockData.stats.agent} icon={Ticket} />
           </Grid>
         </Grid>
 

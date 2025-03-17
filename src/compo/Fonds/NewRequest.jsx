@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import {
   Box,
@@ -7,8 +7,12 @@ import {
   MenuItem,
   Typography,
   Paper,
-  Grid
+  Grid,
+  IconButton,
 } from '@mui/material';
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
+import CloseIcon from '@mui/icons-material/Close';
 
 const categories = [
   { value: 'exploitation', label: 'Exploitation' },
@@ -28,9 +32,20 @@ const NewRequest = () => {
     }
   });
 
+  const [selectedFile, setSelectedFile] = useState(null);
+
   const onSubmit = (data) => {
     console.log('Form submitted:', data);
     // Ici, vous ajouteriez la logique pour envoyer la demande
+  };
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedFile(file);
+  };
+
+  const removeFile = () => {
+    setSelectedFile(null);
   };
 
   return (
@@ -78,7 +93,7 @@ const NewRequest = () => {
                 <TextField
                   {...field}
                   fullWidth
-                  label="Montant (€)"
+                  label="Montant ($)"
                   type="number"
                   error={!!errors.amount}
                   helperText={errors.amount?.message}
@@ -105,21 +120,30 @@ const NewRequest = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <Controller
-              name="documents"
-              control={control}
-              render={({ field: { onChange, value, ...field } }) => (
-                <TextField
-                  {...field}
-                  type="file"
-                  fullWidth
-                  InputLabelProps={{ shrink: true }}
-                  label="Justificatifs"
-                  onChange={(e) => onChange(e.target.files)}
-                  inputProps={{ multiple: true }}
-                />
-              )}
+            <input
+              type="file"
+              id="file-upload"
+              style={{ display: 'none' }}
+              onChange={handleFileChange}
             />
+            <label htmlFor="file-upload">
+              <Button variant="outlined" component="span" fullWidth>
+                Ajouter un justificatif
+              </Button>
+            </label>
+            {selectedFile && (
+              <Box display="flex" alignItems="center" mt={2}>
+                {selectedFile.type === 'application/pdf' ? (
+                  <PictureAsPdfIcon color="error" sx={{ mr: 1 }} />
+                ) : (
+                  <InsertDriveFileIcon color="primary" sx={{ mr: 1 }} />
+                )}
+                <Typography variant="body1">{selectedFile.name}</Typography>
+                <IconButton onClick={removeFile} color="secondary" sx={{ ml: 1 }}>
+                  <CloseIcon />
+                </IconButton>
+              </Box>
+            )}
           </Grid>
           <Grid item xs={12}>
             <Button

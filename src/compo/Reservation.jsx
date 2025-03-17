@@ -273,7 +273,7 @@ const PaymentForm = ({ method, onSubmit }) => {
               <input
                 type="tel"
                 className="h-12 block w-full rounded-md border-gray-300 pl-10 pr-4 focus:border-blue-500 focus:ring-blue-500"
-                placeholder="+243 123456789"
+                placeholder="+243 990 691 536"
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 required
               />

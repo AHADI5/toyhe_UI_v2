@@ -58,7 +58,7 @@ function AppDownload() {
                 {features.map((feature, index) => (
                   <Grid item xs={12} key={index}>
                     <Box className="flex items-start p-6 bg-white rounded-lg shadow-md">
-                      <Box className="text-primary mr-4">
+                      <Box className="text-[#1c75bc] mr-4">
                         {feature.icon}
                       </Box>
                       <div>

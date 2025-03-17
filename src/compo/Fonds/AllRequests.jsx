@@ -32,7 +32,7 @@ const AllRequests = ({ userRole, onSelectRequest }) => {
       id: '001',
       requester: 'John Doe',
       category: 'Exploitation',
-      amount: '5000€',
+      amount: '5000 $',
       date: new Date(),
       status: 'pending',
       description: 'Achat de matériel'
@@ -41,7 +41,7 @@ const AllRequests = ({ userRole, onSelectRequest }) => {
       id: '002',
       requester: 'Jane Smith',
       category: 'Marketing',
-      amount: '3000€',
+      amount: '3000 $',
       date: new Date(),
       status: 'approved',
       description: 'Campagne publicitaire'
@@ -107,14 +107,14 @@ const AllRequests = ({ userRole, onSelectRequest }) => {
     <TableContainer sx={{ mt: 2 }}>
       <Table>
         <TableHead>
-          <TableRow>
-            <TableCell>ID</TableCell>
-            <TableCell>Demandeur</TableCell>
-            <TableCell>Catégorie</TableCell>
-            <TableCell>Montant</TableCell>
-            <TableCell>Date</TableCell>
-            <TableCell>Statut</TableCell>
-            <TableCell>Actions</TableCell>
+          <TableRow sx={{ bgcolor: '#1c75bc' }}>
+            <TableCell sx={{ color: 'white' }}>ID</TableCell>
+            <TableCell sx={{ color: 'white' }}>Demandeur</TableCell>
+            <TableCell sx={{ color: 'white' }}>Catégorie</TableCell>
+            <TableCell sx={{ color: 'white' }}>Montant</TableCell>
+            <TableCell sx={{ color: 'white' }}>Date</TableCell>
+            <TableCell sx={{ color: 'white' }}>Statut</TableCell>
+            <TableCell sx={{ color: 'white' }}>Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

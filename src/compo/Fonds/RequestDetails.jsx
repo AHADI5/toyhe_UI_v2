@@ -41,6 +41,55 @@ const RequestDetails = ({ request, onBack, userRole }) => {
     }
   };
 
+  const handleDownloadFile = (fileUrl) => {
+    const link = document.createElement('a');
+    link.href = fileUrl;
+    link.download = fileUrl.split('/').pop(); // Utiliser le nom du fichier pour le téléchargement
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const renderFileAttachment = () => {
+    if (request?.fileUrl) {
+      const fileExtension = request.fileUrl.split('.').pop().toLowerCase();
+      return (
+        <Box sx={{ mt: 2 }}>
+          <Typography variant="subtitle2" color="primary.dark">
+            Fichier associé
+          </Typography>
+          {fileExtension === 'pdf' ? (
+            <Button
+              variant="outlined"
+              color="primary"
+              onClick={() => handleDownloadFile(request.fileUrl)} // Télécharger le PDF
+              sx={{ mt: 1 }}
+            >
+              Télécharger le PDF
+            </Button>
+          ) : (
+            <Box sx={{ mt: 1 }}>
+              <img
+                src={request.fileUrl}
+                alt="Attachment"
+                style={{ width: '100%', maxWidth: '400px', borderRadius: '8px' }}
+              />
+              <Button
+                variant="outlined"
+                color="primary"
+                onClick={() => handleDownloadFile(request.fileUrl)} // Télécharger l'image
+                sx={{ mt: 2 }}
+              >
+                Télécharger l'image
+              </Button>
+            </Box>
+          )}
+        </Box>
+      );
+    }
+    return null;
+  };
+
   return (
     <Fade in={true}>
       <Box>
@@ -89,8 +138,10 @@ const RequestDetails = ({ request, onBack, userRole }) => {
                 </Typography>
                 <Box sx={{ mt: 2 }}>
                   <Typography><strong>Catégorie:</strong> {request?.category || 'Exploitation'}</Typography>
-                  <Typography><strong>Montant:</strong> {request?.amount || '5000€'}</Typography>
-                  <Typography><strong>Date:</strong> {request?.date || '01/03/2024'}</Typography>
+                  <Typography><strong>Montant:</strong> {request?.amount || '5000$'}</Typography>
+                  <Typography>
+                    <strong>Date:</strong> {request?.date ? new Date(request.date).toLocaleDateString('fr-FR') : '01/03/2024'}
+                  </Typography>
                   <Typography><strong>Demandeur:</strong> {request?.requester || 'John Doe'}</Typography>
                 </Box>
               </Grid>
@@ -102,6 +153,7 @@ const RequestDetails = ({ request, onBack, userRole }) => {
                   {request?.description || 'Description de la demande...'}
                 </Typography>
               </Grid>
+              {renderFileAttachment()}
               {userRole === 'DAF' && request?.status === 'pending' && (
                 <Grid item xs={12}>
                   <Box sx={{ mt: 2 }}>

@@ -26,13 +26,13 @@ const helpSections = [
     id: 'getting-started',
     title: 'Premiers pas',
     icon: <BookOpen size={24} />,
-    content: `Pour commencer à utiliser LacTrans, suivez ces étapes simples :
+    content: `Pour commencer à utiliser TOYHE, suivez ces étapes simples :
     1. Créez votre compte
     2. Complétez votre profil
     3. Explorez les différentes fonctionnalités
     
     Notre plateforme vous permet de gérer facilement vos réservations de transport lacustre.`,
-    image: 'https://images.unsplash.com/photo-1516738901171-8eb4fc13bd20',
+    image: '/assets/interfaces/creerCompte.png',
   },
   {
     id: 'booking',
@@ -48,7 +48,7 @@ const helpSections = [
     7. Confirmez et payez
     
     Une fois la réservation confirmée, vous recevrez un email avec tous les détails.`,
-    image: 'https://images.unsplash.com/photo-1559268950-2d7ceb2efa3a',
+    image: '/assets/interfaces/reservations.png',
   },
   {
     id: 'past-trips',
@@ -60,7 +60,7 @@ const helpSections = [
     3. Faites défiler jusqu'à "Historique des Voyages"
     
     Vous pouvez voir tous vos trajets passés avec les détails complets.`,
-    image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c',
+    image: '/assets/interfaces/historiqueDeVoyages.png',
   },
   {
     id: 'profile-management',
@@ -77,7 +77,7 @@ const helpSections = [
     - Votre adresse email
     - Votre numéro de téléphone
     - Votre adresse postale`,
-    image: 'https://images.unsplash.com/photo-1554224154-26032ffc0d07',
+    image: '/assets/interfaces/historiqueDeVoyages.png',
   },
   {
     id: 'password-reset',
@@ -92,7 +92,7 @@ const helpSections = [
     3. Cliquez sur "Mettre à jour le mot de passe"
     
     En cas d'oubli, utilisez l'option "Mot de passe oublié" sur la page de connexion.`,
-    image: 'https://images.unsplash.com/photo-1555421689-491a97ff2040',
+    image: '/assets/interfaces/changerMotDePasse.png',
   },
   {
     id: 'faq',

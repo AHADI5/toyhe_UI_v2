@@ -22,15 +22,35 @@ const MyRequests = ({ onSelectRequest }) => {
     {
       id: '001',
       category: 'Exploitation',
-      amount: '5000€',
+      amount: '5000$',
       date: new Date(),
       status: 'pending',
       description: 'Achat de matériel'
     },
     {
+      id: '123',
+      status: 'pending',
+      category: 'Exploitation',
+      amount: '5000$',
+      date: '2025-03-16',
+      requester: 'John Doe',
+      description: 'Demande de fonds pour exploitation.',
+      fileUrl: 'https://www.emse.fr/~picard/cours/1A/java/livretJava.pdf' 
+    },
+    {
+      id: '124',
+      status: 'approved',
+      category: 'Marketing',
+      amount: '1000$',
+      date: '2025-03-14',
+      requester: 'Jane Doe',
+      description: 'Demande de fonds pour marketing.',
+      fileUrl: 'https://img.freepik.com/vecteurs-libre/modele-logo-concessionnaire-automobile-degrade_23-2149334632.jpg?ga=GA1.1.749899718.1734765238&semt=ais_hybrid'
+    },
+    {
       id: '002',
       category: 'Marketing',
-      amount: '3000€',
+      amount: '300$',
       date: new Date(),
       status: 'approved',
       description: 'Campagne publicitaire'
@@ -63,13 +83,13 @@ const MyRequests = ({ onSelectRequest }) => {
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
-            <TableRow>
-              <TableCell>ID</TableCell>
-              <TableCell>Catégorie</TableCell>
-              <TableCell>Montant</TableCell>
-              <TableCell>Date</TableCell>
-              <TableCell>Statut</TableCell>
-              <TableCell>Actions</TableCell>
+            <TableRow sx={{ backgroundColor: '#1c75bc' }}>
+              <TableCell sx={{ color: 'white' }}>ID</TableCell>
+              <TableCell sx={{ color: 'white' }}>Catégorie</TableCell>
+              <TableCell sx={{ color: 'white' }}>Montant</TableCell>
+              <TableCell sx={{ color: 'white' }}>Date</TableCell>
+              <TableCell sx={{ color: 'white' }}>Statut</TableCell>
+              <TableCell sx={{ color: 'white' }}>Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

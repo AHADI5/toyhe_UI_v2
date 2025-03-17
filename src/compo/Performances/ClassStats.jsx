@@ -12,10 +12,10 @@ const ClassStats = ({ occupancyData = {}, revenueData = {} }) => {
   };
 
   const defaultRevenue = {
-    first: 0,
-    second: 0,
-    third: 0,
-    fourth: 0,
+    first: 8175000,
+    second: 3792000,
+    third: 2695000,
+    fourth: 2099000,
   };
 
   // Fusion des données avec les valeurs par défaut
@@ -31,11 +31,11 @@ const ClassStats = ({ occupancyData = {}, revenueData = {} }) => {
   ];
 
   const revenueChartData = [
-    ['Classe', 'Revenus', { role: 'style' }],
-    ['Première', safeRevenueData.first, '#1c75bc'],
-    ['Deuxième', safeRevenueData.second, '#2b3990'],
-    ['Troisième', safeRevenueData.third, '#e93e3a'],
-    ['Quatrième', safeRevenueData.fourth, '#fff33b'],
+    ["Classe", "Revenus", { role: "style" }, "Total revenus", { role: "style" }],
+    ["Première", 3792000, "#1c75bc", 8008000, "#e93e3a"],
+    ["Deuxième", 3792000, "#1c75bc", 3694000, "#e93e3a"],
+    ["Troisième", 2695000, "#1c75bc", 2896000, "#e93e3a"],
+    ["Quatrième", 2099000, "#1c75bc", 1953000, "#e93e3a"],
   ];
 
   return (
@@ -80,24 +80,19 @@ const ClassStats = ({ occupancyData = {}, revenueData = {} }) => {
           <Typography variant="h6" className="mb-4 text-[#2b3990]">
             Recettes par classe
           </Typography>
+
           <Chart
-            chartType="ColumnChart"
-            data={revenueChartData}
-            options={{
-              legend: 'none',
-              backgroundColor: 'transparent',
-              vAxis: {
-                format: 'currency',
-                gridlines: { color: '#f5f5f5' },
-              },
-              animation: {
-                startup: true,
-                duration: 1000,
-                easing: 'out',
-              },
-            }}
+            chartType="BarChart"
             width="100%"
             height="200px"
+            data={revenueChartData}
+            options={{
+              chartArea: { width: "50%" },
+              hAxis: {
+                minValue: 0,
+              },
+            }}
+            legendToggle
           />
         </Paper>
       </Grid>

@@ -21,6 +21,7 @@ import Divider from '@mui/material/Divider';
 import ReportProblemIcon from '@mui/icons-material/ReportProblem';
 import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
 import SummarizeIcon from '@mui/icons-material/Summarize';
+import CampaignIcon from '@mui/icons-material/Campaign';
 
 
 
@@ -191,7 +192,7 @@ const Sidebar = (props) => {
                     </Link>
                 </li> */}
 
-                <li>
+                {/* <li>
                     <Link to={'/user/reclamation'}>
                         <Button
                             className={`w-full flex justify-between items-center ${activeTab === 9 ? 'active' : ''}`}
@@ -201,6 +202,20 @@ const Sidebar = (props) => {
                                 <ReportProblemIcon />
                             </span>
                             Réclamation
+                        </Button>
+                    </Link>
+                </li> */}
+
+                <li>
+                    <Link to={'/user/campagnes'}>
+                        <Button
+                            className={`w-full flex justify-between items-center ${activeTab === 10 ? 'active' : ''}`}
+                            onClick={() => isOpenSubmenu(10)}
+                        >
+                            <span className='icon'>
+                                <CampaignIcon />
+                            </span>
+                            Campagnes
                         </Button>
                     </Link>
                 </li>

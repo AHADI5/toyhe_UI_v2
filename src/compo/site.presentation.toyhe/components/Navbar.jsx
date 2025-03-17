@@ -32,7 +32,7 @@ function Navbar() {
         <Toolbar className="px-0 flex justify-between">
           {/* Logo + Nom de la plateforme */}
           <Link to="/" className="logo no-underline flex items-center gap-1 ml-0">
-            <img src="/logo_toyhe_100x100px.png" alt="TOYHE Logo" className="w-12" />
+            <img src="/logo_toyhe_100x100px.png" alt="TOYHE Logo" className="w-12 ml-0" />
             <span className="text-[#2b3990] font-bold text-4xl mt-0 tracking-tighter not-italic">
               TOYHE
             </span>

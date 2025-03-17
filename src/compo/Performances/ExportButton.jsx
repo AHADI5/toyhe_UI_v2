@@ -30,7 +30,7 @@ const ExportButton = ({ data }) => {
       ['Taux d\'occupation', `${data.occupancyRate}%`],
       ['Commandes en ligne', data.onlineOrders],
       ['Ventes directes', data.directSales],
-      ['Recettes totales', `${data.totalRevenue}€`],
+      ['Recettes totales', `${data.totalRevenue}$`],
     ];
 
     doc.autoTable({
@@ -49,7 +49,7 @@ const ExportButton = ({ data }) => {
         'Taux d\'occupation': `${data.occupancyRate}%`,
         'Commandes en ligne': data.onlineOrders,
         'Ventes directes': data.directSales,
-        'Recettes totales': `${data.totalRevenue}€`,
+        'Recettes totales': `${data.totalRevenue}$`,
       }
     ]);
     

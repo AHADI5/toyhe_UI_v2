@@ -16,8 +16,8 @@ const Dashboard = ({ userRole, onSelectRequest }) => {
     pendingRequests: 5,
     approvedRequests: 4,
     rejectedRequests: 3,
-    totalAmount: '25000€',
-    approvedAmount: '15000€'
+    totalAmount: '25000$',
+    approvedAmount: '15000$'
   };
 
   const StatCard = ({ title, value, color }) => (

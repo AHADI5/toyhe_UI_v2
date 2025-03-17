@@ -51,13 +51,13 @@ function Pricing() {
         {plans.map((plan, index) => (
           <Grid item xs={12} md={4} key={index}>
             <Card 
-              className={`h-full ${plan.recommended ? 'border-2 border-primary shadow-lg' : ''}`}
+              className={`h-full ${plan.recommended ? 'border-2 border-[#1c75bc] shadow-lg' : ''}`}
               raised={plan.recommended}
             >
               <CardHeader
                 title={plan.title}
                 titleTypographyProps={{ align: 'center', variant: 'h5', className: 'font-bold' }}
-                className={plan.recommended ? 'bg-primary text-white' : ''}
+                className={plan.recommended ? 'bg-[#1c75bc] text-white' : ''}
               />
               <CardContent>
                 <div className="text-center mb-6">

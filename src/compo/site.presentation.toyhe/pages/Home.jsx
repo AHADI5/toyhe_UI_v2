@@ -27,22 +27,22 @@ const features = [
 
 const advantages = [
   {
-    icon: <MonetizationOnIcon fontSize="large" className="text-primary" />,
+    icon: <MonetizationOnIcon fontSize="large" className="text-[#1c75bc]" />,
     title: 'Augmentez vos revenus',
     description: 'Optimisez vos ventes grâce à notre plateforme'
   },
   {
-    icon: <VisibilityIcon fontSize="large" className="text-primary" />,
+    icon: <VisibilityIcon fontSize="large" className="text-[#1c75bc]" />,
     title: 'Gagnez en visibilité',
     description: 'Développez votre présence en ligne'
   },
   {
-    icon: <AccessTimeIcon fontSize="large" className="text-primary" />,
+    icon: <AccessTimeIcon fontSize="large" className="text-[#1c75bc]" />,
     title: 'Libérez du temps',
     description: 'Automatisez vos processus de réservation'
   },
   {
-    icon: <SupportAgentIcon fontSize="large" className="text-primary" />,
+    icon: <SupportAgentIcon fontSize="large" className="text-[#1c75bc]" />,
     title: 'Accompagnement personnalisé',
     description: 'Une équipe dédiée à votre réussite'
   }
@@ -99,7 +99,7 @@ function Home() {
                 <Button
                   variant="contained"
                   size="large"
-                  className="bg-white hover:text-sky-700 mb-2 text-primary hover:bg-gray-100 px-8 py-3 text-lg font-semibold shadow-lg"
+                  className="bg-white hover:text-sky-700 mb-2 text-[#1c75bc] hover:bg-gray-100 px-8 py-3 text-lg font-semibold shadow-lg"
                 >
                   Demander une démo
                 </Button>
@@ -162,7 +162,7 @@ function Home() {
                 >
                   <Card 
                     className={`h-full transition-all duration-300 hover:shadow-xl cursor-pointer ${
-                      activeFeature === index ? 'border-2 border-primary' : ''
+                      activeFeature === index ? 'border-2 border-[#1c75bc]' : ''
                     }`}
                     onClick={() => setActiveFeature(index)}
                   >
@@ -295,7 +295,7 @@ function Home() {
               <Button
                 variant="contained"
                 size="large"
-                className="bg-white text-primary hover:bg-gray-100 hover:text-sky-700 px-8 py-3 text-lg font-semibold"
+                className="bg-white text-[#1c75bc] hover:bg-gray-100 hover:text-sky-700 px-8 py-3 text-lg font-semibold"
               >
                 Commencer maintenant
               </Button>
