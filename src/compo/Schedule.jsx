@@ -107,7 +107,7 @@ function Schedule() {
 
   return (
     <div className="p-6 bg-white rounded-lg shadow-lg">
-      <h2 className="mb-6 text-2xl font-bold text-primary">Horaire des Voyages</h2>
+      <h2 className="mb-6 text-2xl font-bold text-primary">Horaire des Voyages : Goma - Bukavu</h2>
       
       <TableContainer component={Paper}>
         <Table>

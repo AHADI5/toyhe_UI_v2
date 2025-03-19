@@ -15,10 +15,10 @@ import {
 } from 'lucide-react';
 
 const CLASSES = [
-  { id: 1, name: 'Première classe', price: 100, hasbed: true },
-  { id: 2, name: 'Deuxième classe', price: 75, hasbed: false },
-  { id: 3, name: 'Troisième classe', price: 50, hasbed: false },
-  { id: 4, name: 'Quatrième classe', price: 25, hasbed: false }
+  { id: 1, name: 'Première classe', price: 27, hasbed: true },
+  { id: 2, name: 'Deuxième classe', price: 17, hasbed: false },
+  { id: 3, name: 'Troisième classe', price: 10, hasbed: false },
+  { id: 4, name: 'Quatrième classe', price: 5, hasbed: false }
 ];
 
 const PAYMENT_METHODS = [
@@ -478,7 +478,7 @@ function Reservation() {
   const calculateTotal = () => {
     let total = selectedClass.price * ticketCount;
     if (includeBed && selectedClass.hasbed) {
-      total += 25 * ticketCount;
+      total += 5 * ticketCount;
     }
     if (tripType === 'return') {
       total *= 2;
@@ -577,7 +577,7 @@ function Reservation() {
                   />
                   <label htmlFor="bed" className="flex items-center text-sm text-gray-700">
                     <Bed className="w-4 h-4 mr-1" />
-                    Réserver un lit (+25 $)
+                    Réserver un lit (+5 $)
                   </label>
                 </div>
               )}

@@ -9,44 +9,35 @@ import { FaFileCircleCheck } from "react-icons/fa6";
 const FRIENDS = [
   { 
     id: 1, 
-    name: 'Marie Dupont', 
-    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150',
+    name: 'Robert KULE', 
+    avatar: 'https://scontent-mba2-1.xx.fbcdn.net/v/t39.30808-6/480248048_1807926956707109_5555079346740583325_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeFxfvIUbX18qOz5LqxfUh5HJaBNQAQ7ZxUloE1ABDtnFUsyoa6y0z29QQIyjoIisnled4fC9ZEQZAMpD8DcGz21&_nc_ohc=vQeVpqWB1EUQ7kNvgEfZRuY&_nc_oc=AdmeO-sCB7KS8CtdNYmorG2m_C6pPOT_7iuV5mhDqX-jQTmbEZDnFJf7hrQxfS6Jx4w&_nc_zt=23&_nc_ht=scontent-mba2-1.xx&_nc_gid=4Z7pj4sL73PpIrY0clDIvA&oh=00_AYEe97Ew0Ds1KH3MZ70pxkSFH-VSVr-sxXGX98MHl1SNFA&oe=67E09911',
     status: 'En ligne',
-    fonction: 'ASC',
+    fonction: 'DSG',
     affectation: 'Goma',
     message: 'A tous les personnels admnistratifs, nos aurons une reunion demain'
-  },
-  { 
-    id: 2, 
-    name: 'Jean Martin', 
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150',
-    status: 'En ligne',
-    fonction: 'ASM',
-    affectation: 'Bukavu',
-    message: `L'équipe marketing a besoin marketing a besoin d'un financement de la part du DG`
   },
   { 
     id: 3, 
-    name: 'Sophie Bernard', 
-    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150',
+    name: 'Nadège KAVIRA', 
+    avatar: 'https://scontent.fgom1-1.fna.fbcdn.net/v/t39.30808-6/338034306_259590579751850_903286522879003501_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeEGx-P7aE4tSQP8T5GZ9ufxbjrYCWMU0BpuOtgJYxTQGvWWQofPGh3_sMqft0PSd9UAe2gohw3T3_xoFmNrIKkQ&_nc_ohc=HZj6hTRA5VMQ7kNvgFIxTnj&_nc_oc=Admt84alQvLJE5v0jf4epet1noc1SOuVuZb2wTwimL62dRjpEKxeV27L65uUPa59sgg&_nc_zt=23&_nc_ht=scontent.fgom1-1.fna&_nc_gid=SO0a6rt0u0wyMYon83lrhQ&oh=00_AYFXcwTSTg98S-HKy5747DqZQYEIoXmyDb_qOh1m7tyVvw&oe=67E09A4F',
     status: 'En train d\'écrire...',
     fonction: 'P.',
     affectation: 'RTNC',
-    message: `je vais te voir à cette heure petitt il faut faire de ton mieux pour qu'on se voit`
+    message: `je veux te voir à cette heure petitt il faut faire de ton mieux pour qu'on se voit`
   },
   { 
     id: 4, 
-    name: 'Marie Dupont', 
-    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150',
+    name: 'Prince KIRANGA', 
+    avatar: 'https://scontent-mba2-1.xx.fbcdn.net/v/t1.6435-9/71689803_759721854486958_3279818588378103808_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeEwOhC9cjiBEN3eYuxdqLG4d0qekRP3lKR3Sp6RE_eUpIpnKsx40Ojkf6JI2Mboo3ACWoK5eBFnBXJ0ovjQ4Zcl&_nc_ohc=-5k-UBQXdT4Q7kNvgGP57Ef&_nc_oc=AdlJD6RViRdk66oTBOBh7hoDT6HfivOiNiQoHgsKQp0bgte9dPSIIm0Anoe5J3L9fIc&_nc_zt=23&_nc_ht=scontent-mba2-1.xx&_nc_gid=ZvItwyn-0Dl2mLdrNqhvnA&oh=00_AYGwkxEx4hpxba4-2D1P1dt9AFwld93guBuyVCCPzP8Jlw&oe=68025771',
     status: 'En ligne',
     fonction: 'Guichetier',
     affectation: 'Goma',
-    message: 'A tous les personnels admnistratifs, nos aurons une reunion demain'
+    message: "Nous voulons organiser une réunion par rapport au problème qu'on a eu auprès de nos partenaire"
   },
   { 
     id: 5, 
-    name: 'Jean Martin', 
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150',
+    name: 'Joanna BUJIRIRI', 
+    avatar: 'https://scontent.fgom1-1.fna.fbcdn.net/v/t1.6435-9/76686473_115499076564375_5490102032704471040_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeF9k46HVAVFzJH3vAxBr2nme1vNnhkQztd7W82eGRDO18zycC4s_SgTfqNxbSijDN_5x0DcvFADByB-TwnyVuXM&_nc_ohc=hug91c3K3PwQ7kNvgG03sdC&_nc_oc=AdnE-jLueL_mf7YPg6SUrd24wiUYblyQ4QP6PzjeeqxSDBFMbdn1OnNsv2d4PRgRm6I&_nc_zt=23&_nc_ht=scontent.fgom1-1.fna&_nc_gid=tcZnsaPoRqaTuSWL6ugbaA&oh=00_AYH6Ruzt5sStWNVkazAkeuqb8Zv6VOa9-9I74KEXrx9-kQ&oe=68024A68',
     status: 'En ligne',
     fonction: 'P.',
     affectation: 'Hope Channel TV',
@@ -93,7 +84,7 @@ const FRIENDS = [
 const INITIAL_MESSAGES = {
   1: [
     { id: 1, text: 'Salut ! Comment ça va ?', sender: 'friend', timestamp: '10:00' },
-    { id: 2, text: 'Très bien, merci !', sender: 'user', timestamp: '10:01' },
+    { id: 2, text: "Monsieur, nos partenaires viennent d’arriver. ✅ !", sender: 'user', timestamp: '10:01' },
     { 
       id: 3, 
       text: 'Voici le document dont je t\'ai parlé', 
@@ -112,7 +103,7 @@ const INITIAL_MESSAGES = {
       attachment: {
         type: 'image',
         name: 'photo.jpg',
-        url: 'https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=500'
+        url: 'https://vitadom.fr/wp-content/uploads/2022/03/5e54d9a23b0c8e5356358162.jpeg'
       }
     },
     {

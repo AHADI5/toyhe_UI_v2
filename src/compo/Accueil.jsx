@@ -145,8 +145,8 @@ const PostComposer = ({ onPost, userRole }) => {
       timestamp: new Date(),
       user: {
         id: '1',
-        name: 'John Doe',
-        avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop'
+        name: 'AMURI TCHALUMBA Héritier',
+        avatar: 'https://scontent-mba2-1.xx.fbcdn.net/v/t39.30808-1/418805976_1609226313159384_2385096231440398921_n.jpg?stp=c0.0.534.534a_dst-jpg_s200x200_tt6&_nc_cat=104&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeELeIuaCe4VE_YQRPvCZnt4bYlPxk5tFaVtiU_GTm0VpQRMfdo71lEtPyiB9HtDvezsDICIbjYwc4G3I-Jld-f9&_nc_ohc=IvjqSNH03KwQ7kNvgE6KvEe&_nc_oc=AdhHqmqG8UhLC2O9k3NQwc1OkPtGhqGUc8UZSAZ4yXTQSnSRCC7XFDqVMjyc3tCALTk&_nc_zt=24&_nc_ht=scontent-mba2-1.xx&_nc_gid=xzilW3TeF--N3CC73PmYOQ&oh=00_AYH460kNVQpB_FOKtKlBcvk4s2Wav5MDGXxp7NIassySyw&oe=67DE5F4F'
       },
       audience,
       comments: []
@@ -159,7 +159,7 @@ const PostComposer = ({ onPost, userRole }) => {
     <div className="bg-white rounded-lg shadow p-4 mb-4">
       <div className="flex items-start space-x-3">
         <img
-          src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop"
+          src="https://scontent-mba2-1.xx.fbcdn.net/v/t39.30808-1/418805976_1609226313159384_2385096231440398921_n.jpg?stp=c0.0.534.534a_dst-jpg_s200x200_tt6&_nc_cat=104&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeELeIuaCe4VE_YQRPvCZnt4bYlPxk5tFaVtiU_GTm0VpQRMfdo71lEtPyiB9HtDvezsDICIbjYwc4G3I-Jld-f9&_nc_ohc=IvjqSNH03KwQ7kNvgE6KvEe&_nc_oc=AdhHqmqG8UhLC2O9k3NQwc1OkPtGhqGUc8UZSAZ4yXTQSnSRCC7XFDqVMjyc3tCALTk&_nc_zt=24&_nc_ht=scontent-mba2-1.xx&_nc_gid=xzilW3TeF--N3CC73PmYOQ&oh=00_AYH460kNVQpB_FOKtKlBcvk4s2Wav5MDGXxp7NIassySyw&oe=67DE5F4F"
           alt="User"
           className="w-10 h-10 rounded-full"
         />
@@ -980,23 +980,23 @@ const SponsoredAds = ({ userRole }) => {
   const [ads, setAds] = useState([
     {
       id: 1,
-      title: "Découvrez nos nouveaux produits",
-      image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop",
-      link: "https://example.com",
+      title: "Découvrez HÔTEL GOMA SERENA",
+      image: "https://image-tc.galaxy.tf/wijpeg-d7skueaaae98acab9ea7nnmvd/pull-view-6.jpg?width=767",
+      link: "https://www.serenahotels.com/fr/goma",
       type: "image"
     },
     {
       id: 2,
-      title: "Téléchargez notre catalogue",
-      description: "Catalogue 2024 - Nouveautés",
+      title: "Programme de navigation | OGEFREM",
+      description: "OGEFREM | Navig. sur le Lac Kivu",
       type: "pdf",
-      file: "catalogue.pdf"
+      file: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
     },
     {
       id: 3,
-      title: "Offre spéciale du mois",
-      image: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=600&h=400&fit=crop",
-      link: "https://example.com/offer",
+      title: "Visité l'île TSHEGERA | RDC",
+      image: "https://www.congosafaristours.com/wp-content/uploads/2020/08/Tchegera-Islandll.jpg",
+      link: "https://visit.virunga.org/fr/accomodation/tchegera-tented-camp/",
       type: "image"
     }
   ]);

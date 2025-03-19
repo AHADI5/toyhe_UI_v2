@@ -256,7 +256,7 @@ const Sidebar = (props) => {
                     </li>
 
                     <li>
-                        <Link to={'/signout'}>
+                        <Link to={'/'}>
                             <Button
                                 className={`w-full flex justify-between items-center ${activeTab === 22 ? 'active' : ''}`}
                                 onClick={() => isOpenSubmenu(22)}

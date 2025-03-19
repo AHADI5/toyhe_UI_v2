@@ -98,8 +98,6 @@ const UserManagement = () => {
     }));
   };
 
- 
-   
      const handleOpenDialogAddUser = () => {
        setOpenDialogAddUser(true);
      };
@@ -212,7 +210,6 @@ const UserManagement = () => {
   
     doc.save("Utilisateurs.pdf");
   };
-  
 
   const renderDialog = () => {
     if (!selectedOrder) return null;
@@ -372,7 +369,6 @@ const UserManagement = () => {
           </Grid>
         </Paper>
 
-
         {/* Section 2: Actions & Statistiques */}
         <div className="bg-white rounded-lg shadow-md p-4 md:p-6 space-y-6">
           {/* Actions principales */}
@@ -426,7 +422,6 @@ const UserManagement = () => {
             ))}
           </div>
         </div>
-
 
         {/* Tableau */}
         <Paper className="p-4 mt-5">
@@ -524,63 +519,62 @@ const UserManagement = () => {
           onClose={handleCloseDialogAddUser}
         />
 
-
         {/* Modal Bagagiste */}
       {showBagagisteModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-md">
-            <h2 className="text-xl font-bold text-gray-800 mb-4">Ajouter un bagagiste</h2>
-            <form className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700">Nom complet</label>
-                <input
-                  type="text"
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#1c75bc] focus:ring focus:ring-[#1c75bc] focus:ring-opacity-50"
-                  placeholder="Nom complet"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">Téléphone</label>
-                <input
-                  type="tel"
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#1c75bc] focus:ring focus:ring-[#1c75bc] focus:ring-opacity-50"
-                  placeholder="+243 ..."
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">Email</label>
-                <input
-                  type="email"
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#1c75bc] focus:ring focus:ring-[#1c75bc] focus:ring-opacity-50"
-                  placeholder="email@example.com"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">Adresse</label>
-                <input
-                  type="text"
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#1c75bc] focus:ring focus:ring-[#1c75bc] focus:ring-opacity-50"
-                  placeholder="Adresse complète"
-                />
-              </div>
-              <div className="flex justify-end gap-4 mt-6">
-                <button
-                  type="button"
-                  onClick={() => setShowBagagisteModal(false)}
-                  className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
-                >
-                  Annuler
-                </button>
-                <button
-                  type="submit"
-                  className="px-4 py-2 bg-[#1c75bc] text-white rounded-md hover:bg-[#2b3990]"
-                >
-                  Enregistrer
-                </button>
-              </div>
-            </form>
-          </div>
+      <div className="fixed inset-0 mt-8 bg-black bg-opacity-50 flex items-center justify-center min-h-screen p-4 z-50">
+        <div className="bg-white rounded-lg p-6 w-full max-w-md">
+          <h2 className="text-xl font-bold text-gray-800 mb-4">Ajouter un bagagiste</h2>
+          <form className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Nom complet</label>
+              <input
+                type="text"
+                className="mt-1 block w-full h-12 rounded-md border border-gray-400 bg-[#f5f5ff] px-4 py-2 shadow-sm focus:border-[#1c75bc] focus:ring focus:ring-[#1c75bc] focus:ring-opacity-50"
+                placeholder="Nom complet"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Téléphone</label>
+              <input
+                type="tel"
+                className="mt-1 block w-full h-12 rounded-md border border-gray-400 bg-[#f5f5ff] px-4 py-2 shadow-sm focus:border-[#1c75bc] focus:ring focus:ring-[#1c75bc] focus:ring-opacity-50"
+                placeholder="+243 ..."
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Email</label>
+              <input
+                type="email"
+                className="mt-1 block w-full h-12 rounded-md border border-gray-400 bg-[#f5f5ff] px-4 py-2 shadow-sm focus:border-[#1c75bc] focus:ring focus:ring-[#1c75bc] focus:ring-opacity-50"
+                placeholder="email@example.com"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Adresse</label>
+              <input
+                type="text"
+                className="mt-1 block w-full h-12 rounded-md border border-gray-400 bg-[#f5f5ff] px-4 py-2 shadow-sm focus:border-[#1c75bc] focus:ring focus:ring-[#1c75bc] focus:ring-opacity-50"
+                placeholder="Adresse complète"
+              />
+            </div>
+            <div className="flex justify-end gap-4 mt-6">
+              <button
+                type="button"
+                onClick={() => setShowBagagisteModal(false)}
+                className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
+              >
+                Annuler
+              </button>
+              <button
+                type="submit"
+                className="px-4 py-2 bg-[#1c75bc] text-white rounded-md hover:bg-[#2b3990]"
+              >
+                Enregistrer
+              </button>
+            </div>
+          </form>
         </div>
+      </div>
       )}
       </div>
     </LocalizationProvider>
