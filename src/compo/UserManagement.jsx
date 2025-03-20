@@ -55,18 +55,18 @@ import LogoTOYHE from '../assets/TOYHE_LOGO_250x250.png'
 const utilisateurs = [
   {
     id: 1,
-    name: 'AMURI TCHALABESA Nestor',
+    name: 'AMURI TCHALUBA Héritier',
     phone: '+243999001156',
-    email: 'nestor.amuri@gmail.com',
-    address: 'N°545 Gbadolite, G. Kasaï, G. Kampemba',
+    email: 'heritieramuritcha@gmail.com',
+    address: 'N°049 Dikuta, Kasika, Karisimbi, Goma',
     role: 'Utilisateur'
   },
   {
     id: 2,
-    name: 'KULE WAKAADOTE Robert',
+    name: "KULE WA-KANGIT'SI Robert",
     phone: '+243999001156',
     email: 'robert.kule@gmail.com',
-    address: 'N°722 Malafuta, G. Kinshasa, G. Goma',
+    address: 'N°032 Baraka, Himbi 1, Goma, Goma',
     role: 'Agent' // Correction de "ole" en "role"
   }
 ];

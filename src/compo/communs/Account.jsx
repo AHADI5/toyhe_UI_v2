@@ -21,8 +21,8 @@ import {
 import { Edit2, Check, X } from 'lucide-react';
 
 const mockTrips = [
-  { id: 1, date: '2024-03-15', from: 'Port A', to: 'Port B', status: 'Completed' },
-  { id: 2, date: '2024-03-10', from: 'Port C', to: 'Port D', status: 'Completed' },
+  { id: 1, date: '2024-03-15', from: 'Goma', to: 'Bukavu', status: 'Completed' },
+  { id: 2, date: '2024-03-10', from: 'Bukavu', to: 'Goma', status: 'Completed' },
 ];
 
 const validateEmail = (email) => {
@@ -36,12 +36,12 @@ const validatePhone = (phone) => {
 };
 
 function Account() {
-  const [profileImage, setProfileImage] = useState('https://images.unsplash.com/photo-1633332755192-727a05c4013d');
+  const [profileImage, setProfileImage] = useState('https://scontent.fgom1-1.fna.fbcdn.net/v/t39.30808-1/418805976_1609226313159384_2385096231440398921_n.jpg?stp=c0.0.534.534a_cp0_dst-jpg_s40x40_tt6&_nc_cat=104&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeELeIuaCe4VE_YQRPvCZnt4bYlPxk5tFaVtiU_GTm0VpQRMfdo71lEtPyiB9HtDvezsDICIbjYwc4G3I-Jld-f9&_nc_ohc=IvjqSNH03KwQ7kNvgHYG1H7&_nc_oc=AdmDjqrOLDNkbF1EiRzYVCMpasKq2vo2DH8DpRmmpwSW2YT9TiiJRyYYSfGPfHd9NlE&_nc_zt=24&_nc_ht=scontent.fgom1-1.fna&_nc_gid=72JDe7GDoP-o1dh04_dl1w&oh=00_AYEaWHfirM3l0gcY7j87kRuZSBQkprRgR1AVMLSbn1ZXNQ&oe=67E13A8F');
   const [editMode, setEditMode] = useState(null);
   const [userInfo, setUserInfo] = useState({
-    email: 'john.doe@example.com',
-    phone: '+33 6 12 34 56 78',
-    address: '123 Rue du Lac, 75001 Paris',
+    email: 'heritieramuritcha@gmail.com',
+    phone: '+243 990 691 536',
+    address: '048 Dikuta, Kasika, Karisimbi, Goma',
   });
   const [tempValue, setTempValue] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
@@ -142,7 +142,7 @@ function Account() {
             </Box>
             
             <Box sx={{ flexGrow: 1, width: { xs: '100%', md: 'auto' } }}>
-              <Typography variant="h6" sx={{ mb: 2 }}>John Doe</Typography>
+              <Typography variant="h6" sx={{ mb: 2 }}>AMURI TCHALUMBA Héritier</Typography>
               <Box display="grid" gap={2}>
                 {Object.entries(userInfo).map(([field, value]) => (
                   <Box key={field} display="flex" alignItems="center" gap={1} flexDirection={{ xs: 'column', sm: 'row' }} width="100%">

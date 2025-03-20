@@ -55,25 +55,25 @@ const mockData = {
   orders: [
     { 
       id: 1, 
-      name: "John Doe", 
-      class: "Économique", 
-      vocation: "Touriste", 
-      trajet: "Paris-Londres", 
-      bateau: "Emmanuel 1", 
-      clientType: "En ligne", 
+      name: "KULE WA-KANGIT'SI Robert", 
+      class: "Premère classe + lit", 
+      vocation: "Matin", 
+      trajet: "Goma-Bukavu", 
+      bateau: "Emmanuel 3", 
+      clientType: "ALUHEBA ABECUMBE", 
       ticketType: "Aller simple",
-      siege: "A12"
+      siege: "A012"
     },
     { 
       id: 2, 
-      name: "Jane Smith", 
+      name: "KIRANGA KANYANGE Prince", 
       class: "Première", 
-      vocation: "Affaires", 
-      trajet: "Londres-Paris", 
-      bateau: "Emmanuel 1", 
-      clientType: "Vente", 
+      vocation: "Matin", 
+      trajet: "Goma-Bukavu", 
+      bateau: "Emmanuel 3", 
+      clientType: "JEAN-LUC AMURI", 
       ticketType: "Aller-retour",
-      siege: "B15"
+      siege: "A009"
     },
     { 
       id: 1, 
@@ -530,7 +530,7 @@ const CommandesParVentes = () => {
     // Ajouter l'en-tête et le tableau
     doc.autoTable({
       startY: 30,
-      head: [['N°', 'Nom', 'Classe', 'Vocation', 'Trajet', 'Bateau', 'Type de client', 'Type de billet', 'Siège']],
+      head: [['N°', 'Nom', 'Classe', 'Vocation', 'Trajet', 'Bateau', 'Agent', 'Type de billet', 'Siège']],
       body: mockData.orders.map(order => [
         order.id,
         order.name,
@@ -843,7 +843,7 @@ const CommandesParVentes = () => {
               <Table stickyHeader size={tableDisplay === 'compact' ? 'small' : tableDisplay === 'spacious' ? 'medium' : 'medium'}>
                 <TableHead>
                   <TableRow sx={{ backgroundColor: '#1c75bc' }}>
-                    {['N°', 'Nom', 'Classe', 'Vocation', 'Trajet', 'Bateau', 'Type de client', 'Type de billet', 'Siège', 'Actions'].map((header) => (
+                    {['N°', 'Nom', 'Classe', 'Vocation', 'Trajet', 'Bateau', 'Agent', 'Type de billet', 'Siège', 'Actions'].map((header) => (
                       <TableCell key={header} sx={{ color: 'white', backgroundColor: '#1c75bc', position: 'sticky', top: 0, zIndex: 2 }}>
                         {header}
                       </TableCell>

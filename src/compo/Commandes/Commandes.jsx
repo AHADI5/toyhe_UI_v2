@@ -55,25 +55,25 @@ const mockData = {
   orders: [
     { 
       id: 1, 
-      name: "John Doe", 
-      class: "Économique", 
-      vocation: "Touriste", 
-      trajet: "Paris-Londres", 
-      bateau: "Emmanuel 1", 
-      clientType: "En ligne", 
+      name: "KULE WA-KANGIT'SI Robert", 
+      class: "Premère classe + lit", 
+      vocation: "Matin", 
+      trajet: "Goma-Bukavu", 
+      bateau: "Emmanuel 3", 
+      clientType: "Par vente", 
       ticketType: "Aller simple",
-      siege: "A12"
+      siege: "A012"
     },
     { 
       id: 2, 
-      name: "Jane Smith", 
+      name: "KIRANGA KANYANGE Prince", 
       class: "Première", 
-      vocation: "Affaires", 
-      trajet: "Londres-Paris", 
-      bateau: "Emmanuel 1", 
+      vocation: "Matin", 
+      trajet: "Goma-Bukavu", 
+      bateau: "Emmanuel 3", 
       clientType: "Vente", 
       ticketType: "Aller-retour",
-      siege: "B15"
+      siege: "A009"
     },
     { 
       id: 3, 
@@ -608,7 +608,7 @@ const mockData = {
     online: 150,
     store: 80,
     partner: 45,
-    agent: 95
+    agent: 94
   }
 };
 

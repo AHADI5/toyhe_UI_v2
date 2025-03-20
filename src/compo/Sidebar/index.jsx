@@ -108,7 +108,7 @@ const Sidebar = (props) => {
                     </div>
                 </li>
 
-                <li>
+                {/* <li>
                     <Link to={'/user/utilisateurs'}>
                         <Button
                             className={`w-full flex justify-between items-center ${activeTab === 3 ? 'active' : ''}`}
@@ -120,7 +120,7 @@ const Sidebar = (props) => {
                             Utilisateurs
                         </Button>
                     </Link>
-                </li>
+                </li> */}
 
                 <li>
                     <Link to={'/user/reservation'}>

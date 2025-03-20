@@ -25,15 +25,15 @@ function AppDownload() {
 
   const screenshots = [
     {
-      image: "https://placehold.co/300x600/1c75bc/ffffff?text=Interface+Accueil",
-      title: "Écran d'accueil"
+      image: "/assets/interfaces/reservation.jpeg",
+      title: "Écran réservation"
     },
     {
-      image: "https://placehold.co/300x600/2b3990/ffffff?text=Interface+Réservation",
-      title: "Réservation"
+      image: "/assets/interfaces/impression.jpeg",
+      title: "Impression"
     },
     {
-      image: "https://placehold.co/300x600/e93e3a/ffffff?text=Interface+Paiement",
+      image: "/assets/interfaces/document_imprimer.jpeg",
       title: "Paiement"
     }
   ];
