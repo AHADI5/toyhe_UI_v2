@@ -9,6 +9,7 @@ const SignInForm = () => {
     const fields = [
         { name: "email", type: "email", label: "Enter your email", placeholder: "example@mail.com" },
         { name: "password", type: "password", label: "Enter your password", placeholder: "••••••••" },
+
       ];
   
       const onSubmit = (inputs) => {
