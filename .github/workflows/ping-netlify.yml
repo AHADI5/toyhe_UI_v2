@@ -1,4 +1,4 @@
-name: Periodic Request to Netlify
+name: Periodic POST Request to Render
 
 # This schedule runs every 15 minutes
 on:
@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest  # This defines the environment for running the job
 
     steps:
-      - name: Send Request to Netlify
+      - name: Send POST Request to Render
         run: |
-          curl -X GET "https://your-netlify-site-url.com/your-endpoint"
+          curl -X POST "https://toyhe-2.onrender.com/api/v1/auth/test" \
+               -H "Content-Type: application/json" \
+               -d '{"message": "hello"}'
+
