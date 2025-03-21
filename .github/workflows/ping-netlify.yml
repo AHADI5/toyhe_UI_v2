@@ -1,0 +1,15 @@
+name: Periodic Request to Netlify
+
+# This schedule runs every 15 minutes
+on:
+  schedule:
+    - cron: '*/15 * * * *'  # This will trigger the action every 15 minutes
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest  # This defines the environment for running the job
+
+    steps:
+      - name: Send Request to Netlify
+        run: |
+          curl -X GET "https://your-netlify-site-url.com/your-endpoint"
