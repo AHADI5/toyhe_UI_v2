@@ -1,5 +1,6 @@
 
-import { Route , Routes } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import SignUp from './compo/SignUp'
 import SignIn from './compo/LoginPage'
 import ForgotPasswordPage from './compo/ForgotPasswordPage'
