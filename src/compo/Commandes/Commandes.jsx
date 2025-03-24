@@ -16,6 +16,7 @@ import {
   TableRow,
   Paper,
   IconButton,
+  TablePagination,
   Button,
   Typography,
   Grid,
@@ -625,6 +626,7 @@ const Commandes = () => {
   const [sortOrder, setSortOrder] = useState('asc');
   const [sortColumn, setSortColumn] = useState('name');
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [page, setPage] = useState(0);
   const [tableDisplay, setTableDisplay] = useState('medium');
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [dialogType, setDialogType] = useState(null);
@@ -985,53 +987,32 @@ const Commandes = () => {
               </Button>
             </div>
           </div>
-          {isMobile ? (
-            <div className="space-y-4">
-              {mockData.orders.map((order) => (
-                <Paper key={order.id} elevation={2} className="p-4">
-                  <Typography variant="h6">{order.name}</Typography>
-                  <Typography>Siège: {order.siege}</Typography>
-                  <Typography>Classe: {order.class}</Typography>
-                  <Typography>Trajet: {order.trajet}</Typography>
-                  <div className="flex justify-end mt-2 space-x-2">
-                    <IconButton size="small" color="primary" onClick={() => handleOpenDialog(order, 'view')}>
-                      <Eye size={20} />
-                    </IconButton>
-                    <IconButton size="small" color="primary" onClick={() => handleOpenDialog(order, 'edit')}>
-                      <Edit size={20} />
-                    </IconButton>
-                    <IconButton size="small" color="error" onClick={() => handleOpenDialog(order, 'delete')}>
-                      <Trash2 size={20} />
-                    </IconButton>
-                  </div>
-                </Paper>
-              ))}
-            </div>
-          ) : (
-            <TableContainer style={{ maxHeight: '400px', overflowY: 'auto' }}>
-              <Table stickyHeader size={tableDisplay === 'compact' ? 'small' : tableDisplay === 'spacious' ? 'medium' : 'medium'}>
-                <TableHead>
-                  <TableRow sx={{ backgroundColor: '#1c75bc' }}>
-                    {['N°', 'Nom', 'Classe', 'Vocation', 'Trajet', 'Bateau', 'Type de client', 'Type de billet', 'Siège', 'Actions'].map((header) => (
-                      <TableCell key={header} sx={{ color: 'white', backgroundColor: '#1c75bc', position: 'sticky', top: 0, zIndex: 2 }}>
-                        {header}
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {mockData.orders.slice(0, rowsPerPage).map((order) => (
-                    <TableRow key={order.id}>
-                      <TableCell>{order.id}</TableCell>
-                      <TableCell>{order.name}</TableCell>
-                      <TableCell>{order.class}</TableCell>
-                      <TableCell>{order.vocation}</TableCell>
-                      <TableCell>{order.trajet}</TableCell>
-                      <TableCell>{order.bateau}</TableCell>
-                      <TableCell>{order.clientType}</TableCell>
-                      <TableCell>{order.ticketType}</TableCell>
-                      <TableCell>{order.siege}</TableCell>
-                      <TableCell>
+
+          <TableContainer style={{ maxHeight: '400px', overflowY: 'auto' }}>
+            <Table stickyHeader size={tableDisplay === 'compact' ? 'small' : tableDisplay === 'spacious' ? 'medium' : 'medium'}>
+              <TableHead>
+                <TableRow sx={{ backgroundColor: '#1c75bc' }}>
+                  {['N°', 'Nom', 'Classe', 'Vocation', 'Trajet', 'Bateau', 'Type de client', 'Type de billet', 'Siège', 'Actions'].map((header) => (
+                    <TableCell key={header} sx={{ color: 'white', backgroundColor: '#1c75bc', position: 'sticky', top: 0, zIndex: 2 }}>
+                      {header}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {mockData.orders.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((order) => (
+                  <TableRow key={order.id}>
+                    <TableCell>{order.id}</TableCell>
+                    <TableCell>{order.name}</TableCell>
+                    <TableCell>{order.class}</TableCell>
+                    <TableCell>{order.vocation}</TableCell>
+                    <TableCell>{order.trajet}</TableCell>
+                    <TableCell>{order.bateau}</TableCell>
+                    <TableCell>{order.clientType}</TableCell>
+                    <TableCell>{order.ticketType}</TableCell>
+                    <TableCell>{order.siege}</TableCell>
+                    <TableCell >
+                      <div className="flex justify-center space-x-2">
                         <IconButton size="small" color="primary" onClick={() => handleOpenDialog(order, 'view')}>
                           <Eye size={20} />
                         </IconButton>
@@ -1041,21 +1022,28 @@ const Commandes = () => {
                         <IconButton size="small" color="error" onClick={() => handleOpenDialog(order, 'delete')}>
                           <Trash2 size={20} />
                         </IconButton>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          )}
-          <div className="mt-4">
-            <FormControl variant="outlined" size="small">
-              <Select value={rowsPerPage} onChange={(e) => setRowsPerPage(e.target.value)}>
-                <MenuItem value={10}>10 lignes</MenuItem>
-                <MenuItem value={25}>25 lignes</MenuItem>
-                <MenuItem value={50}>50 lignes</MenuItem>
-              </Select>
-            </FormControl>
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+
+          {/* Pagination */}
+          <div className="flex justify-end mt-4">
+            <TablePagination
+              rowsPerPageOptions={[10, 25, 50]}
+              component="div"
+              count={mockData.orders.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={(event, newPage) => setPage(newPage)}
+              onRowsPerPageChange={(event) => {
+                setRowsPerPage(parseInt(event.target.value, 10));
+                setPage(0);
+              }}
+            />
           </div>
         </Paper>
 

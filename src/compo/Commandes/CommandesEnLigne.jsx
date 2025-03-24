@@ -15,6 +15,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  TablePagination,
   Paper,
   IconButton,
   Button,
@@ -62,7 +63,8 @@ const mockData = {
       bateau: "Emmanuel 1", 
       clientType: "En ligne", 
       ticketType: "Aller simple",
-      siege: "A12"
+      siege: "A12",
+      nomClient: "AMURI TCHALUMBA Héritier"
     },
     { 
       id: 2, 
@@ -73,7 +75,8 @@ const mockData = {
       bateau: "Emmanuel 1", 
       clientType: "Vente", 
       ticketType: "Aller-retour",
-      siege: "B15"
+      siege: "B15",
+      nomClient: "AMURI TCHALUMBA Héritier"
     },
     { 
       id: 1, 
@@ -84,7 +87,8 @@ const mockData = {
       bateau: "Emmanuel 1", 
       clientType: "En ligne", 
       ticketType: "Aller simple",
-      siege: "A12"
+      siege: "A12",
+      nomClient: "AMURI TCHALUMBA Héritier"
     },
     { 
       id: 2, 
@@ -95,7 +99,8 @@ const mockData = {
       bateau: "Emmanuel 1", 
       clientType: "Vente", 
       ticketType: "Aller-retour",
-      siege: "B15"
+      siege: "B15",
+      nomClient: "AMURI TCHALUMBA Héritier"
     },
     { 
       id: 1, 
@@ -106,7 +111,8 @@ const mockData = {
       bateau: "Emmanuel 1", 
       clientType: "En ligne", 
       ticketType: "Aller simple",
-      siege: "A12"
+      siege: "A12",
+      nomClient: "AMURI TCHALUMBA Héritier"
     },
     { 
       id: 2, 
@@ -117,7 +123,8 @@ const mockData = {
       bateau: "Emmanuel 1", 
       clientType: "Vente", 
       ticketType: "Aller-retour",
-      siege: "B15"
+      siege: "B15",
+      nomClient: "AMURI TCHALUMBA Héritier"
     },
     { 
       id: 1, 
@@ -128,7 +135,8 @@ const mockData = {
       bateau: "Emmanuel 1", 
       clientType: "En ligne", 
       ticketType: "Aller simple",
-      siege: "A12"
+      siege: "A12",
+      nomClient: "AMURI TCHALUMBA Héritier"
     },
     { 
       id: 2, 
@@ -139,7 +147,8 @@ const mockData = {
       bateau: "Emmanuel 1", 
       clientType: "Vente", 
       ticketType: "Aller-retour",
-      siege: "B15"
+      siege: "B15",
+      nomClient: "AMURI TCHALUMBA Héritier"
     },
     { 
       id: 1, 
@@ -150,7 +159,8 @@ const mockData = {
       bateau: "Emmanuel 1", 
       clientType: "En ligne", 
       ticketType: "Aller simple",
-      siege: "A12"
+      siege: "A12",
+      nomClient: "AMURI TCHALUMBA Héritier"
     },
     { 
       id: 2, 
@@ -161,7 +171,8 @@ const mockData = {
       bateau: "Emmanuel 1", 
       clientType: "Vente", 
       ticketType: "Aller-retour",
-      siege: "B15"
+      siege: "B15",
+      nomClient: "AMURI TCHALUMBA Héritier"
     },
     { 
       id: 1, 
@@ -304,7 +315,8 @@ const mockData = {
       bateau: "Emmanuel 1", 
       clientType: "En ligne", 
       ticketType: "Aller simple",
-      siege: "A12"
+      siege: "A12",
+      nomClient: "AMURI TCHALUMBA Héritier"
     },
     { 
       id: 2, 
@@ -315,7 +327,8 @@ const mockData = {
       bateau: "Emmanuel 1", 
       clientType: "Vente", 
       ticketType: "Aller-retour",
-      siege: "B15"
+      siege: "B15",
+      nomClient: "AMURI TCHALUMBA Héritier"
     },
     { 
       id: 1, 
@@ -326,7 +339,8 @@ const mockData = {
       bateau: "Emmanuel 1", 
       clientType: "En ligne", 
       ticketType: "Aller simple",
-      siege: "A12"
+      siege: "A12",
+      nomClient: "AMURI TCHALUMBA Héritier"
     },
     { 
       id: 2, 
@@ -391,13 +405,14 @@ const CommandesEnLigne = () => {
   const [filterValue, setFilterValue] = useState(new Date());
   const [sortOrder, setSortOrder] = useState('asc');
   const [sortColumn, setSortColumn] = useState('name');
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+
   const [tableDisplay, setTableDisplay] = useState('medium');
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [showAll, setShowAll] = useState(false);
+
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [dialogType, setDialogType] = useState(null);
-  const [dialogOpen, setDialogOpen] = useState(false);
-
-
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -722,30 +737,30 @@ const CommandesEnLigne = () => {
 
 
         {/* Graphiques */}
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-          <div className="lg:col-start-1 space-y-6">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-4">
+          <div className="space-y-6 lg:col-start-1">
             {/* Carte des commandes */}
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200">
+            <div className="p-6 transition-shadow duration-200 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md">
               <div className="flex items-center justify-between">
                 <h2 className="text-xl font-semibold text-gray-900">Commandes en ligne</h2>
-                <div className="p-3 bg-blue-50 rounded-full">
-                  <ShoppingCart className="h-6 w-6 text-blue-500" />
+                <div className="p-3 rounded-full bg-blue-50">
+                  <ShoppingCart className="w-6 h-6 text-blue-500" />
                 </div>
               </div>
               {/* <p className="mt-4 text-4xl font-bold text-gray-900">{data.totalOrders}</p> */}
               <p className="mt-4 text-4xl font-bold text-gray-900">{formatCurrencyNombre(29000)}</p>
-              <div className="mt-4 flex items-center text-sm text-gray-500">
+              <div className="flex items-center mt-4 text-sm text-gray-500">
                 <TrendingUp className="w-4 h-4 mr-1 text-green-500" />
                 <span>+12.5% vs période précédente</span>
               </div>
             </div>
         
             {/* Carte des recettes */}
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200">
+            <div className="p-6 transition-shadow duration-200 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md">
               <div className="flex items-center justify-between">
                 <h2 className="text-xl font-semibold text-gray-900">Chiffre d'affaires</h2>
-                <div className="p-3 bg-green-50 rounded-full">
-                  <DollarSign className="h-6 w-6 text-green-500" />
+                <div className="p-3 rounded-full bg-green-50">
+                  <DollarSign className="w-6 h-6 text-green-500" />
                 </div>
               </div>
               <p className="mt-4 text-4xl font-bold text-gray-900">
@@ -753,7 +768,7 @@ const CommandesEnLigne = () => {
                 {formatCurrency(19912345)}
 
               </p>
-              <div className="mt-4 flex items-center text-sm text-gray-500">
+              <div className="flex items-center mt-4 text-sm text-gray-500">
                 <TrendingUp className="w-4 h-4 mr-1 text-green-500" />
                 <span>+8.3% vs période précédente</span>
               </div>
@@ -770,7 +785,7 @@ const CommandesEnLigne = () => {
             </div>
             {loading ? (
               <div className="flex items-center justify-center h-64 max-h-[95%]">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+                <div className="w-8 h-8 border-b-2 border-blue-500 rounded-full animate-spin"></div>
               </div>
             ) : error ? (
               <div className="flex items-center justify-center h-64 text-red-500">{error}</div>
@@ -811,53 +826,33 @@ const CommandesEnLigne = () => {
               </Button>
             </div>
           </div>
-          {isMobile ? (
-            <div className="space-y-4">
-              {mockData.orders.map((order) => (
-                <Paper key={order.id} elevation={2} className="p-4">
-                  <Typography variant="h6">{order.name}</Typography>
-                  <Typography>Siège: {order.siege}</Typography>
-                  <Typography>Classe: {order.class}</Typography>
-                  <Typography>Trajet: {order.trajet}</Typography>
-                  <div className="flex justify-end mt-2 space-x-2">
-                    <IconButton size="small" color="primary" onClick={() => handleOpenDialog(order, 'view')}>
-                      <Eye size={20} />
-                    </IconButton>
-                    <IconButton size="small" color="primary" onClick={() => handleOpenDialog(order, 'edit')}>
-                      <Edit size={20} />
-                    </IconButton>
-                    <IconButton size="small" color="error" onClick={() => handleOpenDialog(order, 'delete')}>
-                      <Trash2 size={20} />
-                    </IconButton>
-                  </div>
-                </Paper>
-              ))}
-            </div>
-          ) : (
-            <TableContainer style={{ maxHeight: '400px', overflowY: 'auto' }}>
-              <Table stickyHeader size={tableDisplay === 'compact' ? 'small' : tableDisplay === 'spacious' ? 'medium' : 'medium'}>
-                <TableHead>
-                  <TableRow sx={{ backgroundColor: '#1c75bc' }}>
-                    {['N°', 'Nom', 'Classe', 'Vocation', 'Trajet', 'Bateau', 'Type de client', 'Type de billet', 'Siège', 'Actions'].map((header) => (
-                      <TableCell key={header} sx={{ color: 'white', backgroundColor: '#1c75bc', position: 'sticky', top: 0, zIndex: 2 }}>
-                        {header}
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {mockData.orders.slice(0, rowsPerPage).map((order) => (
-                    <TableRow key={order.id}>
-                      <TableCell>{order.id}</TableCell>
-                      <TableCell>{order.name}</TableCell>
-                      <TableCell>{order.class}</TableCell>
-                      <TableCell>{order.vocation}</TableCell>
-                      <TableCell>{order.trajet}</TableCell>
-                      <TableCell>{order.bateau}</TableCell>
-                      <TableCell>{order.clientType}</TableCell>
-                      <TableCell>{order.ticketType}</TableCell>
-                      <TableCell>{order.siege}</TableCell>
-                      <TableCell>
+
+          <TableContainer style={{ maxHeight: '400px', overflowY: 'auto' }}>
+            <Table stickyHeader size={tableDisplay === 'compact' ? 'small' : tableDisplay === 'spacious' ? 'medium' : 'medium'}>
+              <TableHead>
+                <TableRow sx={{ backgroundColor: '#1c75bc' }}>
+                  {['N°', 'Nom', 'Classe', 'Vocation', 'Trajet', 'Bateau', 'Type de client', 'Type de billet', 'Siège', 'Client', 'Actions'].map((header) => (
+                    <TableCell key={header} sx={{ color: 'white', backgroundColor: '#1c75bc', position: 'sticky', top: 0, zIndex: 2 }}>
+                      {header}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {(showAll ? mockData.orders : mockData.orders.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)).map((order) => (
+                  <TableRow key={order.id}>
+                    <TableCell>{order.id}</TableCell>
+                    <TableCell>{order.name}</TableCell>
+                    <TableCell>{order.class}</TableCell>
+                    <TableCell>{order.vocation}</TableCell>
+                    <TableCell>{order.trajet}</TableCell>
+                    <TableCell>{order.bateau}</TableCell>
+                    <TableCell>{order.clientType}</TableCell>
+                    <TableCell>{order.ticketType}</TableCell>
+                    <TableCell>{order.siege}</TableCell>
+                    <TableCell>{order.nomClient}</TableCell>
+                    <TableCell sx={{ width: '130px' }}>
+                      <div className="flex justify-center space-x-2">
                         <IconButton size="small" color="primary" onClick={() => handleOpenDialog(order, 'view')}>
                           <Eye size={20} />
                         </IconButton>
@@ -867,22 +862,30 @@ const CommandesEnLigne = () => {
                         <IconButton size="small" color="error" onClick={() => handleOpenDialog(order, 'delete')}>
                           <Trash2 size={20} />
                         </IconButton>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          )}
-          <div className="mt-4">
-            <FormControl variant="outlined" size="small">
-              <Select value={rowsPerPage} onChange={(e) => setRowsPerPage(e.target.value)}>
-                <MenuItem value={10}>10 lignes</MenuItem>
-                <MenuItem value={25}>25 lignes</MenuItem>
-                <MenuItem value={50}>50 lignes</MenuItem>
-              </Select>
-            </FormControl>
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+
+          {/* Pagination */}
+          <div className="flex justify-end mt-4">
+            <TablePagination
+              rowsPerPageOptions={[10, 25, 50]}
+              component="div"
+              count={mockData.orders.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={(event, newPage) => setPage(newPage)}
+              onRowsPerPageChange={(event) => {
+                setRowsPerPage(parseInt(event.target.value, 10));
+                setPage(0);
+              }}
+            />
           </div>
+                  
         </Paper>
 
 

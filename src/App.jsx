@@ -1,12 +1,10 @@
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-import SignUp from './compo/SignUp'
-import SignIn from './compo/LoginPage'
-import ForgotPasswordPage from './compo/ForgotPasswordPage'
-import BodyAuthLayout from './compo/BodyAuthLayout'
-import { createContext, useEffect, useState } from 'react'
-
+import { AuthProvider } from './AuthContext';  // Assurez-vous que le chemin est correct
+import SignUp from './compo/SignUp';
+import SignIn from './compo/LoginPage';
+import ForgotPasswordPage from './compo/ForgotPasswordPage';
+import BodyAuthLayout from './compo/BodyAuthLayout';
+import { createContext, useEffect, useState } from 'react';
 import SiteLayout from './compo/site.presentation.toyhe/SiteLayout';
 import Home from './compo/site.presentation.toyhe/pages/Home';
 import Services from './compo/site.presentation.toyhe/pages/Services';
@@ -25,36 +23,35 @@ import Schedule from './compo/Schedule';
 import Boats from './compo/Boats';
 import Pricing from './compo/Pricing';
 import Commandes from './compo/Commandes/Commandes';
-import ComplaintForm from './compo/ComplaintForm'
-import Fonds from './compo/Fonds/Fonds'
-import Rapport from './compo/Rapport/Rapport'
+import ComplaintForm from './compo/ComplaintForm';
+import Fonds from './compo/Fonds/Fonds';
+import Rapport from './compo/Rapport/Rapport';
 import CommandesEnLigne from './compo/Commandes/CommandesEnLigne';
 import CommandesParVentes from './compo/Commandes/CommandesParVentes';
 import Account from './compo/communs/Account';
 import Help from './compo/communs/Help';
 import Settings from './compo/communs/Settings';
-import Accueil from './compo/Accueil'
-import Campagnes from './compo/MarketingCampaignManager';
-import UserManagement from './compo/UserManagement';
+import Accueil from './compo/Accueil';
+import Campagnes from './compo/marketing/MarketingCampaignManager';
+import UserManagement from './compo/admin/UserManagement';
 
-import './App.css'
-import './Responsive.css'
+import './App.css';
+import './Responsive.css';
 
-
+// Création du contexte
 const MyContext = createContext();
 
 export default function App() {
-
   const [isToggleSidebar, setIsToggleSidebar] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isOpenNav, setIsOpenNav] = useState(false);
   const [isHideSidebarAndHeader, setIsHideSidebarAndHeader] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
-   
-  useEffect( () => {
+
+  useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
-    }
+    };
 
     window.addEventListener('resize', handleResize);
 
@@ -65,9 +62,7 @@ export default function App() {
 
   const openNav = () => {
     setIsOpenNav(true);
-  }
-
-
+  };
 
   const values = {
     isToggleSidebar,
@@ -80,65 +75,60 @@ export default function App() {
     setIsHideSidebarAndHeader,
     activeTab,
     setActiveTab
-  }
+  };
 
   return (
-    <MyContext.Provider value={values}>
+    <Router>
+      <AuthProvider>
+        <MyContext.Provider value={values}>
+            <Routes>
+              {/* Routes publiques */}
+              <Route path="/" element={<SiteLayout />}>
+                <Route index element={<Home />} />
+                <Route path="services" element={<Services />} />
+                <Route path="payment" element={<Payment />} />
+                <Route path="partners" element={<Partners />} />
+                <Route path="pricing" element={<PricingTOYHE />} />
+                <Route path="app" element={<AppDownload />} />
+                <Route path="faq" element={<FAQ />} />
+                <Route path="terms" element={<Terms />} />
+                <Route path="privacy" element={<Privacy />} />
+              </Route>
 
-      <Routes>
-        
-        <Route path="/" element={<SiteLayout />}>
-          <Route index element={<Home />} />
-          <Route path="services" element={<Services />} />
-          <Route path="payment" element={<Payment />} />
-          <Route path="partners" element={<Partners />} />
-          <Route path="pricing" element={<PricingTOYHE />} />
-          <Route path="app" element={<AppDownload />} />
-          <Route path="faq" element={<FAQ />} />
-          <Route path="terms" element={<Terms />} />
-          <Route path="privacy" element={<Privacy />} />
-        </Route>
+              {/* Routes d'authentification */}
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="/signin" element={<SignIn />} />
+              <Route path="/forgot-password" element={<ForgotPasswordPage />} />
 
-        <Route path="/signup"  element = {<SignUp/>} />
-        <Route path="/signin"  element = {<SignIn/>} />
-        <Route path="/forgot-password"  element = {<ForgotPasswordPage/>} />
+              {/* Route parent pour un utilisateur authentifié */}
+              <Route path="/user" element={<BodyAuthLayout />}>
+                <Route index element={<Accueil />} />
+                <Route path="messages" element={<Messages />} />
+                <Route path="reservation" element={<Reservation />} />
+                <Route path="performances" element={<PerformanceDashboard />} />
+                <Route path="bateaux" element={<Boats />} />
+                <Route path="prix" element={<Pricing />} />
+                <Route path="horaire" element={<Schedule />} />
+                <Route path="commandes" element={<Commandes />} />
+                <Route path="commandes-en-ligne" element={<CommandesEnLigne />} />
+                <Route path="commandes-par-vente" element={<CommandesParVentes />} />
+                <Route path="utilisateurs" element={<UserManagement />} />
+                <Route path="reclamation" element={<ComplaintForm />} />
+                <Route path="fonds" element={<Fonds />} />
+                <Route path="rapports" element={<Rapport />} />
+                <Route path="campagnes" element={<Campagnes />} />
+                <Route path="compte" element={<Account />} />
+                <Route path="parametres" element={<Settings />} />
+                <Route path="aide-et-supports" element={<Help />} />
+              </Route>
 
-        {/* Route parent pour un utilisateur authantifié */}
-        <Route path="/user" element={<BodyAuthLayout />}>
-            <Route index element={<Accueil />} />
-            <Route path="messages" element={<Messages />} />
-            <Route path="reservation" element={<Reservation />} />
-            <Route path="performances" element={<PerformanceDashboard />} />
-            <Route path="bateaux" element={<Boats />} />
-            <Route path="prix" element={<Pricing />} />
-            <Route path="horaire" element={<Schedule />} />
-
-            <Route path="commandes" element={<Commandes />} />
-            <Route path="commandes-en-ligne" element={<CommandesEnLigne />} />
-            <Route path="commandes-par-vente" element={<CommandesParVentes />} />
-            <Route path="utilisateurs" element={<UserManagement />} />
-
-            <Route path="reclamation" element={<ComplaintForm />} />
-            <Route path="fonds" element={<Fonds />} />
-            <Route path="rapports" element={<Rapport />} />
-            <Route path="campagnes" element={<Campagnes />} />
-
-            <Route path="compte" element={<Account />} />
-            <Route path="parametres" element={<Settings />} />
-            <Route path="aide-et-supports" element={<Help />} />
-
-        </Route>
-
-        {/* Redirection par défaut */}
-        <Route path="*" element={<SignIn />} />
-      </Routes>
-
-    </MyContext.Provider>
-
-
-    
-  )
-  
+              {/* Redirection par défaut */}
+              <Route path="*" element={<SignIn />} />
+            </Routes>
+        </MyContext.Provider>
+      </AuthProvider>
+    </Router>
+  );
 }
 
-export {MyContext};
+export { MyContext };

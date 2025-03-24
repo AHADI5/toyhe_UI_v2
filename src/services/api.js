@@ -1,7 +1,6 @@
-
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:8080/api"; // URL de ton API Spring Boot
+const API_BASE_URL = "https://toyhe-2.onrender.com/api/v1"; // URL de ton API
 
 // Création d'une instance Axios
 const api = axios.create({
@@ -11,12 +10,12 @@ const api = axios.create({
   },
 });
 
-// Ajouter automatiquement le token JWT si l'utilisateur est connecté
+// Intercepteur pour ajouter le token JWT aux requêtes
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token"); // Récupérer le token
+    const token = localStorage.getItem("token");
     if (token) {
-      config.headers.Authorization = `Bearer ${token}`; // Ajouter le token dans le header
+      config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },

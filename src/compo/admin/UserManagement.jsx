@@ -42,17 +42,208 @@ import {
   DocumentArrowDownIcon, TableCellsIcon,
   PlusIcon, BriefcaseIcon
 } from '@heroicons/react/24/outline';
-import AddUserDialog from './AddUserDialog';
-
+import AddUserDialog from '../AddUserDialog';
+import TablePagination from '@mui/material/TablePagination';
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
-import LogoEtsSILIMU from '../assets/Logo_Ets_SILIMU.jpg'
-import LogoTOYHE from '../assets/TOYHE_LOGO_250x250.png'
-
+import LogoEtsSILIMU from '../../assets/Logo_Ets_SILIMU.jpg'
+import LogoTOYHE from '../../assets/TOYHE_LOGO_250x250.png'
 
 const utilisateurs = [
+  {
+    id: 1,
+    name: 'AMURI TCHALUBA Héritier',
+    phone: '+243999001156',
+    email: 'heritieramuritcha@gmail.com',
+    address: 'N°049 Dikuta, Kasika, Karisimbi, Goma',
+    role: 'Utilisateur'
+  },
+  {
+    id: 2,
+    name: "KULE WA-KANGIT'SI Robert",
+    phone: '+243999001156',
+    email: 'robert.kule@gmail.com',
+    address: 'N°032 Baraka, Himbi 1, Goma, Goma',
+    role: 'Agent' // Correction de "ole" en "role"
+  },
+  {
+    id: 1,
+    name: 'AMURI TCHALUBA Héritier',
+    phone: '+243999001156',
+    email: 'heritieramuritcha@gmail.com',
+    address: 'N°049 Dikuta, Kasika, Karisimbi, Goma',
+    role: 'Utilisateur'
+  },
+  {
+    id: 2,
+    name: "KULE WA-KANGIT'SI Robert",
+    phone: '+243999001156',
+    email: 'robert.kule@gmail.com',
+    address: 'N°032 Baraka, Himbi 1, Goma, Goma',
+    role: 'Agent' // Correction de "ole" en "role"
+  },
+  {
+    id: 1,
+    name: 'AMURI TCHALUBA Héritier',
+    phone: '+243999001156',
+    email: 'heritieramuritcha@gmail.com',
+    address: 'N°049 Dikuta, Kasika, Karisimbi, Goma',
+    role: 'Utilisateur'
+  },
+  {
+    id: 2,
+    name: "KULE WA-KANGIT'SI Robert",
+    phone: '+243999001156',
+    email: 'robert.kule@gmail.com',
+    address: 'N°032 Baraka, Himbi 1, Goma, Goma',
+    role: 'Agent' // Correction de "ole" en "role"
+  },
+  {
+    id: 1,
+    name: 'AMURI TCHALUBA Héritier',
+    phone: '+243999001156',
+    email: 'heritieramuritcha@gmail.com',
+    address: 'N°049 Dikuta, Kasika, Karisimbi, Goma',
+    role: 'Utilisateur'
+  },
+  {
+    id: 2,
+    name: "KULE WA-KANGIT'SI Robert",
+    phone: '+243999001156',
+    email: 'robert.kule@gmail.com',
+    address: 'N°032 Baraka, Himbi 1, Goma, Goma',
+    role: 'Agent' // Correction de "ole" en "role"
+  },
+  {
+    id: 1,
+    name: 'AMURI TCHALUBA Héritier',
+    phone: '+243999001156',
+    email: 'heritieramuritcha@gmail.com',
+    address: 'N°049 Dikuta, Kasika, Karisimbi, Goma',
+    role: 'Utilisateur'
+  },
+  {
+    id: 2,
+    name: "KULE WA-KANGIT'SI Robert",
+    phone: '+243999001156',
+    email: 'robert.kule@gmail.com',
+    address: 'N°032 Baraka, Himbi 1, Goma, Goma',
+    role: 'Agent' // Correction de "ole" en "role"
+  },
+  {
+    id: 1,
+    name: 'AMURI TCHALUBA Héritier',
+    phone: '+243999001156',
+    email: 'heritieramuritcha@gmail.com',
+    address: 'N°049 Dikuta, Kasika, Karisimbi, Goma',
+    role: 'Utilisateur'
+  },
+  {
+    id: 2,
+    name: "KULE WA-KANGIT'SI Robert",
+    phone: '+243999001156',
+    email: 'robert.kule@gmail.com',
+    address: 'N°032 Baraka, Himbi 1, Goma, Goma',
+    role: 'Agent' // Correction de "ole" en "role"
+  },
+  {
+    id: 1,
+    name: 'AMURI TCHALUBA Héritier',
+    phone: '+243999001156',
+    email: 'heritieramuritcha@gmail.com',
+    address: 'N°049 Dikuta, Kasika, Karisimbi, Goma',
+    role: 'Utilisateur'
+  },
+  {
+    id: 2,
+    name: "KULE WA-KANGIT'SI Robert",
+    phone: '+243999001156',
+    email: 'robert.kule@gmail.com',
+    address: 'N°032 Baraka, Himbi 1, Goma, Goma',
+    role: 'Agent' // Correction de "ole" en "role"
+  },
+  {
+    id: 1,
+    name: 'AMURI TCHALUBA Héritier',
+    phone: '+243999001156',
+    email: 'heritieramuritcha@gmail.com',
+    address: 'N°049 Dikuta, Kasika, Karisimbi, Goma',
+    role: 'Utilisateur'
+  },
+  {
+    id: 2,
+    name: "KULE WA-KANGIT'SI Robert",
+    phone: '+243999001156',
+    email: 'robert.kule@gmail.com',
+    address: 'N°032 Baraka, Himbi 1, Goma, Goma',
+    role: 'Agent' // Correction de "ole" en "role"
+  },
+  {
+    id: 1,
+    name: 'AMURI TCHALUBA Héritier',
+    phone: '+243999001156',
+    email: 'heritieramuritcha@gmail.com',
+    address: 'N°049 Dikuta, Kasika, Karisimbi, Goma',
+    role: 'Utilisateur'
+  },
+  {
+    id: 2,
+    name: "KULE WA-KANGIT'SI Robert",
+    phone: '+243999001156',
+    email: 'robert.kule@gmail.com',
+    address: 'N°032 Baraka, Himbi 1, Goma, Goma',
+    role: 'Agent' // Correction de "ole" en "role"
+  },
+  {
+    id: 1,
+    name: 'AMURI TCHALUBA Héritier',
+    phone: '+243999001156',
+    email: 'heritieramuritcha@gmail.com',
+    address: 'N°049 Dikuta, Kasika, Karisimbi, Goma',
+    role: 'Utilisateur'
+  },
+  {
+    id: 2,
+    name: "KULE WA-KANGIT'SI Robert",
+    phone: '+243999001156',
+    email: 'robert.kule@gmail.com',
+    address: 'N°032 Baraka, Himbi 1, Goma, Goma',
+    role: 'Agent' // Correction de "ole" en "role"
+  },
+  {
+    id: 1,
+    name: 'AMURI TCHALUBA Héritier',
+    phone: '+243999001156',
+    email: 'heritieramuritcha@gmail.com',
+    address: 'N°049 Dikuta, Kasika, Karisimbi, Goma',
+    role: 'Utilisateur'
+  },
+  {
+    id: 2,
+    name: "KULE WA-KANGIT'SI Robert",
+    phone: '+243999001156',
+    email: 'robert.kule@gmail.com',
+    address: 'N°032 Baraka, Himbi 1, Goma, Goma',
+    role: 'Agent' // Correction de "ole" en "role"
+  },
+  {
+    id: 1,
+    name: 'AMURI TCHALUBA Héritier',
+    phone: '+243999001156',
+    email: 'heritieramuritcha@gmail.com',
+    address: 'N°049 Dikuta, Kasika, Karisimbi, Goma',
+    role: 'Utilisateur'
+  },
+  {
+    id: 2,
+    name: "KULE WA-KANGIT'SI Robert",
+    phone: '+243999001156',
+    email: 'robert.kule@gmail.com',
+    address: 'N°032 Baraka, Himbi 1, Goma, Goma',
+    role: 'Agent' // Correction de "ole" en "role"
+  },
   {
     id: 1,
     name: 'AMURI TCHALUBA Héritier',
@@ -71,8 +262,6 @@ const utilisateurs = [
   }
 ];
 
-
-
 const UserManagement = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -85,7 +274,7 @@ const UserManagement = () => {
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [dialogType, setDialogType] = useState(null);
   const [dialogOpen, setDialogOpen] = useState(false);
-
+  const [page, setPage] = React.useState(0);
 
   const [showBagagisteModal, setShowBagagisteModal] = useState(false);
   const [openDialogAddUser, setOpenDialogAddUser] = useState(false);
@@ -151,7 +340,6 @@ const UserManagement = () => {
 
   const exportToPDF = () => {
     const doc = new jsPDF();
-  
     // Définir la fonction pour l'en-tête
     const addHeader = (pageNumber) => {
       doc.addImage(LogoEtsSILIMU, 'JPG', 5, 0, 20, 15);
@@ -370,14 +558,14 @@ const UserManagement = () => {
         </Paper>
 
         {/* Section 2: Actions & Statistiques */}
-        <div className="bg-white rounded-lg shadow-md p-4 md:p-6 space-y-6">
+        <div className="p-4 space-y-6 bg-white rounded-lg shadow-md md:p-6">
           {/* Actions principales */}
-          <div className="flex flex-wrap gap-4 items-center">
+          <div className="flex flex-wrap items-center gap-4">
             <button
               className="bg-[#1c75bc] hover:bg-[#2b3990] text-white px-4 py-2 rounded-lg flex items-center gap-2"
               onClick={handleOpenDialogAddUser}
             >
-              <PlusIcon className="h-5 w-5" />
+              <PlusIcon className="w-5 h-5" />
               Ajouter un utilisateur
             </button>
 
@@ -385,7 +573,7 @@ const UserManagement = () => {
               onClick={handleAddBagagiste}
               className="bg-[#1c75bc] hover:bg-[#2b3990] text-white px-4 py-2 rounded-lg flex items-center gap-2"
             >
-              <BriefcaseIcon className="h-5 w-5" />
+              <BriefcaseIcon className="w-5 h-5" />
               Ajouter un bagagiste
             </button>
 
@@ -396,32 +584,36 @@ const UserManagement = () => {
                 className="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg flex items-center gap-2 text-[#1c75bc] border border-[#1c75bc] hover:border-[#2b3990] transition-colors duration-300"
                 onClick={exportToPDF}
               >
-                <DocumentArrowDownIcon className="h-5 w-5" />
+                <DocumentArrowDownIcon className="w-5 h-5" />
                 PDF
               </button>
               <button
                  className="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg flex items-center gap-2 text-[#1c75bc] border border-[#1c75bc] hover:border-[#2b3990] transition-colors duration-300"
                 onClick={exportToExcel}
               >
-                <TableCellsIcon className="h-5 w-5 " />
+                <TableCellsIcon className="w-5 h-5 " />
                 Excel
               </button>
             </div>
           </div>
 
           {/* Statistiques */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
             {stats.map((stat, index) => (
               <div key={index} className="bg-gray-50 p-4 rounded-lg border border-[#1c75bc] hover:border-[#2b3990] transition-colors duration-300">
                 <div className="flex items-center justify-center mb-2">
                   <stat.icon className="h-8 w-8 text-[#1c75bc]" />
                 </div>
-                <h3 className="text-center font-semibold text-gray-800">{stat.title}</h3>
+                <h3 className="font-semibold text-center text-gray-800">{stat.title}</h3>
                 <p className="text-center text-2xl font-bold text-[#1c75bc]">{stat.count}</p>
               </div>
             ))}
           </div>
         </div>
+
+
+
+
 
         {/* Tableau */}
         <Paper className="p-4 mt-5">
@@ -440,76 +632,65 @@ const UserManagement = () => {
               </ToggleButtonGroup>
             </div>
           </div>
-          {isMobile ? (
-            <div className="space-y-4">
-              {utilisateurs.map((utilisateur) => (
-                <Paper key={utilisateur.id} elevation={2} className="p-4">
-                  <Typography variant="h6">{utilisateur.name}</Typography>
-                  <Typography>Téléphone : {utilisateur.phone}</Typography>
-                  <Typography>Email : {utilisateur.email}</Typography>
-                  <Typography>Adresse : {utilisateur.address}</Typography>
-                  <div className="flex justify-end mt-2 space-x-2">
-                    <IconButton size="small" color="primary" onClick={() => handleOpenDialog(utilisateur, 'view')}>
-                      <Eye size={20} />
-                    </IconButton>
-                    <IconButton size="small" color="primary" onClick={() => handleOpenDialog(utilisateur, 'edit')}>
-                      <Edit size={20} />
-                    </IconButton>
-                    <IconButton size="small" color="error" onClick={() => handleOpenDialog(utilisateur, 'delete')}>
-                      <Trash2 size={20} />
-                    </IconButton>
-                  </div>
-                </Paper>
-              ))}
-            </div>
-          ) : (
-            <TableContainer style={{ maxHeight: '400px', overflowY: 'auto' }}>
-              <Table stickyHeader size={tableDisplay === 'compact' ? 'small' : tableDisplay === 'spacious' ? 'medium' : 'medium'}>
-                <TableHead>
-                  <TableRow sx={{ backgroundColor: '#1c75bc' }}>
-                    {['N°', 'Nom', 'Téléphone', 'Email', 'Adresse', 'Role', 'Actions'].map((header) => (
-                      <TableCell key={header} sx={{ color: 'white', backgroundColor: '#1c75bc', position: 'sticky', top: 0, zIndex: 2 }}>
-                        {header}
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {utilisateurs.slice(0, rowsPerPage).map((utilisateur) => (
-                    <TableRow key={utilisateur.id}>
-                      <TableCell>{utilisateur.id}</TableCell>
-                      <TableCell>{utilisateur.name}</TableCell>
-                      <TableCell>{utilisateur.phone}</TableCell>
-                      <TableCell>{utilisateur.email}</TableCell>
-                      <TableCell>{utilisateur.address}</TableCell>
-                      <TableCell>{utilisateur.role}</TableCell>
-                      <TableCell>
-                        <IconButton size="small" color="primary" onClick={() => handleOpenDialog(utilisateur, 'view')}>
-                          <Eye size={20} />
-                        </IconButton>
-                        <IconButton size="small" color="primary" onClick={() => handleOpenDialog(utilisateur, 'edit')}>
-                          <Edit size={20} />
-                        </IconButton>
-                        <IconButton size="small" color="error" onClick={() => handleOpenDialog(utilisateur, 'delete')}>
-                          <Trash2 size={20} />
-                        </IconButton>
-                      </TableCell>
-                    </TableRow>
+
+          <TableContainer style={{ maxHeight: '400px', overflowY: 'auto' }}>
+            <Table stickyHeader size={tableDisplay === 'compact' ? 'small' : tableDisplay === 'spacious' ? 'medium' : 'medium'}>
+              <TableHead>
+                <TableRow sx={{ backgroundColor: '#1c75bc' }}>
+                  {['N°', 'Nom', 'Téléphone', 'Email', 'Adresse', 'Role', 'Actions'].map((header) => (
+                    <TableCell key={header} sx={{ color: 'white', backgroundColor: '#1c75bc', position: 'sticky', top: 0, zIndex: 2 }}>
+                      {header}
+                    </TableCell>
                   ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          )}
-          <div className="mt-4">
-            <FormControl variant="outlined" size="small">
-              <Select value={rowsPerPage} onChange={(e) => setRowsPerPage(e.target.value)}>
-                <MenuItem value={10}>10 lignes</MenuItem>
-                <MenuItem value={25}>25 lignes</MenuItem>
-                <MenuItem value={50}>50 lignes</MenuItem>
-              </Select>
-            </FormControl>
-          </div>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {utilisateurs.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((utilisateur) => (
+                  <TableRow key={utilisateur.id}>
+                    <TableCell>{utilisateur.id}</TableCell>
+                    <TableCell>{utilisateur.name}</TableCell>
+                    <TableCell>{utilisateur.phone}</TableCell>
+                    <TableCell>{utilisateur.email}</TableCell>
+                    <TableCell>{utilisateur.address}</TableCell>
+                    <TableCell>{utilisateur.role}</TableCell>
+                    <TableCell sx={{ width: '130px' }}>
+                      <IconButton size="small" color="primary" onClick={() => handleOpenDialog(utilisateur, 'view')}>
+                        <Eye size={20} />
+                      </IconButton>
+                      <IconButton size="small" color="primary" onClick={() => handleOpenDialog(utilisateur, 'edit')}>
+                        <Edit size={20} />
+                      </IconButton>
+                      <IconButton size="small" color="error" onClick={() => handleOpenDialog(utilisateur, 'delete')}>
+                        <Trash2 size={20} />
+                      </IconButton>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+
+          <TablePagination
+            rowsPerPageOptions={[10, 25, 50]}
+            component="div"
+            count={utilisateurs.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={(event, newPage) => setPage(newPage)}
+            onRowsPerPageChange={(event) => {
+              setRowsPerPage(parseInt(event.target.value, 10));
+              setPage(0);
+            }}
+          />
         </Paper>
+
+
+
+
+
+
+
+
 
 
         {renderDialog()}
@@ -521,9 +702,9 @@ const UserManagement = () => {
 
         {/* Modal Bagagiste */}
       {showBagagisteModal && (
-      <div className="fixed inset-0 mt-8 bg-black bg-opacity-50 flex items-center justify-center min-h-screen p-4 z-50">
-        <div className="bg-white rounded-lg p-6 w-full max-w-md">
-          <h2 className="text-xl font-bold text-gray-800 mb-4">Ajouter un bagagiste</h2>
+      <div className="fixed inset-0 z-50 flex items-center justify-center min-h-screen p-4 mt-8 bg-black bg-opacity-50">
+        <div className="w-full max-w-md p-6 bg-white rounded-lg">
+          <h2 className="mb-4 text-xl font-bold text-gray-800">Ajouter un bagagiste</h2>
           <form className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700">Nom complet</label>
@@ -561,7 +742,7 @@ const UserManagement = () => {
               <button
                 type="button"
                 onClick={() => setShowBagagisteModal(false)}
-                className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
+                className="px-4 py-2 text-gray-700 border border-gray-300 rounded-md hover:bg-gray-50"
               >
                 Annuler
               </button>

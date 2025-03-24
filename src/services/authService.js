@@ -1,10 +1,9 @@
-
-import api from "./api";
+import api from "./api.js";
 
 export const login = async (email, password) => {
   try {
-    const response = await api.post("/auth/login", { email, password });
-    return response.data; // Retourne le token
+    const response = await api.post("auth/", { email, password });
+    return response.data; // Doit contenir { token: "..." }
   } catch (error) {
     console.error("Erreur de connexion :", error.response?.data || error.message);
     throw error;
