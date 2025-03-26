@@ -1,3 +1,5 @@
+
+import { AuthContext } from '../../AuthContext.js'; // Import du AuthContext pour récupérer le rôle de l'utilisateur
 import Button from '@mui/material/Button';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import HomeIcon from '@mui/icons-material/Home';
@@ -22,13 +24,17 @@ import ReportProblemIcon from '@mui/icons-material/ReportProblem';
 import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
 import SummarizeIcon from '@mui/icons-material/Summarize';
 import CampaignIcon from '@mui/icons-material/Campaign';
-
-
-
 import { useContext, useState } from 'react';
 import { MyContext } from '../../App';
 
+
 const Sidebar = (props) => {
+
+    const { role } = useContext(AuthContext); 
+    // Fonction pour vérifier si l'utilisateur a l'un des rôles dans la liste autorisée
+    const isRoleAllowed = (allowedRoles) => {
+        return allowedRoles.includes(role);
+    };
 
     const context = useContext(MyContext)
     
@@ -65,27 +71,30 @@ const Sidebar = (props) => {
                 </li>
 
                 {/* *Pour un administrateur, il aura a voir directement les informations ces trois bouttons qu'un seimole client */}
-                <li>
-                    <Button
-                        className={`w-full flex justify-between items-center ${activeTab === 1 && isToggleSubmenu === true ? 'active' : ''}`}
-                        onClick={() => isOpenSubmenu(1)}
-                    >
-                        <span className='flex items-center icon'>
-                            <DashboardIcon />
-                        </span>
-                        Tableau de bord
-                        <span className='ml-auto arrow'>
-                               <ChevronRightIcon/>
-                          </span>
-                       </Button>
-                        <div className={`submenuWrapper ${activeTab === 1 && isToggleSubmenu === true ? 'colapse' : 'colapsed'}`}>
-                            <ul className='submenu'>
-                                <li> <Link to={'/user/commandes'}>Commandes</Link> </li>
-                                <li> <Link to={'/user/commandes-par-vente'}>Ventes</Link> </li>
-                                <li> <Link to={'/user/commandes-en-ligne'}>Réservations</Link> </li>
-                            </ul>
-                        </div>
-                </li>
+                {isRoleAllowed(['ROLE_ADMIN', 'ROLE_DG', 'ROLE_DSG', 'ROLE_DAF']) && (
+                    <li>
+                        <Button
+                            className={`w-full flex justify-between items-center ${activeTab === 1 && isToggleSubmenu === true ? 'active' : ''}`}
+                            onClick={() => isOpenSubmenu(1)}
+                        >
+                            <span className='flex items-center icon'>
+                                <DashboardIcon />
+                            </span>
+                            Tableau de bord
+                            <span className='ml-auto arrow'>
+                                <ChevronRightIcon/>
+                            </span>
+                        </Button>
+                            <div className={`submenuWrapper ${activeTab === 1 && isToggleSubmenu === true ? 'colapse' : 'colapsed'}`}>
+                                <ul className='submenu'>
+                                    <li> <Link to={'/user/commandes'}>Commandes</Link> </li>
+                                    <li> <Link to={'/user/commandes-par-vente'}>Ventes</Link> </li>
+                                    <li> <Link to={'/user/commandes-en-ligne'}>Réservations</Link> </li>
+                                </ul>
+                            </div>
+                    </li>
+                )}
+
                 <li>
                     <Button
                         className={`w-full flex justify-between items-center ${activeTab === 2 && isToggleSubmenu === true ? 'active' : ''}`}
@@ -108,19 +117,21 @@ const Sidebar = (props) => {
                     </div>
                 </li>
 
-                {/* <li>
-                    <Link to={'/user/utilisateurs'}>
-                        <Button
-                            className={`w-full flex justify-between items-center ${activeTab === 3 ? 'active' : ''}`}
-                            onClick={() => isOpenSubmenu(3)}
-                        >
-                            <span className='icon'>
-                                <GroupAddIcon />
-                            </span>
-                            Utilisateurs
-                        </Button>
-                    </Link>
-                </li> */}
+                {role === 'ROLE_ADMIN' && (
+                    <li>
+                        <Link to={'/user/utilisateurs'}>
+                            <Button
+                                className={`w-full flex justify-between items-center ${activeTab === 3 ? 'active' : ''}`}
+                                onClick={() => isOpenSubmenu(3)}
+                            >
+                                <span className='icon'>
+                                    <GroupAddIcon />
+                                </span>
+                                Utilisateurs
+                            </Button>
+                        </Link>
+                    </li>
+                )}
 
                 <li>
                     <Link to={'/user/reservation'}>
@@ -136,19 +147,21 @@ const Sidebar = (props) => {
                     </Link>
                 </li>
 
-                <li>
-                    <Link to={'/user/performances'}>
-                        <Button
-                            className={`w-full flex justify-between items-center ${activeTab === 5 ? 'active' : ''}`}
-                            onClick={() => isOpenSubmenu(5)}
-                        >
-                            <span className='icon'>
-                                <AutoGraphIcon />
-                            </span>
-                            Performances
-                        </Button>
-                    </Link>
-                </li>                
+                {isRoleAllowed(['ROLE_ADMIN', 'ROLE_DG', 'ROLE_DSG', 'ROLE_DAF']) && (
+                    <li>
+                        <Link to={'/user/performances'}>
+                            <Button
+                                className={`w-full flex justify-between items-center ${activeTab === 5 ? 'active' : ''}`}
+                                onClick={() => isOpenSubmenu(5)}
+                            >
+                                <span className='icon'>
+                                    <AutoGraphIcon />
+                                </span>
+                                Performances
+                            </Button>
+                        </Link>
+                    </li> 
+                )}
 
                 <li>
                     <Link to={'/user/messages'}>
@@ -164,62 +177,69 @@ const Sidebar = (props) => {
                     </Link>
                 </li>
 
-                <li>
-                    <Link to={'/user/fonds'}>
-                        <Button
-                            className={`w-full flex justify-between items-center ${activeTab === 7 ? 'active' : ''}`}
-                            onClick={() => isOpenSubmenu(7)}
-                        >
-                            <span className='icon'>
-                                <RequestQuoteIcon />
-                            </span>
-                            Fonds
-                        </Button>
-                    </Link>
-                </li>
+                {isRoleAllowed(['ROLE_ADMIN', 'ROLE_DG', 'ROLE_DSG', 'ROLE_DAF']) && (
+                    <li>
+                        <Link to={'/user/fonds'}>
+                            <Button
+                                className={`w-full flex justify-between items-center ${activeTab === 7 ? 'active' : ''}`}
+                                onClick={() => isOpenSubmenu(7)}
+                            >
+                                <span className='icon'>
+                                    <RequestQuoteIcon />
+                                </span>
+                                Fonds
+                            </Button>
+                        </Link>
+                    </li>
+                )}
 
-                {/* <li>
-                    <Link to={'/user/rapports'}>
-                        <Button
-                            className={`w-full flex justify-between items-center ${activeTab === 8 ? 'active' : ''}`}
-                            onClick={() => isOpenSubmenu(8)}
-                        >
-                            <span className='icon'>
-                                <SummarizeIcon />
-                            </span>
-                            Rapports
-                        </Button>
-                    </Link>
-                </li> */}
+                {isRoleAllowed(['ROLE_ADMIN', 'ROLE_DG', 'ROLE_DSG', 'ROLE_DAF']) && (
+                    <li>
+                        <Link to={'/user/rapports'}>
+                            <Button
+                                className={`w-full flex justify-between items-center ${activeTab === 8 ? 'active' : ''}`}
+                                onClick={() => isOpenSubmenu(8)}
+                            >
+                                <span className='icon'>
+                                    <SummarizeIcon />
+                                </span>
+                                Rapports
+                            </Button>
+                        </Link>
+                    </li>
+                )}
 
-                {/* <li>
-                    <Link to={'/user/reclamation'}>
-                        <Button
-                            className={`w-full flex justify-between items-center ${activeTab === 9 ? 'active' : ''}`}
-                            onClick={() => isOpenSubmenu(9)}
-                        >
-                            <span className='icon'>
-                                <ReportProblemIcon />
-                            </span>
-                            Réclamation
-                        </Button>
-                    </Link>
-                </li> */}
+                {role === 'ROLE_UTILISATEUR' && (
+                    <li>
+                        <Link to={'/user/reclamation'}>
+                            <Button
+                                className={`w-full flex justify-between items-center ${activeTab === 9 ? 'active' : ''}`}
+                                onClick={() => isOpenSubmenu(9)}
+                            >
+                                <span className='icon'>
+                                    <ReportProblemIcon />
+                                </span>
+                                Réclamation
+                            </Button>
+                        </Link>
+                    </li>
+                )}
 
-                <li>
-                    <Link to={'/user/campagnes'}>
-                        <Button
-                            className={`w-full flex justify-between items-center ${activeTab === 10 ? 'active' : ''}`}
-                            onClick={() => isOpenSubmenu(10)}
-                        >
-                            <span className='icon'>
-                                <CampaignIcon />
-                            </span>
-                            Campagnes
-                        </Button>
-                    </Link>
-                </li>
-
+                {role === 'ROLE_CSM' && (
+                    <li>
+                        <Link to={'/user/campagnes'}>
+                            <Button
+                                className={`w-full flex justify-between items-center ${activeTab === 10 ? 'active' : ''}`}
+                                onClick={() => isOpenSubmenu(10)}
+                            >
+                                <span className='icon'>
+                                    <CampaignIcon />
+                                </span>
+                                Campagnes
+                            </Button>
+                        </Link>
+                    </li>
+                )}
             </ul>
 
             <div className='liensEnBasDuSidebar'>

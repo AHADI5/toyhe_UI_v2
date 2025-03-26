@@ -1,5 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AuthProvider } from './AuthContext';  // Assurez-vous que le chemin est correct
+import { AuthProvider } from './AuthContext.js';
+import ProtectedRoute from "./ProtectedRoute.js";
+import Unauthorized from "./compo/AccesNonAutoriser";
+
 import SignUp from './compo/SignUp';
 import SignIn from './compo/LoginPage';
 import ForgotPasswordPage from './compo/ForgotPasswordPage';
@@ -46,8 +49,6 @@ export default function App() {
   // You can change this to 'personal', 'company', or 'agent' to test different user types
   const userType = 'personal';
 
-
-
   const [isToggleSidebar, setIsToggleSidebar] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isOpenNav, setIsOpenNav] = useState(false);
@@ -87,51 +88,75 @@ export default function App() {
     <Router>
       <AuthProvider>
         <MyContext.Provider value={values}>
-            <Routes>
-              {/* Routes publiques */}
-              <Route path="/" element={<SiteLayout />}>
-                <Route index element={<Home />} />
-                <Route path="services" element={<Services />} />
-                <Route path="payment" element={<Payment />} />
-                <Route path="partners" element={<Partners />} />
-                <Route path="pricing" element={<PricingTOYHE />} />
-                <Route path="app" element={<AppDownload />} />
-                <Route path="faq" element={<FAQ />} />
-                <Route path="terms" element={<Terms />} />
-                <Route path="privacy" element={<Privacy />} />
-                <Route path="reservation/ets-silimu" element={<Reservation />} />
-              </Route>
+          <Routes>
+            {/* Routes publiques */}
+            <Route path="/" element={<SiteLayout />}>
+              <Route index element={<Home />} />
+              <Route path="services" element={<Services />} />
+              <Route path="payment" element={<Payment />} />
+              <Route path="partners" element={<Partners />} />
+              <Route path="pricing" element={<PricingTOYHE />} />
+              <Route path="app" element={<AppDownload />} />
+              <Route path="faq" element={<FAQ />} />
+              <Route path="terms" element={<Terms />} />
+              <Route path="privacy" element={<Privacy />} />
+              <Route path="reservation/ets-silimu" element={<Reservation />} />
+            </Route>
 
-              {/* Routes d'authentification */}
-              <Route path="/signup" element={<SignUp />} />
-              <Route path="/signin" element={<SignIn />} />
-              <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+            {/* Routes d'authentification */}
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+            <Route path="/unauthorized" element={<Unauthorized />} />
 
-              {/* Route parent pour un utilisateur authentifié */}
+            {/* Routes pour utilisateurs authentifiés sous BodyAuthLayout */}
+            <Route element={<ProtectedRoute allowedRoles={["ROLE_ADMIN", "ROLE_UTILISATEUR", "ROLE_DAF", "ROLE_DG", "ROLE_CSM", "ROLE_DSG"]} />}>
               <Route path="/user" element={<BodyAuthLayout />}>
+                {/* Routes accessibles à tous les utilisateurs authentifiés */}
                 <Route index element={<Accueil />} />
                 <Route path="messages" element={<Messages />} />
                 <Route path="reservation" element={<Reservation />} />
-                <Route path="performances" element={<PerformanceDashboard />} />
                 <Route path="bateaux" element={<Boats />} />
                 <Route path="prix" element={<Pricing />} />
                 <Route path="horaire" element={<Schedule />} />
-                <Route path="commandes" element={<Commandes />} />
-                <Route path="commandes-en-ligne" element={<CommandesEnLigne />} />
-                <Route path="commandes-par-vente" element={<CommandesParVentes />} />
-                <Route path="utilisateurs" element={<UserManagement />} />
-                <Route path="reclamation" element={<ComplaintForm />} />
-                <Route path="fonds" element={<Fonds />} />
-                <Route path="rapports" element={<Rapport />} />
-                <Route path="campagnes" element={<Campagnes />} />
                 <Route path="compte" element={<Account />} />
                 <Route path="parametres" element={<Settings userType={userType} />} />
                 <Route path="aide-et-supports" element={<Help />} />
-              </Route>
 
-              {/* Redirection par défaut */}
-              <Route path="*" element={<SignIn />} />
-            </Routes>
+                {/* Routes réservées aux agents de l'agence de transport */}
+                <Route element={<ProtectedRoute allowedRoles={["ROLE_ADMIN", "ROLE_DAF", "ROLE_DG", "ROLE_CSM", "ROLE_DSG"]} />}>
+                  <Route path="fonds" element={<Fonds />} />
+                  <Route path="rapports" element={<Rapport />} />
+                </Route>
+
+                {/* Routes réservées aux administratifs */}
+                <Route element={<ProtectedRoute allowedRoles={["ROLE_ADMIN", "ROLE_DAF", "ROLE_DG", "ROLE_CSM", "ROLE_DSG"]} />}>
+                  <Route path="commandes" element={<Commandes />} />
+                  <Route path="commandes-en-ligne" element={<CommandesEnLigne />} />
+                  <Route path="commandes-par-vente" element={<CommandesParVentes />} />
+                  <Route path="performances" element={<PerformanceDashboard />} />
+                </Route>
+
+                {/* Routes réservées à l'administrateur et CSP */}
+                <Route element={<ProtectedRoute allowedRoles={["ROLE_ADMIN"]} />}>
+                  <Route path="utilisateurs" element={<UserManagement />} />
+                </Route>
+
+                {/* Routes réservées au chargé du service Marketing */}
+                <Route element={<ProtectedRoute allowedRoles={["ROLE_CSM"]} />}>
+                  <Route path="campagnes" element={<Campagnes />} />
+                </Route>
+
+                {/* Routes réservées aux utilisateurs simples */}
+                <Route element={<ProtectedRoute allowedRoles={["ROLE_UTILISATEUR"]} />}>
+                  <Route path="reclamation" element={<ComplaintForm />} />
+                </Route>
+              </Route>
+            </Route>
+
+            {/* Redirection par défaut */}
+            <Route path="*" element={<SignIn />} />
+          </Routes>
         </MyContext.Provider>
       </AuthProvider>
     </Router>

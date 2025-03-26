@@ -4,7 +4,7 @@ import PersonalForm from './forms/PersonalForm';
 import CompanyForm from './forms/CompanyForm';
 import AddressForm from './forms/AddressForm';
 import SecurityForm from './forms/SecurityForm';
-import { updatePersonalInfo, updateCompanyInfo, updateAgentInfo, updatePassword } from '../../../../services/api.js';
+import { updatePersonalInfo, updateCompanyInfo, updateAgentInfo, updatePassword } from '../../../../services/userService.js';
 
 export default function Settings({ userType = 'personal' }) {
   const [activeSection, setActiveSection] = useState(

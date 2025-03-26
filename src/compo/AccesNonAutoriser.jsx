@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import toyheLogo from '/assets/logos/TOYHE_LOGO_250x250.png';
 
 const AccesNonAutoriser = () => {
   const navigate = useNavigate();
@@ -10,7 +9,7 @@ const AccesNonAutoriser = () => {
       <div className="w-full max-w-lg bg-white rounded-2xl shadow-2xl p-8 mx-4 transform hover:scale-[1.02] transition-transform duration-300">
         <div className="flex flex-col items-center">
           <img 
-            src={toyheLogo} 
+            src="/assets/logos/TOYHE_LOGO_250x250.png" 
             alt="Toyhe Logo" 
             className="object-contain w-40 h-40 mb-6"
             style={{ maxWidth: '100%' }}
