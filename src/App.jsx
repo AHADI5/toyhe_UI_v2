@@ -30,7 +30,7 @@ import CommandesEnLigne from './compo/Commandes/CommandesEnLigne';
 import CommandesParVentes from './compo/Commandes/CommandesParVentes';
 import Account from './compo/communs/Account';
 import Help from './compo/communs/Help';
-import Settings from './compo/communs/Settings';
+import Settings from './compo/communs/parametres/Settings/Settings';
 import Accueil from './compo/Accueil';
 import Campagnes from './compo/marketing/MarketingCampaignManager';
 import UserManagement from './compo/admin/UserManagement';
@@ -42,6 +42,12 @@ import './Responsive.css';
 const MyContext = createContext();
 
 export default function App() {
+
+  // You can change this to 'personal', 'company', or 'agent' to test different user types
+  const userType = 'personal';
+
+
+
   const [isToggleSidebar, setIsToggleSidebar] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isOpenNav, setIsOpenNav] = useState(false);
@@ -93,6 +99,7 @@ export default function App() {
                 <Route path="faq" element={<FAQ />} />
                 <Route path="terms" element={<Terms />} />
                 <Route path="privacy" element={<Privacy />} />
+                <Route path="reservation/ets-silimu" element={<Reservation />} />
               </Route>
 
               {/* Routes d'authentification */}
@@ -118,7 +125,7 @@ export default function App() {
                 <Route path="rapports" element={<Rapport />} />
                 <Route path="campagnes" element={<Campagnes />} />
                 <Route path="compte" element={<Account />} />
-                <Route path="parametres" element={<Settings />} />
+                <Route path="parametres" element={<Settings userType={userType} />} />
                 <Route path="aide-et-supports" element={<Help />} />
               </Route>
 

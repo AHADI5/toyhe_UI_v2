@@ -11,7 +11,9 @@ function Partners() {
         "Plus de 10 ans d'expérience",
         "Flotte moderne et sécurisée",
         "Service client 24/7"
-      ]
+      ],
+      reservation : "Efectuer une réservation",
+      link : "/reservation/ets-silimu"
     },
     {
       name: "Ets BMB Etoile du KIVU",
@@ -43,7 +45,7 @@ function Partners() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <Typography variant="h1" className="text-4xl font-bold text-center mb-12">
+          <Typography variant="h1" className="mb-12 text-4xl font-bold text-center">
             Nos Partenaires
           </Typography>
         </motion.div>
@@ -56,26 +58,36 @@ function Partners() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
               >
-                <Card className="h-full hover:shadow-lg transition-shadow">
+                <Card className="h-full transition-shadow hover:shadow-lg">
                   <img
                     src={partner.image}
                     alt={partner.name}
-                    className="w-full h-64 object-cover"
+                    className="object-cover w-full h-64"
                   />
                   <CardContent className="p-6">
-                    <Typography variant="h5" className="font-bold mb-3">
+                    <Typography variant="h5" className="mb-3 font-bold">
                       {partner.name}
                     </Typography>
                     <Typography variant="body1" color="text.secondary" className="mb-4">
                       {partner.description}
                     </Typography>
-                    <ul className="list-disc pl-5 space-y-2">
+                    <ul className="pl-5 space-y-2 list-disc">
                       {partner.features.map((feature, featureIndex) => (
                         <li key={featureIndex} className="text-gray-700">
                           {feature}
                         </li>
                       ))}
                     </ul>
+                    {partner.reservation && partner.link && (
+                      <div className="mt-4">
+                        <a
+                          href={partner.link}
+                          className="block w-full px-4 py-2 font-bold text-center text-white transition bg-blue-600 rounded-lg hover:bg-blue-700"
+                        >
+                          {partner.reservation}
+                        </a>
+                      </div>
+                    )}
                   </CardContent>
                 </Card>
               </motion.div>
