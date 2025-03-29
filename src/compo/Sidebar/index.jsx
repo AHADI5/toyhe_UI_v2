@@ -30,7 +30,7 @@ import { MyContext } from '../../App';
 
 const Sidebar = (props) => {
 
-    const { role } = useContext(AuthContext); 
+    const { role, logout } = useContext(AuthContext); 
     // Fonction pour vérifier si l'utilisateur a l'un des rôles dans la liste autorisée
     const isRoleAllowed = (allowedRoles) => {
         return allowedRoles.includes(role);
@@ -209,7 +209,7 @@ const Sidebar = (props) => {
                     </li>
                 )}
 
-                {role === 'ROLE_UTILISATEUR' && (
+                {isRoleAllowed(['ROLE_UTILISATEUR', 'ROLE_CLIENT']) && (
                     <li>
                         <Link to={'/user/reclamation'}>
                             <Button
@@ -279,7 +279,10 @@ const Sidebar = (props) => {
                         <Link to={'/'}>
                             <Button
                                 className={`w-full flex justify-between items-center ${activeTab === 22 ? 'active' : ''}`}
-                                onClick={() => isOpenSubmenu(22)}
+                                onClick={() => {
+                                    isOpenSubmenu(22);
+                                    logout();
+                                }}
                             >
                                 <span className='icon logoutSidebar'>
                                     <LogoutIcon />

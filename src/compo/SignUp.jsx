@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { signup } from '../services/signupService.js';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 import classNames from 'classnames';
 
@@ -55,10 +57,14 @@ const INITIAL_FORM_STATE = {
   phone: '',
   email: '',
   password: '',
-  confirmPassword: ''
+  confirmPassword: '',
+  isCompany: false
 };
 
 const SignUp = () => {
+
+  const navigate = useNavigate();
+
   const [accountType, setAccountType] = useState(ACCOUNT_TYPES.PERSONAL);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -120,18 +126,29 @@ const SignUp = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  const handleSignup = async (formData) => {
+    const result = await signup(formData, navigate);
+  
+    if (result.success) {
+      console.log("Compte créé avec succès !");
+      navigate("/dashboard"); // Redirection après succès
+    } else {
+      alert(result.error); // Affiche l'erreur si échec
+    }
+  };
+  
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (validateForm()) {
+    e.preventDefault(); // Empêche le rechargement de la page
+  
+    if (validateForm()) { // Vérifie si le formulaire est valide
       try {
-        console.log('Form submitted:', formData);
-        // await api.register(formData);
+        await handleSignup(formData); // Envoie les données
       } catch (error) {
-        console.error('Registration error:', error);
+        console.error("Erreur lors de l’inscription:", error);
       }
     }
   };
-
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -192,7 +209,10 @@ const SignUp = () => {
                 <input
                   type="radio"
                   checked={accountType === ACCOUNT_TYPES.PERSONAL}
-                  onChange={() => setAccountType(ACCOUNT_TYPES.PERSONAL)}
+                  onChange={() => {
+                    setAccountType(ACCOUNT_TYPES.PERSONAL);
+                    setFormData({ ...formData, isCompany: false });
+                  }}
                   className="w-5 h-5 border-gray-400 text-primary"
                 />
                 <span className="text-gray-700">Compte personnel</span>
@@ -201,7 +221,10 @@ const SignUp = () => {
                 <input
                   type="radio"
                   checked={accountType === ACCOUNT_TYPES.BUSINESS}
-                  onChange={() => setAccountType(ACCOUNT_TYPES.BUSINESS)}
+                  onChange={() => {
+                    setAccountType(ACCOUNT_TYPES.PERSONAL);
+                    setFormData({ ...formData, isCompany: true });
+                  }}
                   className="w-5 h-5 border-gray-400 text-primary"
                 />
                 <span className="text-gray-700">Compte entreprise</span>

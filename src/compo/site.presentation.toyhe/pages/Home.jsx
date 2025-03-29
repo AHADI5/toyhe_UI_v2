@@ -53,19 +53,19 @@ const testimonials = [
     name: 'Jean-Luc K.',
     role: 'Directeur Commercial',
     content: 'TOYHE a révolutionné notre gestion des réservations. Un gain de temps considérable !',
-    company: 'Transport Kivu'
+    company: 'Ets SILIMU'
   },
   {
     name: 'Marie T.',
     role: 'Responsable Marketing',
     content: 'Une plateforme intuitive qui nous a permis d\'augmenter nos réservations de 40%.',
-    company: 'Lake Tours'
+    company: 'Ets Etoile du KIVU'
   },
   {
     name: 'Célestin M.',
     role: 'Gérant',
     content: 'Le support client est exceptionnel. Toujours disponible et efficace.',
-    company: 'Kivu Express'
+    company: 'IHUSI Express'
   }
 ];
 
@@ -90,10 +90,10 @@ function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                <Typography variant="h1" className="text-5xl font-bold mb-8 leading-tight">
+                <Typography variant="h1" className="mb-8 text-5xl font-bold leading-tight">
                   La solution complète pour votre transport lacustre
                 </Typography>
-                <Typography variant="h2" className="text-xl mb-10 opacity-90">
+                <Typography variant="h2" className="mb-10 text-xl opacity-90">
                   Plateforme de réservation, de marketing et de gestion, leader pour les prestataires de services de transport lacustre
                 </Typography>
                 <Button
@@ -124,8 +124,8 @@ function Home() {
                       alt={feature.title}
                       className="w-full h-[500px] object-cover rounded-xl"
                     />
-                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-8 rounded-b-xl">
-                      <Typography variant="h4" className="text-white font-bold mb-2">
+                    <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 to-transparent rounded-b-xl">
+                      <Typography variant="h4" className="mb-2 font-bold text-white">
                         {feature.title}
                       </Typography>
                       <Typography variant="body1" className="text-white/90">
@@ -148,7 +148,7 @@ function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Typography variant="h2" className="text-4xl font-bold text-center mb-16">
+            <Typography variant="h2" className="mb-16 text-4xl font-bold text-center">
               Simplifiez la gestion de vos réservations
             </Typography>
           </motion.div>
@@ -170,11 +170,11 @@ function Home() {
                       <img
                         src={feature.image}
                         alt={feature.title}
-                        className="w-full h-full object-cover"
+                        className="object-cover w-full h-full"
                       />
                     </div>
                     <CardContent className="p-6">
-                      <Typography variant="h5" className="font-bold mb-3">
+                      <Typography variant="h5" className="mb-3 font-bold">
                         {feature.title}
                       </Typography>
                       <Typography variant="body1" color="text.secondary">
@@ -199,10 +199,10 @@ function Home() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                <Typography variant="h2" className="text-4xl font-bold mb-6">
+                <Typography variant="h2" className="mb-6 text-4xl font-bold">
                   Pourquoi choisir TOYHE ?
                 </Typography>
-                <Typography variant="body1" className="text-lg text-gray-600 mb-8">
+                <Typography variant="body1" className="mb-8 text-lg text-gray-600">
                   Les réservations sont essentielles, mais leur gestion peut être complexe. 
                   Nous simplifions ce processus avec une solution intelligente et tout-en-un.
                 </Typography>
@@ -217,9 +217,9 @@ function Home() {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.2 }}
                     >
-                      <Box className="p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                      <Box className="p-6 transition-shadow bg-white rounded-lg shadow-md hover:shadow-lg">
                         <div className="mb-4">{advantage.icon}</div>
-                        <Typography variant="h6" className="font-bold mb-2">
+                        <Typography variant="h6" className="mb-2 font-bold">
                           {advantage.title}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
@@ -243,7 +243,7 @@ function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Typography variant="h2" className="text-4xl font-bold text-center mb-16">
+            <Typography variant="h2" className="mb-16 text-4xl font-bold text-center">
               Ce que nos clients disent
             </Typography>
           </motion.div>
@@ -255,9 +255,9 @@ function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.2 }}
                 >
-                  <Card className="h-full hover:shadow-lg transition-shadow">
+                  <Card className="h-full transition-shadow hover:shadow-lg">
                     <CardContent className="p-6">
-                      <Typography variant="body1" className="text-lg italic mb-6">
+                      <Typography variant="body1" className="mb-6 text-lg italic">
                         "{testimonial.content}"
                       </Typography>
                       <Box>
@@ -286,7 +286,7 @@ function Home() {
             transition={{ duration: 0.5 }}
           >
             <Box className="text-center text-white">
-              <Typography variant="h3" className="font-bold mb-6">
+              <Typography variant="h3" className="mb-6 font-bold">
                 Prêt à transformer votre activité ?
               </Typography>
               <Typography variant="h6" className="mb-8 opacity-90">

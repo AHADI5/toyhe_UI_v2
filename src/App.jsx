@@ -110,7 +110,7 @@ export default function App() {
             <Route path="/unauthorized" element={<Unauthorized />} />
 
             {/* Routes pour utilisateurs authentifiés sous BodyAuthLayout */}
-            <Route element={<ProtectedRoute allowedRoles={["ROLE_ADMIN", "ROLE_UTILISATEUR", "ROLE_DAF", "ROLE_DG", "ROLE_CSM", "ROLE_DSG"]} />}>
+            <Route element={<ProtectedRoute allowedRoles={["ROLE_ADMIN", "ROLE_CLIENT", "ROLE_UTILISATEUR", "ROLE_DAF", "ROLE_DG", "ROLE_CSM", "ROLE_DSG"]} />}>
               <Route path="/user" element={<BodyAuthLayout />}>
                 {/* Routes accessibles à tous les utilisateurs authentifiés */}
                 <Route index element={<Accueil />} />
@@ -148,7 +148,7 @@ export default function App() {
                 </Route>
 
                 {/* Routes réservées aux utilisateurs simples */}
-                <Route element={<ProtectedRoute allowedRoles={["ROLE_UTILISATEUR"]} />}>
+                <Route element={<ProtectedRoute allowedRoles={["ROLE_UTILISATEUR", "ROLE_CLIENT"]} />}>
                   <Route path="reclamation" element={<ComplaintForm />} />
                 </Route>
               </Route>
