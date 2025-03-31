@@ -109,9 +109,9 @@ const detectUserType = () => {
 };
 
 const PassengerForm = ({ index, data, onChange, showReturnFields }) => (
-  <div className="space-y-6 p-6 bg-white rounded-lg border border-gray-200">
+  <div className="p-6 space-y-6 bg-white border border-gray-200 rounded-lg">
     <h3 className="text-lg font-medium text-gray-900">Passager {index + 1}</h3>
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
       <div>
         <label className="block text-sm font-medium text-gray-700">Nom</label>
         <input
@@ -192,6 +192,20 @@ const PassengerForm = ({ index, data, onChange, showReturnFields }) => (
         </select>
       </div>
 
+      <div>
+        <label className="block text-sm font-medium text-gray-700">Trajet</label>
+        <select
+          value={data.tajet}
+          onChange={(e) => onChange(index, 'vocation', e.target.value)}
+          className="mt-1 h-12 px-4 block w-full rounded-md border-gray-600 bg-[#f5f5ff] shadow-sm focus:border-blue-500 focus:ring-blue-500"
+          required
+        >
+          <option value="matin">Goma-Bukavu</option>
+          <option value="soir">Bukavu-Goma</option>
+        </select>
+      </div>
+
+
       {showReturnFields && (
         <>
           <div>
@@ -200,7 +214,7 @@ const PassengerForm = ({ index, data, onChange, showReturnFields }) => (
               type="date"
               value={data.dateRetour}
               onChange={(e) => onChange(index, 'dateRetour', e.target.value)}
-              className="mt-1 h-12 px-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 h-12 px-4 block w-full rounded-md border-gray-600 bg-[#f5f5ff] shadow-sm focus:border-blue-500 focus:ring-blue-500"
               required
             />
           </div>
@@ -210,7 +224,7 @@ const PassengerForm = ({ index, data, onChange, showReturnFields }) => (
               type="time"
               value={data.heureRetour}
               onChange={(e) => onChange(index, 'heureRetour', e.target.value)}
-              className="mt-1 h-12 px-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 h-12 px-4 block w-full rounded-md border-gray-600 bg-[#f5f5ff] shadow-sm focus:border-blue-500 focus:ring-blue-500"
               required
             />
           </div>
@@ -251,10 +265,10 @@ const PaymentForm = ({ method, onSubmit }) => {
             <label className="block text-sm font-medium text-gray-700">
               Adresse e-mail
             </label>
-            <div className="mt-1 relative">
+            <div className="relative mt-1">
               <input
                 type="email"
-                className="h-12 block w-full rounded-md border-gray-300 pl-10 pr-4 focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full h-12 pl-10 pr-4 border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
                 placeholder="exemple@email.com"
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 required
@@ -269,10 +283,10 @@ const PaymentForm = ({ method, onSubmit }) => {
             <label className="block text-sm font-medium text-gray-700">
               Numéro de téléphone
             </label>
-            <div className="mt-1 relative">
+            <div className="relative mt-1">
               <input
                 type="tel"
-                className="h-12 block w-full rounded-md border-gray-300 pl-10 pr-4 focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full h-12 pl-10 pr-4 border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
                 placeholder="+243 990 691 536"
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 required
@@ -287,10 +301,10 @@ const PaymentForm = ({ method, onSubmit }) => {
             <label className="block text-sm font-medium text-gray-700">
               Code PIN
             </label>
-            <div className="mt-1 relative">
+            <div className="relative mt-1">
               <input
                 type="password"
-                className="h-12 block w-full rounded-md border-gray-300 pl-10 pr-4 focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full h-12 pl-10 pr-4 border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
                 placeholder="****"
                 maxLength={4}
                 onChange={(e) => setFormData({ ...formData, pin: e.target.value })}
@@ -306,10 +320,10 @@ const PaymentForm = ({ method, onSubmit }) => {
             <label className="block text-sm font-medium text-gray-700">
               Numéro de carte
             </label>
-            <div className="mt-1 relative">
+            <div className="relative mt-1">
               <input
                 type="text"
-                className="h-12 block w-full rounded-md border-gray-300 pl-10 pr-4 focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full h-12 pl-10 pr-4 border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
                 placeholder="1234 5678 9012 3456"
                 onChange={(e) => setFormData({ ...formData, cardNumber: e.target.value })}
                 required
@@ -326,7 +340,7 @@ const PaymentForm = ({ method, onSubmit }) => {
             </label>
             <input
               type="text"
-              className="h-12 mt-1 block w-full rounded-md border-gray-300 px-4 focus:border-blue-500 focus:ring-blue-500"
+              className="block w-full h-12 px-4 mt-1 border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
               placeholder="MM/YY"
               onChange={(e) => setFormData({ ...formData, expiry: e.target.value })}
               required
@@ -339,10 +353,10 @@ const PaymentForm = ({ method, onSubmit }) => {
             <label className="block text-sm font-medium text-gray-700">
               CVV
             </label>
-            <div className="mt-1 relative">
+            <div className="relative mt-1">
               <input
                 type="password"
-                className="h-12 block w-full rounded-md border-gray-300 pl-10 pr-4 focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full h-12 pl-10 pr-4 border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
                 placeholder="123"
                 maxLength={3}
                 onChange={(e) => setFormData({ ...formData, cvv: e.target.value })}
@@ -360,7 +374,7 @@ const PaymentForm = ({ method, onSubmit }) => {
             </label>
             <input
               type="text"
-              className="h-12 mt-1 block w-full rounded-md border-gray-300 px-4 focus:border-blue-500 focus:ring-blue-500"
+              className="block w-full h-12 px-4 mt-1 border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
               placeholder="JEAN DUPONT"
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               required
@@ -394,7 +408,7 @@ const PaymentForm = ({ method, onSubmit }) => {
 
       <button
         type="submit"
-        className="w-full h-12 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full h-12 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
         disabled={paymentStatus === true}
       >
         Confirmer le paiement
@@ -419,6 +433,7 @@ function Reservation() {
     nationalite: '',
     dateNaissance: '',
     vocation: 'matin',
+    trajet: 'Goma-Bukavu',
     dateRetour: '',
     heureRetour: ''
   }]);
@@ -441,6 +456,7 @@ function Reservation() {
         nationalite: '',
         dateNaissance: '',
         vocation: 'matin',
+        trajet: 'Goma-Bukavu',
         dateRetour: '',
         heureRetour: ''
       }
@@ -494,7 +510,8 @@ function Reservation() {
       passenger.sexe && 
       passenger.nationalite && 
       passenger.dateNaissance && 
-      passenger.vocation && 
+      passenger.vocation &&
+      passenger.trajet && 
       (tripType === 'single' || (passenger.dateRetour && passenger.heureRetour))
     );
   };
@@ -503,16 +520,16 @@ function Reservation() {
 
   return (
     <div className="min-h-screen bg-[#f5f5ff] py-8 px-4">
-      <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+      <div className="max-w-4xl mx-auto overflow-hidden bg-white shadow-lg rounded-xl">
         <div className="p-8">
-          <div className="flex items-center space-x-2 mb-6">
+          <div className="flex items-center mb-6 space-x-2">
             <Ship className="w-8 h-8 text-blue-600" />
             <h1 className="text-2xl font-bold text-gray-800">Réservation de Transport Lacustre</h1>
           </div>
 
           {!showPayment ? (
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-700">Classe</label>
                   <select
@@ -573,7 +590,7 @@ function Reservation() {
                     id="bed"
                     checked={includeBed}
                     onChange={(e) => setIncludeBed(e.target.checked)}
-                    className="h-5 w-5 rounded text-blue-600 focus:ring-blue-500"
+                    className="w-5 h-5 text-blue-600 rounded focus:ring-blue-500"
                   />
                   <label htmlFor="bed" className="flex items-center text-sm text-gray-700">
                     <Bed className="w-4 h-4 mr-1" />
@@ -611,13 +628,13 @@ function Reservation() {
               </div>
 
               <div className="pt-6 border-t border-gray-200">
-                <div className="flex justify-between items-center mb-4">
+                <div className="flex items-center justify-between mb-4">
                   <span className="text-lg font-medium text-gray-900">Total</span>
                   <span className="text-2xl font-bold text-blue-600">{calculateTotal()} $</span>
                 </div>
                 <button
                   type="submit"
-                  className="w-full h-12 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full h-12 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
                   disabled={!validateForm()}
                 >
                   {userType === 'client' ? 'Procéder au paiement' : 'Confirmer la réservation'}
@@ -636,7 +653,7 @@ function Reservation() {
                 </button>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                 <div className="space-y-4">
                   <h2 className="text-lg font-medium text-gray-900">Choisir le mode de paiement</h2>
                   <div className="space-y-2">
@@ -650,7 +667,7 @@ function Reservation() {
                             : 'border-gray-200 hover:bg-gray-50'
                         }`}
                       >
-                        <img src={method.logo} alt={method.name} className="w-8 h-8 rounded object-cover" />
+                        <img src={method.logo} alt={method.name} className="object-cover w-8 h-8 rounded" />
                         <span className="ml-3 font-medium">{method.name}</span>
                         {method.icon && <span className="ml-auto">{method.icon}</span>}
                       </button>
@@ -670,7 +687,7 @@ function Reservation() {
                       />
                     </div>
                   ) : (
-                    <div className="text-center text-gray-500 py-8">
+                    <div className="py-8 text-center text-gray-500">
                       Veuillez choisir votre canal de paiement
                     </div>
                   )}

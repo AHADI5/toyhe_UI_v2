@@ -222,7 +222,7 @@ const SignUp = () => {
                   type="radio"
                   checked={accountType === ACCOUNT_TYPES.BUSINESS}
                   onChange={() => {
-                    setAccountType(ACCOUNT_TYPES.PERSONAL);
+                    setAccountType(ACCOUNT_TYPES.BUSINESS);
                     setFormData({ ...formData, isCompany: true });
                   }}
                   className="w-5 h-5 border-gray-400 text-primary"

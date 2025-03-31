@@ -25,6 +25,10 @@
                 "email": "admin@company.com",
                 "password": "AdminPass2024!"
             }
+            {
+            "email": "aluheba@gmail.com",
+            "password": "Aluh3ba!"
+            }
         Pour avoir accès à la base de données :
             PGPASSWORD=SWZJ7VG4uGhD6wLA85YN0uHrJyQtaK6U psql -h dpg-cvdaqptumphs73earcsg-a.oregon-postgres.render.com -U toyhe_b4s7_user toyhe_b4s7
         Puis pour afficher toutes les tables tu feras :

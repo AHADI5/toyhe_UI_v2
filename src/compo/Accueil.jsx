@@ -46,7 +46,7 @@ const Comment = ({ comment, onLike, onReply }) => {
   };
 
   return (
-    <div className="pl-4 border-l-2 border-gray-100 mt-3">
+    <div className="pl-4 mt-3 border-l-2 border-gray-100">
       <div className="flex space-x-3">
         <img
           src={comment.user.avatar}
@@ -54,11 +54,11 @@ const Comment = ({ comment, onLike, onReply }) => {
           className="w-8 h-8 rounded-full"
         />
         <div className="flex-1">
-          <div className="bg-gray-100 p-3 rounded-lg">
+          <div className="p-3 bg-gray-100 rounded-lg">
             <p className="font-semibold">{comment.user.name}</p>
             <p>{comment.text}</p>
           </div>
-          <div className="flex items-center space-x-4 mt-1 text-sm">
+          <div className="flex items-center mt-1 space-x-4 text-sm">
             <button 
               onClick={() => onLike(comment.id)}
               className={`flex items-center space-x-1 ${comment.liked ? 'text-blue-500' : 'text-gray-500'}`}
@@ -78,7 +78,7 @@ const Comment = ({ comment, onLike, onReply }) => {
           </div>
 
           {showReplyInput && (
-            <div className="mt-2 flex space-x-2">
+            <div className="flex mt-2 space-x-2">
               <input
                 type="text"
                 value={replyText}
@@ -88,7 +88,7 @@ const Comment = ({ comment, onLike, onReply }) => {
               />
               <button
                 onClick={handleReplySubmit}
-                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+                className="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600"
               >
                 Répondre
               </button>
@@ -156,7 +156,7 @@ const PostComposer = ({ onPost, userRole }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow p-4 mb-4">
+    <div className="p-4 mb-4 bg-white rounded-lg shadow">
       <div className="flex items-start space-x-3">
         <img
           src="https://scontent-mba2-1.xx.fbcdn.net/v/t39.30808-1/418805976_1609226313159384_2385096231440398921_n.jpg?stp=c0.0.534.534a_dst-jpg_s200x200_tt6&_nc_cat=104&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeELeIuaCe4VE_YQRPvCZnt4bYlPxk5tFaVtiU_GTm0VpQRMfdo71lEtPyiB9HtDvezsDICIbjYwc4G3I-Jld-f9&_nc_ohc=IvjqSNH03KwQ7kNvgE6KvEe&_nc_oc=AdhHqmqG8UhLC2O9k3NQwc1OkPtGhqGUc8UZSAZ4yXTQSnSRCC7XFDqVMjyc3tCALTk&_nc_zt=24&_nc_ht=scontent-mba2-1.xx&_nc_gid=xzilW3TeF--N3CC73PmYOQ&oh=00_AYH460kNVQpB_FOKtKlBcvk4s2Wav5MDGXxp7NIassySyw&oe=67DE5F4F"
@@ -172,28 +172,28 @@ const PostComposer = ({ onPost, userRole }) => {
           />
           
           {files.length > 0 && (
-            <div className="mt-3 grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 gap-2 mt-3">
               {files.map((file, index) => (
                 <div key={index} className="relative">
                   {file.type === 'image' && (
-                    <img src={file.preview} alt="" className="rounded-lg w-full h-32 object-cover" />
+                    <img src={file.preview} alt="" className="object-cover w-full h-32 rounded-lg" />
                   )}
                   {file.type === 'video' && (
                     <video 
                       src={file.preview} 
-                      className="rounded-lg w-full h-32 object-cover" 
+                      className="object-cover w-full h-32 rounded-lg" 
                       controls
                     />
                   )}
                   {file.type === 'application' && (
-                    <div className="bg-gray-100 rounded-lg p-4 flex items-center">
+                    <div className="flex items-center p-4 bg-gray-100 rounded-lg">
                       <FileText className="w-6 h-6 mr-2" />
                       <span className="text-sm truncate">{file.file.name}</span>
                     </div>
                   )}
                   <button
                     onClick={() => setFiles(files.filter((_, i) => i !== index))}
-                    className="absolute top-1 right-1 bg-gray-800 rounded-full p-1"
+                    className="absolute p-1 bg-gray-800 rounded-full top-1 right-1"
                   >
                     <X className="w-4 h-4 text-white" />
                   </button>
@@ -202,10 +202,10 @@ const PostComposer = ({ onPost, userRole }) => {
             </div>
           )}
 
-          <div className="mt-3 flex flex-col space-y-3">
+          <div className="flex flex-col mt-3 space-y-3">
             <div className="flex items-center justify-between">
               <div className="flex space-x-2">
-                <label className="cursor-pointer p-2 hover:bg-gray-100 rounded-full">
+                <label className="p-2 rounded-full cursor-pointer hover:bg-gray-100">
                   <input
                     type="file"
                     className="hidden"
@@ -215,7 +215,7 @@ const PostComposer = ({ onPost, userRole }) => {
                   />
                   <Image className="w-5 h-5 text-blue-500" />
                 </label>
-                <label className="cursor-pointer p-2 hover:bg-gray-100 rounded-full">
+                <label className="p-2 rounded-full cursor-pointer hover:bg-gray-100">
                   <input
                     type="file"
                     className="hidden"
@@ -224,7 +224,7 @@ const PostComposer = ({ onPost, userRole }) => {
                   />
                   <Video className="w-5 h-5 text-green-500" />
                 </label>
-                <label className="cursor-pointer p-2 hover:bg-gray-100 rounded-full">
+                <label className="p-2 rounded-full cursor-pointer hover:bg-gray-100">
                   <input
                     type="file"
                     className="hidden"
@@ -245,7 +245,7 @@ const PostComposer = ({ onPost, userRole }) => {
             </div>
             <button
               onClick={handlePost}
-              className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 flex items-center justify-center"
+              className="flex items-center justify-center px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600"
             >
               <Send className="w-4 h-4 mr-2" />
               Publier
@@ -270,8 +270,8 @@ const PostDetailPage = ({ post, onClose, onLike, onShare, onComment, onDownload 
         id: Date.now(),
         text: newComment,
         user: {
-          name: 'John Doe',
-          avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop'
+          name: 'Héritier AMURI',
+          avatar: 'https://scontent.fgom1-1.fna.fbcdn.net/v/t39.30808-1/418805976_1609226313159384_2385096231440398921_n.jpg?stp=c0.0.534.534a_dst-jpg_s200x200_tt6&_nc_cat=104&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeELeIuaCe4VE_YQRPvCZnt4bYlPxk5tFaVtiU_GTm0VpQRMfdo71lEtPyiB9HtDvezsDICIbjYwc4G3I-Jld-f9&_nc_ohc=dqLiaEpWULUQ7kNvgGe6vqn&_nc_oc=AdmjQ_cIwGICrM9m-V4MQhQ491Q70errdA_-2QVHAjM0mZTjk9IDa6ieXpbDL-xeosw&_nc_zt=24&_nc_ht=scontent.fgom1-1.fna&_nc_gid=5wWKt_lXqZFkHu4ZIGodfw&oh=00_AYFXYrJcFfm_Ew6fLSI2xYigeHESu3KZF-dPz2YRIZc-MQ&oe=67ED888F'
         },
         timestamp: new Date(),
         likes: 0,
@@ -322,8 +322,8 @@ const PostDetailPage = ({ post, onClose, onLike, onShare, onComment, onDownload 
         id: Date.now(),
         text: replyText,
         user: {
-          name: 'John Doe',
-          avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop'
+          name: 'Héritier AMURI',
+          avatar: 'https://scontent.fgom1-1.fna.fbcdn.net/v/t39.30808-1/418805976_1609226313159384_2385096231440398921_n.jpg?stp=c0.0.534.534a_dst-jpg_s200x200_tt6&_nc_cat=104&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeELeIuaCe4VE_YQRPvCZnt4bYlPxk5tFaVtiU_GTm0VpQRMfdo71lEtPyiB9HtDvezsDICIbjYwc4G3I-Jld-f9&_nc_ohc=dqLiaEpWULUQ7kNvgGe6vqn&_nc_oc=AdmjQ_cIwGICrM9m-V4MQhQ491Q70errdA_-2QVHAjM0mZTjk9IDa6ieXpbDL-xeosw&_nc_zt=24&_nc_ht=scontent.fgom1-1.fna&_nc_gid=5wWKt_lXqZFkHu4ZIGodfw&oh=00_AYFXYrJcFfm_Ew6fLSI2xYigeHESu3KZF-dPz2YRIZc-MQ&oe=67ED888F'
         },
         timestamp: new Date(),
         likes: 0,
@@ -341,11 +341,11 @@ const PostDetailPage = ({ post, onClose, onLike, onShare, onComment, onDownload 
 
   return (
     <div className="fixed inset-0 bg-[#f5f5ff] z-50 overflow-y-auto pt-[70px] ml-[16%] w-[84%]">
-      <div className="max-w-4xl mx-auto mt-5 mb-5 p-4 bg-white shadow-md rounded-lg">
-        <div className="sticky top-0 bg-white py-2 border-b flex justify-between items-center z-10">
+      <div className="max-w-4xl p-4 mx-auto mt-5 mb-5 bg-white rounded-lg shadow-md">
+        <div className="sticky top-0 z-10 flex items-center justify-between py-2 bg-white border-b">
           <button 
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-full flex items-center"
+            className="flex items-center p-2 rounded-full hover:bg-gray-100"
           >
             <ArrowLeft className="w-5 h-5 mr-2" />
             <span>Retour</span>
@@ -359,7 +359,7 @@ const PostDetailPage = ({ post, onClose, onLike, onShare, onComment, onDownload 
             <img
               src={post.user.avatar}
               alt={post.user.name}
-              className="w-10 h-10 rounded-full mr-3"
+              className="w-10 h-10 mr-3 rounded-full"
             />
             <div>
               <h3 className="font-semibold">{post.user.name}</h3>
@@ -385,8 +385,8 @@ const PostDetailPage = ({ post, onClose, onLike, onShare, onComment, onDownload 
           {/* Files section */}
           {post.files && post.files.length > 0 && (
             <div className="mb-6">
-              <h3 className="font-semibold mb-3">Fichiers</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <h3 className="mb-3 font-semibold">Fichiers</h3>
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 {post.files.map((file, index) => (
                   <div key={index} className="relative group">
                     {file.type === 'image' && (
@@ -394,11 +394,11 @@ const PostDetailPage = ({ post, onClose, onLike, onShare, onComment, onDownload 
                         <img 
                           src={file.preview} 
                           alt="" 
-                          className="rounded-lg w-full object-cover"
+                          className="object-cover w-full rounded-lg"
                         />
                         <button
                           onClick={() => onDownload(file)}
-                          className="absolute bottom-2 right-2 p-2 bg-black bg-opacity-50 rounded-full text-white opacity-0 group-hover:opacity-100 transition-opacity"
+                          className="absolute p-2 text-white transition-opacity bg-black bg-opacity-50 rounded-full opacity-0 bottom-2 right-2 group-hover:opacity-100"
                         >
                           <Download className="w-5 h-5" />
                         </button>
@@ -408,27 +408,27 @@ const PostDetailPage = ({ post, onClose, onLike, onShare, onComment, onDownload 
                       <div className="relative">
                         <video 
                           src={file.preview} 
-                          className="rounded-lg w-full" 
+                          className="w-full rounded-lg" 
                           controls
                         />
                         <button
                           onClick={() => onDownload(file)}
-                          className="absolute bottom-2 right-2 p-2 bg-black bg-opacity-50 rounded-full text-white opacity-0 group-hover:opacity-100 transition-opacity"
+                          className="absolute p-2 text-white transition-opacity bg-black bg-opacity-50 rounded-full opacity-0 bottom-2 right-2 group-hover:opacity-100"
                         >
                           <Download className="w-5 h-5" />
                         </button>
                       </div>
                     )}
                     {file.type === 'application' && (
-                      <div className="bg-gray-100 rounded-lg p-4">
+                      <div className="p-4 bg-gray-100 rounded-lg">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center flex-1">
-                            <FileText className="w-6 h-6 mr-2 text-red-500 flex-shrink-0" />
+                            <FileText className="flex-shrink-0 w-6 h-6 mr-2 text-red-500" />
                             <span className="text-sm truncate">{file.file.name}</span>
                           </div>
                           <button
                             onClick={() => onDownload(file)}
-                            className="p-2 hover:bg-gray-200 rounded-full"
+                            className="p-2 rounded-full hover:bg-gray-200"
                           >
                             <Download className="w-5 h-5 text-gray-600" />
                           </button>
@@ -442,7 +442,7 @@ const PostDetailPage = ({ post, onClose, onLike, onShare, onComment, onDownload 
                               <Page pageNumber={1} width={300} />
                             </Document>
                             {numPdfPages && (
-                              <p className="text-sm text-gray-500 mt-1">
+                              <p className="mt-1 text-sm text-gray-500">
                                 Page 1 sur {numPdfPages}
                               </p>
                             )}
@@ -456,7 +456,7 @@ const PostDetailPage = ({ post, onClose, onLike, onShare, onComment, onDownload 
             </div>
           )}
 
-          <div className="flex items-center justify-between text-sm text-gray-500 py-2 border-y mb-6">
+          <div className="flex items-center justify-between py-2 mb-6 text-sm text-gray-500 border-y">
             <span>{post.likes} J'aime</span>
             <span>{comments.length} Commentaires</span>
             <span>{post.shares} Partages</span>
@@ -501,11 +501,11 @@ const PostDetailPage = ({ post, onClose, onLike, onShare, onComment, onDownload 
             
             <div className="flex space-x-2">
               <img
-                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop"
+                src="https://scontent.fgom1-1.fna.fbcdn.net/v/t39.30808-1/418805976_1609226313159384_2385096231440398921_n.jpg?stp=c0.0.534.534a_dst-jpg_s200x200_tt6&_nc_cat=104&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeELeIuaCe4VE_YQRPvCZnt4bYlPxk5tFaVtiU_GTm0VpQRMfdo71lEtPyiB9HtDvezsDICIbjYwc4G3I-Jld-f9&_nc_ohc=dqLiaEpWULUQ7kNvgGe6vqn&_nc_oc=AdmjQ_cIwGICrM9m-V4MQhQ491Q70errdA_-2QVHAjM0mZTjk9IDa6ieXpbDL-xeosw&_nc_zt=24&_nc_ht=scontent.fgom1-1.fna&_nc_gid=5wWKt_lXqZFkHu4ZIGodfw&oh=00_AYFXYrJcFfm_Ew6fLSI2xYigeHESu3KZF-dPz2YRIZc-MQ&oe=67ED888F"
                 alt="Current user"
                 className="w-8 h-8 rounded-full"
               />
-              <div className="flex-1 flex space-x-2">
+              <div className="flex flex-1 space-x-2">
                 <input
                   type="text"
                   value={newComment}
@@ -515,14 +515,14 @@ const PostDetailPage = ({ post, onClose, onLike, onShare, onComment, onDownload 
                 />
                 <button
                   onClick={handleComment}
-                  className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+                  className="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600"
                 >
                   Commenter
                 </button>
               </div>
             </div>
 
-            <div className="space-y-4 mt-4">
+            <div className="mt-4 space-y-4">
               {comments.map((comment) => (
                 <Comment
                   key={comment.id}
@@ -532,12 +532,12 @@ const PostDetailPage = ({ post, onClose, onLike, onShare, onComment, onDownload 
                 />
               ))}
               {comments.length === 0 && (
-                <p className="text-gray-500 text-center py-4">Aucun commentaire pour le moment</p>
+                <p className="py-4 text-center text-gray-500">Aucun commentaire pour le moment</p>
               )}
               {comments.length > 5 && !showAllComments && (
                 <button
                   onClick={() => setShowAllComments(true)}
-                  className="w-full py-2 bg-gray-100 text-blue-500 rounded-lg hover:bg-gray-200"
+                  className="w-full py-2 text-blue-500 bg-gray-100 rounded-lg hover:bg-gray-200"
                 >
                   Voir plus de commentaires
                 </button>
@@ -603,8 +603,8 @@ const Post = ({ post, onDelete, onLike, onShare, onViewPost, onAddComment, userR
         id: Date.now(),
         text: newComment,
         user: {
-          name: 'John Doe',
-          avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop'
+          name: 'Héritier AMURI',
+          avatar: 'https://scontent.fgom1-1.fna.fbcdn.net/v/t39.30808-1/418805976_1609226313159384_2385096231440398921_n.jpg?stp=c0.0.534.534a_dst-jpg_s200x200_tt6&_nc_cat=104&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeELeIuaCe4VE_YQRPvCZnt4bYlPxk5tFaVtiU_GTm0VpQRMfdo71lEtPyiB9HtDvezsDICIbjYwc4G3I-Jld-f9&_nc_ohc=dqLiaEpWULUQ7kNvgGe6vqn&_nc_oc=AdmjQ_cIwGICrM9m-V4MQhQ491Q70errdA_-2QVHAjM0mZTjk9IDa6ieXpbDL-xeosw&_nc_zt=24&_nc_ht=scontent.fgom1-1.fna&_nc_gid=5wWKt_lXqZFkHu4ZIGodfw&oh=00_AYFXYrJcFfm_Ew6fLSI2xYigeHESu3KZF-dPz2YRIZc-MQ&oe=67ED888F'
         },
         timestamp: new Date(),
         likes: 0,
@@ -634,8 +634,8 @@ const Post = ({ post, onDelete, onLike, onShare, onViewPost, onAddComment, userR
         id: Date.now(),
         text: replyText,
         user: {
-          name: 'John Doe',
-          avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop'
+          name: 'Héritier AMURI',
+          avatar: 'https://scontent.fgom1-1.fna.fbcdn.net/v/t39.30808-1/418805976_1609226313159384_2385096231440398921_n.jpg?stp=c0.0.534.534a_dst-jpg_s200x200_tt6&_nc_cat=104&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeELeIuaCe4VE_YQRPvCZnt4bYlPxk5tFaVtiU_GTm0VpQRMfdo71lEtPyiB9HtDvezsDICIbjYwc4G3I-Jld-f9&_nc_ohc=dqLiaEpWULUQ7kNvgGe6vqn&_nc_oc=AdmjQ_cIwGICrM9m-V4MQhQ491Q70errdA_-2QVHAjM0mZTjk9IDa6ieXpbDL-xeosw&_nc_zt=24&_nc_ht=scontent.fgom1-1.fna&_nc_gid=5wWKt_lXqZFkHu4ZIGodfw&oh=00_AYFXYrJcFfm_Ew6fLSI2xYigeHESu3KZF-dPz2YRIZc-MQ&oe=67ED888F'
         },
         timestamp: new Date(),
         likes: 0,
@@ -694,21 +694,21 @@ const Post = ({ post, onDelete, onLike, onShare, onViewPost, onAddComment, userR
                   <img 
                     src={file.preview} 
                     alt="" 
-                    className="rounded-lg w-full h-48 object-cover"
+                    className="object-cover w-full h-48 rounded-lg"
                   />
                   {index === maxVisibleImages - 1 && imageFiles.length > maxVisibleImages && (
                     <div 
-                      className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center rounded-lg cursor-pointer"
+                      className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-lg cursor-pointer"
                       onClick={() => onViewPost(post)}
                     >
-                      <span className="text-white text-2xl font-bold">
+                      <span className="text-2xl font-bold text-white">
                         +{imageFiles.length - maxVisibleImages}
                       </span>
                     </div>
                   )}
                   <button
                     onClick={() => handleDownload(file)}
-                    className="absolute bottom-2 right-2 p-2 bg-black bg-opacity-50 rounded-full text-white opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="absolute p-2 text-white transition-opacity bg-black bg-opacity-50 rounded-full opacity-0 bottom-2 right-2 group-hover:opacity-100"
                   >
                     <Download className="w-5 h-5" />
                   </button>
@@ -724,27 +724,27 @@ const Post = ({ post, onDelete, onLike, onShare, onViewPost, onAddComment, userR
               <div className="relative group">
                 <video 
                   src={file.preview} 
-                  className="rounded-lg w-full" 
+                  className="w-full rounded-lg" 
                   controls
                 />
                 <button
                   onClick={() => handleDownload(file)}
-                  className="absolute bottom-2 right-2 p-2 bg-black bg-opacity-50 rounded-full text-white opacity-0 group-hover:opacity-100 transition-opacity"
+                  className="absolute p-2 text-white transition-opacity bg-black bg-opacity-50 rounded-full opacity-0 bottom-2 right-2 group-hover:opacity-100"
                 >
                   <Download className="w-5 h-5" />
                 </button>
               </div>
             )}
             {file.type === 'application' && (
-              <div className="bg-gray-100 rounded-lg p-4">
+              <div className="p-4 bg-gray-100 rounded-lg">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center flex-1">
-                    <FileText className="w-6 h-6 mr-2 text-red-500 flex-shrink-0" />
+                    <FileText className="flex-shrink-0 w-6 h-6 mr-2 text-red-500" />
                     <span className="text-sm truncate">{file.file.name}</span>
                   </div>
                   <button
                     onClick={() => handleDownload(file)}
-                    className="p-2 hover:bg-gray-200 rounded-full"
+                    className="p-2 rounded-full hover:bg-gray-200"
                   >
                     <Download className="w-5 h-5 text-gray-600" />
                   </button>
@@ -758,7 +758,7 @@ const Post = ({ post, onDelete, onLike, onShare, onViewPost, onAddComment, userR
                       <Page pageNumber={1} width={300} />
                     </Document>
                     {numPdfPages && (
-                      <p className="text-sm text-gray-500 mt-1">
+                      <p className="mt-1 text-sm text-gray-500">
                         Page 1 sur {numPdfPages}
                       </p>
                     )}
@@ -790,14 +790,14 @@ const Post = ({ post, onDelete, onLike, onShare, onViewPost, onAddComment, userR
   const totalComments = countTotalComments(comments);
 
   return (
-    <div className="bg-white rounded-lg shadow mb-4">
+    <div className="mb-4 bg-white rounded-lg shadow">
       <div className="p-4">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center">
             <img
               src={post.user.avatar}
               alt={post.user.name}
-              className="w-10 h-10 rounded-full mr-3"
+              className="w-10 h-10 mr-3 rounded-full"
             />
             <div>
               <h3 className="font-semibold">{post.user.name}</h3>
@@ -821,18 +821,18 @@ const Post = ({ post, onDelete, onLike, onShare, onViewPost, onAddComment, userR
             <div className="relative">
               <button
                 onClick={() => setShowOptionsMenu(!showOptionsMenu)}
-                className="p-2 hover:bg-gray-100 rounded-full"
+                className="p-2 rounded-full hover:bg-gray-100"
               >
                 <MoreVertical className="w-5 h-5 text-gray-500" />
               </button>
               {showOptionsMenu && (
-                <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-10">
+                <div className="absolute right-0 z-10 w-48 mt-2 bg-white rounded-lg shadow-lg">
                   <button
                     onClick={() => {
                       onViewPost(post);
                       setShowOptionsMenu(false);
                     }}
-                    className="w-full px-4 py-2 text-left flex items-center space-x-2 hover:bg-gray-100"
+                    className="flex items-center w-full px-4 py-2 space-x-2 text-left hover:bg-gray-100"
                   >
                     <Eye className="w-4 h-4" />
                     <span>Voir la publication</span>
@@ -843,7 +843,7 @@ const Post = ({ post, onDelete, onLike, onShare, onViewPost, onAddComment, userR
                         // Logique d'édition ici
                         setShowOptionsMenu(false);
                       }}
-                      className="w-full px-4 py-2 text-left flex items-center space-x-2 hover:bg-gray-100"
+                      className="flex items-center w-full px-4 py-2 space-x-2 text-left hover:bg-gray-100"
                     >
                       <Edit className="w-4 h-4" />
                       <span>Modifier</span>
@@ -855,7 +855,7 @@ const Post = ({ post, onDelete, onLike, onShare, onViewPost, onAddComment, userR
                         onDelete(post.id);
                         setShowOptionsMenu(false);
                       }}
-                      className="w-full px-4 py-2 text-left flex items-center space-x-2 hover:bg-gray-100 text-red-500"
+                      className="flex items-center w-full px-4 py-2 space-x-2 text-left text-red-500 hover:bg-gray-100"
                     >
                       <Trash2 className="w-4 h-4" />
                       <span>Supprimer</span>
@@ -871,7 +871,7 @@ const Post = ({ post, onDelete, onLike, onShare, onViewPost, onAddComment, userR
 
         {post.files && post.files.length > 0 && renderFileGrid()}
 
-        <div className="flex items-center justify-between text-sm text-gray-500 py-2 border-y">
+        <div className="flex items-center justify-between py-2 text-sm text-gray-500 border-y">
           <span>{post.likes} J'aime</span>
           <span>{totalComments} Commentaires</span>
           <span>{post.shares} Partages</span>
@@ -906,7 +906,7 @@ const Post = ({ post, onDelete, onLike, onShare, onViewPost, onAddComment, userR
             </button>
 
             {showShareMenu && (
-              <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-10">
+              <div className="absolute right-0 z-10 w-48 mt-2 bg-white rounded-lg shadow-lg">
                 {shareOptions.map((option, index) => (
                   <button
                     key={index}
@@ -914,7 +914,7 @@ const Post = ({ post, onDelete, onLike, onShare, onViewPost, onAddComment, userR
                       option.action();
                       setShowShareMenu(false);
                     }}
-                    className="w-full px-4 py-2 text-left flex items-center space-x-2 hover:bg-gray-100"
+                    className="flex items-center w-full px-4 py-2 space-x-2 text-left hover:bg-gray-100"
                   >
                     {option.icon}
                     <span>{option.label}</span>
@@ -929,11 +929,11 @@ const Post = ({ post, onDelete, onLike, onShare, onViewPost, onAddComment, userR
           <div className="mt-4 space-y-4">
             <div className="flex space-x-2">
               <img
-                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop"
+                src="https://scontent.fgom1-1.fna.fbcdn.net/v/t39.30808-1/418805976_1609226313159384_2385096231440398921_n.jpg?stp=c0.0.534.534a_dst-jpg_s200x200_tt6&_nc_cat=104&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeELeIuaCe4VE_YQRPvCZnt4bYlPxk5tFaVtiU_GTm0VpQRMfdo71lEtPyiB9HtDvezsDICIbjYwc4G3I-Jld-f9&_nc_ohc=dqLiaEpWULUQ7kNvgGe6vqn&_nc_oc=AdmjQ_cIwGICrM9m-V4MQhQ491Q70errdA_-2QVHAjM0mZTjk9IDa6ieXpbDL-xeosw&_nc_zt=24&_nc_ht=scontent.fgom1-1.fna&_nc_gid=5wWKt_lXqZFkHu4ZIGodfw&oh=00_AYFXYrJcFfm_Ew6fLSI2xYigeHESu3KZF-dPz2YRIZc-MQ&oe=67ED888F"
                 alt="Current user"
                 className="w-8 h-8 rounded-full"
               />
-              <div className="flex-1 flex space-x-2">
+              <div className="flex flex-1 space-x-2">
                 <input
                   type="text"
                   value={newComment}
@@ -943,7 +943,7 @@ const Post = ({ post, onDelete, onLike, onShare, onViewPost, onAddComment, userR
                 />
                 <button
                   onClick={handleComment}
-                  className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+                  className="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600"
                 >
                   Commenter
                 </button>
@@ -962,7 +962,7 @@ const Post = ({ post, onDelete, onLike, onShare, onViewPost, onAddComment, userR
               {comments.length > 3 && !showAllComments && (
                 <button
                   onClick={() => setShowAllComments(true)}
-                  className="text-blue-500 hover:text-blue-600 font-medium"
+                  className="font-medium text-blue-500 hover:text-blue-600"
                 >
                   Voir plus de commentaires ({comments.length - 3})
                 </button>
@@ -1005,32 +1005,32 @@ const SponsoredAds = ({ userRole }) => {
   const canEditAds = userRole === 'admin' || userRole === 'marketing';
 
   return (
-    <div className="bg-white rounded-lg shadow p-4">
-      <div className="flex justify-between items-center mb-4">
+    <div className="p-4 bg-white rounded-lg shadow">
+      <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-semibold">Sponsorisé</h2>
         {canEditAds && (
-          <button className="text-blue-500 hover:text-blue-600 text-sm font-medium">
+          <button className="text-sm font-medium text-blue-500 hover:text-blue-600">
             Gérer les publicités
           </button>
         )}
       </div>
       <div className="space-y-4">
         {ads.map((ad) => (
-          <div key={ad.id} className="border-b pb-4 last:border-b-0 last:pb-0">
-            <h3 className="font-medium mb-2">{ad.title}</h3>
+          <div key={ad.id} className="pb-4 border-b last:border-b-0 last:pb-0">
+            <h3 className="mb-2 font-medium">{ad.title}</h3>
             {ad.type === 'image' ? (
-              <a href={ad.link} target="_blank" rel="noopener noreferrer" className="block group relative">
-                <img src={ad.image} alt={ad.title} className="rounded-lg w-full h-40 object-cover" />
-                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-opacity rounded-lg" />
+              <a href={ad.link} target="_blank" rel="noopener noreferrer" className="relative block group">
+                <img src={ad.image} alt={ad.title} className="object-cover w-full h-40 rounded-lg" />
+                <div className="absolute inset-0 transition-opacity bg-black bg-opacity-0 rounded-lg group-hover:bg-opacity-10" />
               </a>
             ) : (
-              <div className="bg-gray-100 rounded-lg p-4">
+              <div className="p-4 bg-gray-100 rounded-lg">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
                     <FileText className="w-6 h-6 mr-2 text-red-500" />
                     <span className="text-sm">{ad.description}</span>
                   </div>
-                  <Download className="w-5 h-5 cursor-pointer text-gray-600 hover:text-gray-800" />
+                  <Download className="w-5 h-5 text-gray-600 cursor-pointer hover:text-gray-800" />
                 </div>
               </div>
             )}
@@ -1255,10 +1255,10 @@ const Accueil = () => {
 
   return (
     <div className="min-h-screen bg-[#f5f5ff] py-8">
-      <div className="container mx-auto px-4">
+      <div className="container px-4 mx-auto">
         {/* Sélecteur de rôle (pour démonstration uniquement) */}
-        {/* <div className="bg-white rounded-lg shadow p-4 mb-4">
-          <h2 className="text-lg font-semibold mb-2">Changer de rôle (démo)</h2>
+        {/* <div className="p-4 mb-4 bg-white rounded-lg shadow">
+          <h2 className="mb-2 text-lg font-semibold">Changer de rôle (démo)</h2>
           <div className="flex space-x-2">
             <button 
               onClick={() => changeRole('user')}
@@ -1281,7 +1281,7 @@ const Accueil = () => {
           </div>
         </div> */}
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           <div className="lg:col-span-2">
             <PostComposer onPost={handleNewPost} userRole={userRole} />
             {posts.map((post) => (

@@ -1,3 +1,5 @@
+
+import { AuthContext } from '../../AuthContext.js';
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -6,7 +8,6 @@ import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -30,6 +31,8 @@ const NotificationBadge = ({ count }) => (
 );
 
 const Header = ({ toggleNavbar, isNavbarOpen }) => {
+
+  const { logout } = useContext(AuthContext); 
 
   const context = useContext(MyContext);
 
@@ -578,7 +581,13 @@ const Header = ({ toggleNavbar, isNavbarOpen }) => {
           </Link>
 
           <Link to="/" className="no-underline">
-            <MenuItem onClick={handleCloseMyAccDrop} className="flex items-center space-x-3">
+            <MenuItem
+              className="flex items-center space-x-3"
+              onClick={() => {
+                handleCloseMyAccDrop();
+                logout();
+            }}
+            >
               <ListItemIcon>
                 <LogoutIcon className="text-gray-500" />
               </ListItemIcon>
