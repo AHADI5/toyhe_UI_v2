@@ -1,0 +1,130 @@
+
+@media only screen and (min-width:250px) and (max-width:1000px) {
+    .headerAuth .part1, .headerAuth .part3 {
+        padding: 0px !important;
+    }
+
+    .headerAuth .logo img {
+        width: 35px !important;
+    }
+    .headerAuth .logo span {
+        font-size: 30px;
+    }
+
+
+    .mainAuth .sidebarWrapper {
+        width: 80% !important;
+        height: 100vh !important;
+        position: fixed;
+        top: 0px;
+        left: -100%;
+        z-index: 1000;
+        opacity: 0;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .mainAuth .contentDroite {
+        left: 0%;
+        width: 100%;
+        border-top-left-radius: 0px;
+    }
+
+    .mainAuth .sidebarWrapper .sidebar {
+        width: 100% !important;
+        position: relative !important;
+        top:  0px !important;
+        max-height: inherit !important;
+    }
+
+    .rowfiltresDeResultat .MuiTablePagination-root {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        flex-wrap: wrap; /* Permet au contenu de s'ajuster sur plusieurs lignes si nécessaire */
+    }
+    
+    .rowfiltresDeResultat .MuiTablePagination-selectLabel {
+        margin-right: 10px; /* Espace entre le label et le select */
+    }
+    
+    .rowfiltresDeResultat .MuiTablePagination-input {
+        margin-right: 10px; /* Espace entre le select et le nombre de lignes affichées */
+    }
+    
+    .rowfiltresDeResultat .MuiTablePagination-displayedRows {
+        margin-right: 10px; /* Espace entre le nombre de lignes affichées et les boutons */
+    }
+    
+    .rowfiltresDeResultat .MuiTablePagination-actions {
+        display: flex;
+        align-items: center;
+    }
+    
+    .rowfiltresDeResultat button {
+        color: rgb(28, 117, 188);
+        background: none;
+        border: none;
+        cursor: pointer;
+        margin-left: 16px; /* Espace entre les boutons */
+    }
+    
+    /* Styles pour les petits écrans */
+    @media (max-width: 600px) {
+        .rowfiltresDeResultat .MuiTablePagination-root {
+            flex-direction: column; /* Empile les éléments sur les petits écrans */
+            align-items: flex-start; /* Aligne à gauche */
+        }
+        .rowfiltresDeResultat button {
+            margin-left: 0; /* Supprime l'espace à gauche sur les petits écrans */
+            margin-top: 8px; /* Ajoute un espace en haut entre les boutons */
+        }
+    }
+    .sidebarWrapper.open {
+        left: 0px !important;
+        opacity: 1 !important;
+    }
+
+    .sidebarOverlay {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        background: rgba(0, 0, 0, 0.7);
+        width: 100%;
+        height: 100% !important;
+        z-index: 1000;
+    }
+
+    .sidebarOverlay.show {
+        display: block !important;
+    }
+
+}
+
+
+@media only screen and (min-width:0px) and (max-width:249px) {
+
+    .mainAuth .sidebarWrapper {
+        width: 80% !important;
+        height: 100vh !important;
+        position: fixed;
+        top: 0px;
+        left: -100%;
+        z-index: 1000;
+        opacity: 0;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .mainAuth .contentDroite {
+        left: 0%;
+        width: 100%;
+        border-top-left-radius: 0px;
+    }
+
+}
+
+@media (max-width: 1299px) {
+    .sidebarWrapper {
+        width: auto; /* Permet à la largeur de s'ajuster tout en respectant min-width */
+    }
+}
