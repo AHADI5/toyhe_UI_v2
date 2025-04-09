@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        gothic: ['"League Gothic"', 'Roboto', 'Poppins', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }
