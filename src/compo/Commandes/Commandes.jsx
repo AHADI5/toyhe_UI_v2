@@ -606,10 +606,10 @@ const mockData = {
     }
   ],
   stats: {
-    online: 150,
-    store: 80,
-    partner: 45,
-    agent: 94
+    "En ligne": 150,
+    "Par vente": 80,
+    "Par partenariat": 45,
+    "Pour les agents": 94
   }
 };
 

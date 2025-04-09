@@ -3,8 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { 
   Ship, 
   CreditCard,
-  ArrowRight, 
-  ArrowLeftRight,
+  ArrowRight,
   Bed,
   Mail,
   Phone,
@@ -113,6 +112,16 @@ const PassengerForm = ({ index, data, onChange, showReturnFields }) => (
     <h3 className="text-lg font-medium text-gray-900">Passager {index + 1}</h3>
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
       <div>
+        <label className="block text-sm font-medium text-gray-700">Date de voyage</label>
+        <input
+          type="date"
+          value={data.dateVoyage}
+          onChange={(e) => onChange(index, 'dateVoyage', e.target.value)}
+          className="mt-1 h-12 px-4 block w-full rounded-md border-gray-600 bg-[#f5f5ff] shadow-sm focus:border-blue-500 focus:ring-blue-500"
+          required
+        />
+      </div>
+      <div>
         <label className="block text-sm font-medium text-gray-700">Nom</label>
         <input
           type="text"
@@ -192,20 +201,6 @@ const PassengerForm = ({ index, data, onChange, showReturnFields }) => (
         </select>
       </div>
 
-      <div>
-        <label className="block text-sm font-medium text-gray-700">Trajet</label>
-        <select
-          value={data.tajet}
-          onChange={(e) => onChange(index, 'vocation', e.target.value)}
-          className="mt-1 h-12 px-4 block w-full rounded-md border-gray-600 bg-[#f5f5ff] shadow-sm focus:border-blue-500 focus:ring-blue-500"
-          required
-        >
-          <option value="matin">Goma-Bukavu</option>
-          <option value="soir">Bukavu-Goma</option>
-        </select>
-      </div>
-
-
       {showReturnFields && (
         <>
           <div>
@@ -219,14 +214,16 @@ const PassengerForm = ({ index, data, onChange, showReturnFields }) => (
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Heure de retour</label>
-            <input
-              type="time"
-              value={data.heureRetour}
-              onChange={(e) => onChange(index, 'heureRetour', e.target.value)}
+            <label className="block text-sm font-medium text-gray-700">Vocation</label>
+            <select
+              value={data.vocationRetour}
+              onChange={(e) => onChange(index, 'vocationRetour', e.target.value)}
               className="mt-1 h-12 px-4 block w-full rounded-md border-gray-600 bg-[#f5f5ff] shadow-sm focus:border-blue-500 focus:ring-blue-500"
               required
-            />
+            >
+              <option value="matin">Matin</option>
+              <option value="soir">Soir</option>
+            </select>
           </div>
         </>
       )}
@@ -434,8 +431,7 @@ function Reservation() {
     dateNaissance: '',
     vocation: 'matin',
     trajet: 'Goma-Bukavu',
-    dateRetour: '',
-    heureRetour: ''
+    dateVoyage: ''
   }]);
 
   useEffect(() => {
@@ -457,8 +453,7 @@ function Reservation() {
         dateNaissance: '',
         vocation: 'matin',
         trajet: 'Goma-Bukavu',
-        dateRetour: '',
-        heureRetour: ''
+        dateVoyage: ''
       }
     );
     setPassengers(newPassengers);
@@ -511,7 +506,7 @@ function Reservation() {
       passenger.nationalite && 
       passenger.dateNaissance && 
       passenger.vocation &&
-      passenger.trajet && 
+      passenger.dateVoyage && 
       (tripType === 'single' || (passenger.dateRetour && passenger.heureRetour))
     );
   };
@@ -530,6 +525,41 @@ function Reservation() {
           {!showPayment ? (
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+
+
+
+              <div className="space-y-2">
+                  <label className="block text-sm font-medium text-gray-700">Trajet</label>
+                  <div className="flex space-x-4">
+                    <button
+                      type="button"
+                      onClick={() => setTripType('single')}
+                      className={`h-12 flex items-center px-4 rounded-md ${
+                        tripType === 'single'
+                          ? 'bg-blue-600 text-white'
+                          : 'bg-[#f5f5ff] text-gray-700 hover:bg-gray-200'
+                      }`}
+                    >
+                      Goma <ArrowRight className="w-4 h-4 ml-2 mr-2" /> Bukavu
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setTripType('return')}
+                      className={`h-12 flex items-center px-4 rounded-md ${
+                        tripType === 'return'
+                          ? 'bg-blue-600 text-white'
+                          : 'bg-[#f5f5ff] text-gray-700 hover:bg-gray-200'
+                      }`}
+                    >
+                      Bukavu <ArrowRight className="w-4 h-4 ml-2 mr-2" /> Goma
+                    </button>
+                  </div>
+                </div>
+
+
+
+
+
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-700">Classe</label>
                   <select
@@ -552,35 +582,6 @@ function Reservation() {
                   </select>
                 </div>
 
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">Type de voyage</label>
-                  <div className="flex space-x-4">
-                    <button
-                      type="button"
-                      onClick={() => setTripType('single')}
-                      className={`h-12 flex items-center px-4 rounded-md ${
-                        tripType === 'single'
-                          ? 'bg-blue-600 text-white'
-                          : 'bg-[#f5f5ff] text-gray-700 hover:bg-gray-200'
-                      }`}
-                    >
-                      <ArrowRight className="w-4 h-4 mr-2" />
-                      Aller simple
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setTripType('return')}
-                      className={`h-12 flex items-center px-4 rounded-md ${
-                        tripType === 'return'
-                          ? 'bg-blue-600 text-white'
-                          : 'bg-[#f5f5ff] text-gray-700 hover:bg-gray-200'
-                      }`}
-                    >
-                      <ArrowLeftRight className="w-4 h-4 mr-2" />
-                      Aller-retour
-                    </button>
-                  </div>
-                </div>
               </div>
 
               {selectedClass.hasbed && (

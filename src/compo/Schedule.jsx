@@ -106,113 +106,224 @@ function Schedule() {
   };
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-lg">
-      <h2 className="mb-6 text-2xl font-bold text-primary">Horaire des Voyages : Goma - Bukavu</h2>
-      
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow sx={{ backgroundColor: '#1c75bc' }}>
-              <TableCell sx={{ color: 'white' }}>Jour</TableCell>
-              <TableCell sx={{ color: 'white' }}>Matin</TableCell>
-              <TableCell sx={{ color: 'white' }}>Soir</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {Object.entries(schedule).map(([day, times]) => (
-              <TableRow key={day}>
-                <TableCell className="capitalize">{day}</TableCell>
-                <TableCell>
-                  <div className="flex flex-wrap items-center gap-2">
-                    {times.morning.map((vessel, index) => (
-                      <Chip 
-                        key={`${vessel}-${index}`}
-                        label={vessel}
-                        color="primary"
-                        size="small"
-                      />
-                    ))}
-                    {isAdmin && (
-                      <Button 
-                        size="small" 
-                        onClick={() => handleEdit(day, 'morning', times.morning)}
-                        className="ml-2"
-                      >
-                        Modifier
-                      </Button>
-                    )}
-                  </div>
-                </TableCell>
-                <TableCell>
-                  <div className="flex flex-wrap items-center gap-2">
-                    {times.evening.map((vessel, index) => (
-                      <Chip 
-                        key={`${vessel}-${index}`}
-                        label={vessel}
-                        color="primary"
-                        size="small"
-                      />
-                    ))}
-                    {isAdmin && (
-                      <Button 
-                        size="small" 
-                        onClick={() => handleEdit(day, 'evening', times.evening)}
-                        className="ml-2"
-                      >
-                        Modifier
-                      </Button>
-                    )}
-                  </div>
-                </TableCell>
+    <div className='bg-white'>
+      <div className="p-6 bg-white rounded-lg shadow-lg">
+        <h2 className="mb-6 text-2xl font-bold text-primary">Horaire des Voyages : Goma - Bukavu</h2>
+        
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow sx={{ backgroundColor: '#1c75bc' }}>
+                <TableCell sx={{ color: 'white' }}>Jour</TableCell>
+                <TableCell sx={{ color: 'white' }}>Matin</TableCell>
+                <TableCell sx={{ color: 'white' }}>Soir</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+            </TableHead>
+            <TableBody>
+              {Object.entries(schedule).map(([day, times]) => (
+                <TableRow key={day}>
+                  <TableCell className="capitalize">{day}</TableCell>
+                  <TableCell>
+                    <div className="flex flex-wrap items-center gap-2">
+                      {times.morning.map((vessel, index) => (
+                        <Chip 
+                          key={`${vessel}-${index}`}
+                          label={vessel}
+                          color="primary"
+                          size="small"
+                        />
+                      ))}
+                      {isAdmin && (
+                        <Button 
+                          size="small" 
+                          onClick={() => handleEdit(day, 'morning', times.morning)}
+                          className="ml-2"
+                        >
+                          Modifier
+                        </Button>
+                      )}
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex flex-wrap items-center gap-2">
+                      {times.evening.map((vessel, index) => (
+                        <Chip 
+                          key={`${vessel}-${index}`}
+                          label={vessel}
+                          color="primary"
+                          size="small"
+                        />
+                      ))}
+                      {isAdmin && (
+                        <Button 
+                          size="small" 
+                          onClick={() => handleEdit(day, 'evening', times.evening)}
+                          className="ml-2"
+                        >
+                          Modifier
+                        </Button>
+                      )}
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
 
-      <Dialog open={open} onClose={() => setOpen(false)} maxWidth="md" fullWidth>
-        <DialogTitle>Modifier l'horaire</DialogTitle>
-        <DialogContent>
-          <div className="pt-4 space-y-4">
-            {editData.vessels.map((vessel, index) => (
-              <div key={index} className="flex items-center gap-2">
-                <FormControl fullWidth>
-                  <InputLabel>Bateau</InputLabel>
-                  <Select
-                    value={vessel}
-                    onChange={(e) => handleVesselChange(index, e.target.value)}
-                    label="Bateau"
+        <Dialog open={open} onClose={() => setOpen(false)} maxWidth="md" fullWidth>
+          <DialogTitle>Modifier l'horaire</DialogTitle>
+          <DialogContent>
+            <div className="pt-4 space-y-4">
+              {editData.vessels.map((vessel, index) => (
+                <div key={index} className="flex items-center gap-2">
+                  <FormControl fullWidth>
+                    <InputLabel>Bateau</InputLabel>
+                    <Select
+                      value={vessel}
+                      onChange={(e) => handleVesselChange(index, e.target.value)}
+                      label="Bateau"
+                    >
+                      {vessels.map((v) => (
+                        <MenuItem key={v} value={v}>{v}</MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                  <IconButton 
+                    color="error" 
+                    onClick={() => handleRemoveVessel(index)}
                   >
-                    {vessels.map((v) => (
-                      <MenuItem key={v} value={v}>{v}</MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-                <IconButton 
-                  color="error" 
-                  onClick={() => handleRemoveVessel(index)}
-                >
-                  <DeleteIcon />
-                </IconButton>
-              </div>
-            ))}
-            <Button
-              startIcon={<AddIcon />}
-              onClick={handleAddVessel}
-              variant="outlined"
-              fullWidth
-            >
-              Ajouter un bateau
+                    <DeleteIcon />
+                  </IconButton>
+                </div>
+              ))}
+              <Button
+                startIcon={<AddIcon />}
+                onClick={handleAddVessel}
+                variant="outlined"
+                fullWidth
+              >
+                Ajouter un bateau
+              </Button>
+            </div>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => setOpen(false)}>Annuler</Button>
+            <Button onClick={handleSave} variant="contained" color="primary">
+              Sauvegarder
             </Button>
-          </div>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setOpen(false)}>Annuler</Button>
-          <Button onClick={handleSave} variant="contained" color="primary">
-            Sauvegarder
-          </Button>
-        </DialogActions>
-      </Dialog>
+          </DialogActions>
+        </Dialog>
+      </div>
+
+      <div className="p-6 bg-white rounded-lg shadow-lg">
+        <h2 className="mb-6 text-2xl font-bold text-primary">Horaire des Voyages : Bukavu - Goma</h2>
+        
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow sx={{ backgroundColor: '#1c75bc' }}>
+                <TableCell sx={{ color: 'white' }}>Jour</TableCell>
+                <TableCell sx={{ color: 'white' }}>Matin</TableCell>
+                <TableCell sx={{ color: 'white' }}>Soir</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {Object.entries(schedule).map(([day, times]) => (
+                <TableRow key={day}>
+                  <TableCell className="capitalize">{day}</TableCell>
+                  <TableCell>
+                    <div className="flex flex-wrap items-center gap-2">
+                      {times.morning.map((vessel, index) => (
+                        <Chip 
+                          key={`${vessel}-${index}`}
+                          label={vessel}
+                          color="primary"
+                          size="small"
+                        />
+                      ))}
+                      {isAdmin && (
+                        <Button 
+                          size="small" 
+                          onClick={() => handleEdit(day, 'morning', times.morning)}
+                          className="ml-2"
+                        >
+                          Modifier
+                        </Button>
+                      )}
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex flex-wrap items-center gap-2">
+                      {times.evening.map((vessel, index) => (
+                        <Chip 
+                          key={`${vessel}-${index}`}
+                          label={vessel}
+                          color="primary"
+                          size="small"
+                        />
+                      ))}
+                      {isAdmin && (
+                        <Button 
+                          size="small" 
+                          onClick={() => handleEdit(day, 'evening', times.evening)}
+                          className="ml-2"
+                        >
+                          Modifier
+                        </Button>
+                      )}
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+
+        <Dialog open={open} onClose={() => setOpen(false)} maxWidth="md" fullWidth>
+          <DialogTitle>Modifier l'horaire</DialogTitle>
+          <DialogContent>
+            <div className="pt-4 space-y-4">
+              {editData.vessels.map((vessel, index) => (
+                <div key={index} className="flex items-center gap-2">
+                  <FormControl fullWidth>
+                    <InputLabel>Bateau</InputLabel>
+                    <Select
+                      value={vessel}
+                      onChange={(e) => handleVesselChange(index, e.target.value)}
+                      label="Bateau"
+                    >
+                      {vessels.map((v) => (
+                        <MenuItem key={v} value={v}>{v}</MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                  <IconButton 
+                    color="error" 
+                    onClick={() => handleRemoveVessel(index)}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </div>
+              ))}
+              <Button
+                startIcon={<AddIcon />}
+                onClick={handleAddVessel}
+                variant="outlined"
+                fullWidth
+              >
+                Ajouter un bateau
+              </Button>
+            </div>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => setOpen(false)}>Annuler</Button>
+            <Button onClick={handleSave} variant="contained" color="primary">
+              Sauvegarder
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
     </div>
   );
 }

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+
+import { useEffect, useState } from 'react';
 import {
   Card,
   CardContent,
@@ -20,6 +21,13 @@ import {
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
+
+
+
+import { getAllBoats, registerBoat, updateBoat } from '../services/boatService.js';
+
+
+
 
 const initialBoats = [
   {
@@ -73,7 +81,15 @@ const emptyBoat = {
 };
 
 function Boats() {
-  const [boats, setBoats] = useState(initialBoats);
+
+
+
+
+  const [boats, setBoats] = useState([]);
+
+
+
+
   const [isAdmin] = useState(true);
   const [open, setOpen] = useState(false);
   const [editBoat, setEditBoat] = useState(null);
@@ -110,6 +126,56 @@ function Boats() {
     return status === 'en navigation' ? 'primary' : 'success';
   };
 
+
+
+
+
+  useEffect(() => {
+    const fetchBoats = async () => {
+      try {
+        const result = await getAllBoats();
+        console.log("Données brutes reçues de l'API :", result); // 🔍 Debug API
+
+        if (result.success) {
+          const formattedBoats = result.data.map((boat) => ({
+            id: boat.boatID, 
+            name: boat.name,
+            status: boat.trips.length > 0 ? 'en navigation' : 'au quai', 
+            seats: {
+              first: boat.boatClasses.find(cls => cls.name === 'FIRST CLASS')?.placeAvailable || 0,
+              second: boat.boatClasses.find(cls => cls.name === 'SECOND CLASS')?.placeAvailable || 0,
+              third: boat.boatClasses.find(cls => cls.name === 'THIRD CLASS')?.placeAvailable || 0,
+              fourth: boat.boatClasses.find(cls => cls.name === 'VIP')?.placeAvailable || 0,
+            },
+            remainingCargo: boat.supportedWeight - boat.boatWeight,
+            departure: boat.trips.length > 0 ? boat.trips[0].departure : 'N/A',
+            arrival: boat.trips.length > 0 ? boat.trips[0].arrival : 'N/A',
+            capacity: boat.supportedWeight,
+            details: boat.boatCategory, 
+            active: boat.boatClasses.length > 0, 
+          }));
+
+          console.log("Bateaux formatés :", formattedBoats); // 🔍 Debug transformation des données
+          setBoats(formattedBoats);
+        } else {
+          console.error("Erreur API :", result.error);
+        }
+      } catch (error) {
+        console.error("Erreur lors de la récupération des bateaux :", error);
+      }
+    };
+
+    fetchBoats();
+  }, []);
+
+
+
+
+
+
+
+
+
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
@@ -121,76 +187,88 @@ function Boats() {
         )}
       </div>
 
+
+
+
+
       <Grid container spacing={4}>
-        {boats.filter(boat => boat.active).map((boat) => (
-          <Grid item xs={12} md={6} key={boat.id}>
-            <Card className="h-full">
-              <CardContent>
-                <div className="flex justify-between items-start">
-                  <Typography variant="h5" component="h3" className="text-primary">
-                    {boat.name}
-                  </Typography>
-                  <div className="flex gap-2">
-                    <Chip 
-                      label={boat.status} 
-                      color={getStatusColor(boat.status)}
-                      size="small"
-                    />
+        {boats.length === 0 ? (
+          <Typography variant="h6" className="text-center w-full mt-4">Aucun bateau disponible</Typography>
+        ) : (
+          boats.filter(boat => boat.active).map((boat) => (
+            <Grid item xs={12} md={6} key={boat.id}>
+              <Card className="h-full">
+                <CardContent>
+                  <div className="flex justify-between items-start">
+                    <Typography variant="h5" component="h3" className="text-primary">
+                      {boat.name}
+                    </Typography>
+                    <div className="flex gap-2">
+                      <Chip 
+                        label={boat.status} 
+                        color="primary"
+                        size="small"
+                      />
+                      {isAdmin && (
+                        <IconButton 
+                          size="small" 
+                          color="error"
+                          onClick={() => handleDelete(boat.id)}
+                        >
+                          <DeleteIcon />
+                        </IconButton>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="mt-4 space-y-2">
+                    <Typography variant="body1">
+                      <strong>Places disponibles:</strong>
+                    </Typography>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div>1ère classe: {boat.seats.first}</div>
+                      <div>2ème classe: {boat.seats.second}</div>
+                      <div>3ème classe: {boat.seats.third}</div>
+                      <div>VIP: {boat.seats.fourth}</div>
+                    </div>
+
+                    <Typography>
+                      <strong>Charge restante:</strong> {boat.remainingCargo} kg
+                    </Typography>
+
+                    <Typography>
+                      <strong>Départ:</strong> {boat.departure} | <strong>Arrivée:</strong> {boat.arrival}
+                    </Typography>
+
+                    <Typography>
+                      <strong>Capacité totale:</strong> {boat.capacity} kg
+                    </Typography>
+
+                    <Typography>
+                      <strong>Détails:</strong> {boat.details}
+                    </Typography>
+
                     {isAdmin && (
-                      <IconButton 
-                        size="small" 
-                        color="error"
-                        onClick={() => handleDelete(boat.id)}
+                      <Button 
+                        variant="outlined" 
+                        color="primary"
+                        onClick={() => handleEdit(boat)}
+                        className="mt-4"
                       >
-                        <DeleteIcon />
-                      </IconButton>
+                        Modifier
+                      </Button>
                     )}
                   </div>
-                </div>
-
-                <div className="mt-4 space-y-2">
-                  <Typography variant="body1">
-                    <strong>Places disponibles:</strong>
-                  </Typography>
-                  <div className="grid grid-cols-2 gap-2">
-                    <div>1ère classe: {boat.seats.first}</div>
-                    <div>2ème classe: {boat.seats.second}</div>
-                    <div>3ème classe: {boat.seats.third}</div>
-                    <div>4ème classe: {boat.seats.fourth}</div>
-                  </div>
-
-                  <Typography>
-                    <strong>Charge restante:</strong> {boat.remainingCargo} kg
-                  </Typography>
-
-                  <Typography>
-                    <strong>Départ:</strong> {boat.departure} | <strong>Arrivée:</strong> {boat.arrival}
-                  </Typography>
-
-                  <Typography>
-                    <strong>Capacité totale:</strong> {boat.capacity} kg
-                  </Typography>
-
-                  <Typography>
-                    <strong>Détails:</strong> {boat.details}
-                  </Typography>
-
-                  {isAdmin && (
-                    <Button 
-                      variant="outlined" 
-                      color="primary"
-                      onClick={() => handleEdit(boat)}
-                      className="mt-4"
-                    >
-                      Modifier
-                    </Button>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
+                </CardContent>
+              </Card>
+            </Grid>
+          ))
+        )}
       </Grid>
+
+
+
+
 
       <Dialog open={open} onClose={() => setOpen(false)} maxWidth="md" fullWidth>
         <DialogTitle>{isNewBoat ? 'Ajouter un bateau' : 'Modifier le bateau'}</DialogTitle>

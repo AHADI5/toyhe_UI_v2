@@ -41,7 +41,7 @@ const Header = ({ toggleNavbar, isNavbarOpen }) => {
   const user = {
     name: 'AMURI TCHALUMBA Héritier',
     email: 'heritieramuritcha@gmail.com',
-    avatar: 'https://scontent.fgom1-1.fna.fbcdn.net/v/t39.30808-1/418805976_1609226313159384_2385096231440398921_n.jpg?stp=c0.0.534.534a_dst-jpg_s200x200_tt6&_nc_cat=104&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeELeIuaCe4VE_YQRPvCZnt4bYlPxk5tFaVtiU_GTm0VpQRMfdo71lEtPyiB9HtDvezsDICIbjYwc4G3I-Jld-f9&_nc_ohc=IvjqSNH03KwQ7kNvgE6KvEe&_nc_oc=AdhHqmqG8UhLC2O9k3NQwc1OkPtGhqGUc8UZSAZ4yXTQSnSRCC7XFDqVMjyc3tCALTk&_nc_zt=24&_nc_ht=scontent.fgom1-1.fna&_nc_gid=PONsqZEp_7uQboNkq1dLGg&oh=00_AYGiknOI-NhB5r8UGmRNOPv7Blbk9rYE8s_TLK057-troA&oe=67DF080F'
+    avatar: 'https://scontent-mba2-1.xx.fbcdn.net/v/t39.30808-6/418805976_1609226313159384_2385096231440398921_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeELeIuaCe4VE_YQRPvCZnt4bYlPxk5tFaVtiU_GTm0VpQRMfdo71lEtPyiB9HtDvezsDICIbjYwc4G3I-Jld-f9&_nc_ohc=c1jZAW0nJn0Q7kNvgGAp_a4&_nc_oc=AdnU0fTi_9xSz6sNYt6BwDpkz4l-4bJZCDAUUAygOgAtieOSfII1ztxPIh8sKbw5sus&_nc_zt=23&_nc_ht=scontent-mba2-1.xx&_nc_gid=jJMqryB8z9HaFPplKWLi_g&oh=00_AYFajZc4ccKy4JA6FsVWXaPA9lRmv9gbvlHyPG7FUArFJw&oe=67F206CD'
   };
 
   const notifications = {
