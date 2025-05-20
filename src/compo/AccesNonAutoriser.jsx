@@ -43,11 +43,11 @@ const AccesNonAutoriser = () => {
               Retour à l'accueil
             </button>
             <button
-              onClick={() => navigate(-1)}
+              onClick={() => navigate('/user')}
               className="flex-1 px-6 py-3 text-gray-700 transition-colors duration-300 transform bg-gray-100 rounded-lg hover:bg-gray-200 hover:scale-105"
             >
               Page précédente
-            </button>
+            </button>   
           </div>
         </div>
       </div>

@@ -26,15 +26,15 @@ function AppDownload() {
   const screenshots = [
     {
       image: "/assets/interfaces/reservation.jpeg",
-      title: "Écran réservation"
+      title: "Interface d'accueil"
     },
     {
       image: "/assets/interfaces/impression.jpeg",
-      title: "Impression"
+      title: "Écran de réservation"
     },
     {
       image: "/assets/interfaces/document_imprimer.jpeg",
-      title: "Paiement"
+      title: "Fichier à imprimer"
     }
   ];
 
@@ -48,10 +48,10 @@ function AppDownload() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <Typography variant="h1" className="text-4xl font-bold mb-6">
+              <Typography variant="h1" className="mb-6 text-4xl font-bold">
                 Application Mobile TOYHE
               </Typography>
-              <Typography variant="body1" className="text-lg text-gray-600 mb-8">
+              <Typography variant="body1" className="mb-8 text-lg text-gray-600">
                 Téléchargez notre application mobile pour gérer vos réservations en toute simplicité.
               </Typography>
               <Grid container spacing={4}>
@@ -62,7 +62,7 @@ function AppDownload() {
                         {feature.icon}
                       </Box>
                       <div>
-                        <Typography variant="h6" className="font-bold mb-2">
+                        <Typography variant="h6" className="mb-2 font-bold">
                           {feature.title}
                         </Typography>
                         <Typography variant="body1" color="text.secondary">
@@ -89,7 +89,7 @@ function AppDownload() {
                       <img
                         src={screenshot.image}
                         alt={screenshot.title}
-                        className="w-full h-auto rounded-lg shadow-lg mb-3"
+                        className="w-full h-auto mb-3 rounded-lg shadow-lg"
                       />
                       <Typography variant="subtitle1" className="font-medium">
                         {screenshot.title}
@@ -101,12 +101,12 @@ function AppDownload() {
             </motion.div>
           </Grid>
 
-          <Grid item xs={12} className="text-center mt-12">
+          <Grid item xs={12} className="mt-12 text-center">
             <Button
               variant="contained"
               color="primary"
               size="large"
-              className="button-primary px-8 py-3"
+              className="px-8 py-3 button-primary"
             >
               Télécharger l'application
             </Button>

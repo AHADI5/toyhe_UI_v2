@@ -178,6 +178,62 @@ const PassengerForm = ({ index, data, onChange, showReturnFields }) => (
           ))}
         </select>
       </div>
+
+
+
+
+
+
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700">Numéro de la pièce</label>
+        <input
+          type="text"
+          value={data.prenom}
+          onChange={(e) => onChange(index, 'prenom', e.target.value)}
+          className="mt-1 h-12 px-4 block w-full rounded-md border-gray-600 bg-[#f5f5ff] shadow-sm focus:border-blue-500 focus:ring-blue-500"
+          required
+        />
+      </div>
+
+
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700">Type de pièce d'identité</label>
+        <select
+          value={data.typePieceIdentite}
+          onChange={(e) => onChange(index, 'typePieceIdentite', e.target.value)}
+          className="mt-1 h-12 px-4 block w-full rounded-md border-gray-600 bg-[#f5f5ff] shadow-sm focus:border-blue-500 focus:ring-blue-500"
+          required
+        >
+          <option value="">Sélectionner</option>
+          <option value="Carte nationale d'identité">Carte nationale d'identité</option>
+          <option value="Passeport">Passeport</option>
+          <option value="Permis de conduire">Permis de conduire</option>
+          <option value="Carte d'électeur">Carte d'électeur</option>
+          <option value="Attestation d'identité">Attestation d'identité</option>
+          <option value="Attestation de perte de pièce">Attestation de perte de pièce</option>
+          <option value="Certificat d’identification">Certificat d’identification</option>
+          <option value="Carte d’étudiant">Carte d’étudiant</option>
+          <option value="Carte d’élève">Carte d’élève</option>
+          <option value="Badge universitaire">Badge universitaire</option>
+          <option value="Carte d’assuré (mutuelle)">Carte d’assuré (mutuelle)</option>
+          <option value="Carte d’employé">Carte d’employé</option>
+          <option value="Livret de service">Livret de service</option>
+          <option value="Carte de réfugié">Carte de réfugié</option>
+          <option value="Carte de résident étranger">Carte de résident étranger</option>
+        </select>
+      </div>
+
+
+
+      
+
+
+
+
+
+
       <div>
         <label className="block text-sm font-medium text-gray-700">Date de naissance</label>
         <input
